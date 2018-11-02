@@ -4,11 +4,12 @@
 
 #include "HttpHandler.h"
 
-HttpHandler::HttpHandler(IOHandler *ioHandler, PortHandler *portHandler) {
+HttpHandler::HttpHandler(IOHandler *ioHandler, PortHandler *portHandler, string serverName) {
     this->ioHandler = ioHandler;
     this->portHandler = portHandler;
     handler_id = 0;
     finished = false;
+    this->serverName = serverName;
 }
 
 vector<string> HttpHandler::tokenize(string s) {

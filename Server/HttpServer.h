@@ -9,8 +9,11 @@
  * */
 
 #include <bits/stdc++.h>
+#include <sys/socket.h>
 #include "HttpHandler.h"
 using namespace std;
+
+#define SERVER_NAME "TEST"
 
 class HttpServer{
 
@@ -25,6 +28,7 @@ private:
     string currDir;
     int maxWorkers;
     int maxBacklog;
+    int server_fd;
     unsigned int port;
     unsigned long long timeOut;
     bool haveWorkers();

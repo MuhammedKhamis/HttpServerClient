@@ -18,7 +18,7 @@ using namespace std;
 class HttpHandler{
 
 public:
-    HttpHandler(IOHandler* ioHandler, PortHandler* portHandler);
+    HttpHandler(IOHandler* ioHandler, PortHandler* portHandler, string serverName);
     ~HttpHandler();
     bool isFinished();
     unsigned long long getCreateTime();
@@ -32,6 +32,7 @@ private:
     IOHandler* ioHandler;
     PortHandler* portHandler;
     pthread_t handler_id;
+    string serverName;
 
     // methods
     void run();
