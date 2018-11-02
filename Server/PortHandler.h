@@ -8,10 +8,21 @@
  * Used to handle data given through socket
  * */
 
+#include <bits/stdc++.h>
+#include <sys/socket.h>
+using namespace std;
+
 class PortHandler{
 public:
-    PortHandler();
-    ~PortHandler();
+    PortHandler(int socket_fd);
+    virtual ~PortHandler();
+
+    int write(void* buffer, int sz);
+    int read(void* buffer, int sz);
+    int closeConnection();
+
+private:
+    int socked_fd;
 };
 
 #endif //HTTPSERVERCLIENT_PORTHANDLER_H

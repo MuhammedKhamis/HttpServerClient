@@ -10,6 +10,7 @@
 
 #include <bits/stdc++.h>
 #include "HttpHandler.h"
+using namespace std;
 
 class HttpServer{
 

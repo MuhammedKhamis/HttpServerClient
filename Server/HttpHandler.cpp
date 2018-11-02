@@ -35,6 +35,6 @@ static void* HttpHandler::startHelper(void *runner) {
 }
 
 void HttpHandler::close() {
-    this->portHandler->close();
+    this->portHandler->closeConnection();
     this->finished = true;
 }
