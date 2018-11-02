@@ -11,7 +11,49 @@ HttpHandler::HttpHandler(IOHandler *ioHandler, PortHandler *portHandler) {
     finished = false;
 }
 
+vector<string> HttpHandler::tokenize(string s) {
+    vector <string> tokens;
+
+    stringstream check1(s);
+
+    string intermediate;
+
+    // Tokenizing w.r.t. space ' '
+    while(getline(check1, intermediate, ' '))
+    {
+        tokens.push_back(intermediate);
+    }
+    return tokens;
+}
+
 void HttpHandler::run() {
+    //TODO
+    char* data[MAX_REQ_SZ];
+    memset(data, 0, MAX_REQ_SZ);
+    int read = portHandler->read(data, MAX_REQ_SZ);
+    if(read == -1){
+        //Error
+        return;
+    }
+    if(read == 0){
+        // nothing to read.
+        return;
+    }
+    string req(data);
+    vector<string> tokens = tokenize(req);
+    if(tokens[0] == "GET"){
+        handleGet(tokens);
+    } else if(tokens[0] == "POST"){
+        handlePost(tokens);
+    }
+    // Error
+}
+
+void HttpHandler::handleGet(vector<string> tokens) {
+    //TODO
+}
+
+void HttpHandler::handlePost(vector<string> tokens) {
     //TODO
 }
 

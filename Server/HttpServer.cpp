@@ -27,7 +27,7 @@ bool HttpServer::haveWorkers() {
     return workers.size() < maxWorkers;
 }
 
-bool HttpServer::initServer() {
+int HttpServer::initServer() {
     //TODO
     return 0;
 }

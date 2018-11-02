@@ -13,6 +13,8 @@
 #include "PortHandler.h"
 using namespace std;
 
+#define MAX_REQ_SZ 10240
+
 class HttpHandler{
 
 public:
@@ -36,6 +38,9 @@ private:
     void close();
     static void * startHelper(void * runner);
     static void cleanupHelper(void * runner);
+    void handleGet(vector<string> tokens);
+    void handlePost(vector<string> tokens);
+    vector<string> tokenize(string s);
 };
 
 #endif //HTTPSERVERCLIENT_HTTPHANDLER_H
