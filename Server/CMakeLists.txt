@@ -4,6 +4,4 @@ project(HttpServerClient)
 set(CMAKE_CXX_STANDARD 14)
 
 add_executable(HttpServerClient
-        main.cpp
-        LICENSE
-        README.md)
+        main.cpp)
