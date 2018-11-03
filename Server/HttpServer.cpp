@@ -13,14 +13,18 @@ HttpServer::HttpServer(string currDir, int workers, int backlog, unsigned int po
     server_fd = 0;
 }
 
+HttpServer::~HttpServer() {
+
+}
+
 bool HttpServer::haveWorkers() {
-    unsigned long long currTime = 0;
+    time_t currTime = 0;
     for(auto it = this->workers.begin() ; it != this->workers.end();){
         HttpHandler* curr = *it;
-        time(&currTime)
-        if(curr->isFinished() || difftime(currTime, curr->createTime()) > timeOut){
+        time(&currTime) ;
+        if(curr->isFinished() || difftime(currTime, curr->getCreateTime()) > timeOut){
             it = workers.erase(it);
-            delete curr
+            delete curr ;
         }else{
             it++;
         }
@@ -33,6 +37,8 @@ int HttpServer::initServer() {
     struct sockaddr_in address;
     int opt = 1;
     int addrlen = sizeof(address);
+
+    chdir(currDir.c_str()) ;
 
     // Creating socket file descriptor
     if ((server_fd = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP)) == 0)
@@ -70,8 +76,6 @@ int HttpServer::initServer() {
 void HttpServer::run() {
     while (1){
         while (haveWorkers()) {
-            //TODO
-
             int new_socket;
             struct sockaddr_in address;
             socklen_t addrlen = sizeof(address);

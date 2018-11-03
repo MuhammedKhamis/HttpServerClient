@@ -12,11 +12,11 @@ PortHandler::~PortHandler() {
     closeConnection();
 }
 
-void PortHandler::read(void *buffer, int sz) {
+int PortHandler::read(void *buffer, int sz) {
     return recv(socked_fd, buffer, sz, 0);
 }
 
-void PortHandler::write(void *buffer, int sz) {
+int PortHandler::write(void *buffer, int sz) {
     char* ptr = (char*)buffer;
     int len = sz;
     while (len){

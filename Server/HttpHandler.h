@@ -9,6 +9,7 @@
  * */
 
 #include <bits/stdc++.h>
+#include <pthread.h>
 #include "IOHandler.h"
 #include "PortHandler.h"
 using namespace std;
@@ -27,7 +28,7 @@ public:
 private:
 
     //attributes
-    unsigned long long startTime;
+    time_t startTime;
     bool finished;
     IOHandler* ioHandler;
     PortHandler* portHandler;

@@ -3,6 +3,7 @@
 //
 
 #include "HttpHandler.h"
+#include <string.h>
 
 HttpHandler::HttpHandler(IOHandler *ioHandler, PortHandler *portHandler, string serverName) {
     this->ioHandler = ioHandler;
@@ -10,6 +11,10 @@ HttpHandler::HttpHandler(IOHandler *ioHandler, PortHandler *portHandler, string 
     handler_id = 0;
     finished = false;
     this->serverName = serverName;
+}
+
+HttpHandler::~HttpHandler() {
+    delete portHandler ;
 }
 
 vector<string> HttpHandler::tokenize(string s) {
@@ -29,7 +34,7 @@ vector<string> HttpHandler::tokenize(string s) {
 
 void HttpHandler::run() {
     //TODO
-    char* data[MAX_REQ_SZ];
+    char data[MAX_REQ_SZ];
     memset(data, 0, MAX_REQ_SZ);
     int read = portHandler->read(data, MAX_REQ_SZ);
     if(read == -1){
@@ -41,6 +46,7 @@ void HttpHandler::run() {
         return;
     }
     string req(data);
+    cout << data ;
     vector<string> tokens = tokenize(req);
     if(tokens[0] == "GET"){
         handleGet(tokens);
@@ -71,7 +77,7 @@ unsigned long long HttpHandler::getCreateTime() {
     return this->startTime;
 }
 
-static void* HttpHandler::startHelper(void *runner) {
+void* HttpHandler::startHelper(void *runner) {
     ((HttpHandler*)runner)->run();
     ((HttpHandler*)runner)->close();
     return NULL;
