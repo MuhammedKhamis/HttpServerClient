@@ -1,0 +1,47 @@
+[33mcommit 0eb4d053c7556b94d1e8481fe5032ff83510cfb6[m
+Author: MuhammedKhamis <muhammedessam10@gmail.com>
+Date:   Sat Nov 3 11:27:01 2018 +0200
+
+    adding client project
+
+[33mcommit 487ff8ab984bd6f4eccf62c79974b5618a3c4602[m
+Author: MuhammedKhamis <muhammedessam10@gmail.com>
+Date:   Sat Nov 3 11:24:41 2018 +0200
+
+    reorganizing the project
+
+[33mcommit c9424824addbcdbd7facdb2f75146e741f40c1e1[m
+Author: MuhammedKhamis <muhammedessam10@gmail.com>
+Date:   Fri Nov 2 21:01:33 2018 +0200
+
+    adding http handler code but not tested
+
+[33mcommit 4fc707c7a273c144af6a3e833f19f11b73d72393[m
+Author: MuhammedKhamis <muhammedessam10@gmail.com>
+Date:   Fri Nov 2 19:52:22 2018 +0200
+
+    adding some code in http handler
+
+[33mcommit 7c31c9faed75b81b2ffb11e57fa60d98e79b8531[m
+Author: MuhammedKhamis <muhammedessam10@gmail.com>
+Date:   Fri Nov 2 19:23:00 2018 +0200
+
+    implementing IO, port handlers
+
+[33mcommit 604fd444036976c74b07cbfbad5faafa4d1b996d[m
+Author: MuhammedKhamis <muhammedessam10@gmail.com>
+Date:   Fri Nov 2 17:40:18 2018 +0200
+
+    adding skeleton code
+
+[33mcommit 206f6699b0d647fbe71f76b95f0f792c4f07e2c1[m
+Author: MuhammedKhamis <muhammedessam10@gmail.com>
+Date:   Fri Nov 2 14:20:28 2018 +0200
+
+    adding initial project
+
+[33mcommit b76570a9db5eb78a3e9caea8d6ec7f0c4ce834b6[m
+Author: Muhammed Ibrahim <muhammedessam10@gmail.com>
+Date:   Fri Nov 2 13:32:20 2018 +0200
+
+    Initial commit
