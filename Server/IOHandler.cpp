@@ -14,7 +14,7 @@ bool IOHandler::fileExist(string fileName) {
 
 int IOHandler::getFileSize(string fileName) {
     if(fileExist(fileName)){
-        ifstream in(filename.c_str(), ifstream::ate | ifstream::binary);
+        ifstream in(fileName.c_str(), ifstream::ate | ifstream::binary);
         int len = in.tellg();
         in.close();
         return len;
@@ -24,7 +24,7 @@ int IOHandler::getFileSize(string fileName) {
 
 time_t IOHandler::getLastModified(string fileName) {
     if(fileExist(fileName)){
-        struct state info;
+        struct stat info;
         stat(fileName.c_str(), &info);
         return info.st_mtim.tv_sec;
     }
@@ -33,8 +33,9 @@ time_t IOHandler::getLastModified(string fileName) {
 
 int IOHandler::readData(string fileName, char *data, int len) {
     if(fileExist(fileName)){
-        FILE* fp = fopen(fileName.c_str(),"rb");
+        FILE* fp = fopen(fileName.c_str(),"rb+");
         int read = fread(data, 1, len, fp);
+        data[len] = '\0' ;
         fclose(fp);
         return read;
     }
@@ -43,7 +44,7 @@ int IOHandler::readData(string fileName, char *data, int len) {
 
 int IOHandler::writeData(string fileName, char *data, int len) {
     if (fileExist(fileName)){
-        FILE* fp = fopen(fileName.c_str(),"wb");
+        FILE* fp = fopen(fileName.c_str(),"wb+");
         int written = fwrite(data, 1, len, fp);
         fclose(fp);
         return written;
