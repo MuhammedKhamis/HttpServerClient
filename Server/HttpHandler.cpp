@@ -32,21 +32,32 @@ void HttpHandler::run() {
         return;
     }
     string req(data);
-    cout << data ;
-    vector<string> tokens = Parser::inst.tokenize(req);
-    if(tokens[0] == "GET"){
-        handleGet(tokens);
-    } else if(tokens[0] == "POST"){
-        handlePost(tokens);
+
+    Request* request = Parser::createRequest(data) ;
+
+    if(request == NULL){
+      perror("failed to create request is corrupter or in complete\n") ;
+    }
+
+    if(request->getMethod() == GET){
+        handleGet(*request);
+    } else if(request->getMethod() == POST){
+        handlePost(*request);
     }
     // Error
 }
 
-void HttpHandler::handleGet(vector<string> tokens) {
-    //TODO
+void HttpHandler::handleGet(Request reuqest) {
+    string data = "<!DOCTYPE HTML>\n<html>\n<head>\n   <title>folaaaa</title>\n</head>\n<body>\n <h1>It's done man</h1>\n <p>The requested URL /t.html was not found on this server.</p>\n</body>\n</html>" ;
+    string response = "HTTP/1.1 200 OK\r\nDate: Sun, 10 Oct 2010 23:26:07 GMT\r\nServer: Apache/2.2.8 (Ubuntu) mod_ssl/2.2.8 OpenSSL/0.9.8g\r\nLast-Modified: Sun, 26 Sep 2010 22:04:35 GMT\r\nAccept-Ranges: bytes\r\nContent-Length: " + to_string(data.length() * 8 ) + "\r\nConnection: Keep-Alive\r\nContent-Type: text/html\r\n\r\n";
+
+   cout << response + data << endl ;
+   cout << data.length() << endl ;
+   cout << response.length() << endl ;
+   portHandler->write((char *)(response+data).c_str() , (response+data).length()  ) ;
 }
 
-void HttpHandler::handlePost(vector<string> tokens) {
+void HttpHandler::handlePost(Request reuqest) {
     //TODO
 }
 

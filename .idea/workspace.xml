@@ -12,10 +12,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ef7ce604-f648-450f-9720-aae2e404cca5" name="Default Changelist" comment="Handling GET/POST">
-      <change afterPath="$PROJECT_DIR$/Messages/Parser.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Messages/Parser.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Messages/Parser.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Messages/Parser.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Messages/Parser.h" beforeDir="false" afterPath="$PROJECT_DIR$/Messages/Parser.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Messages/Request.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Messages/Request.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Messages/Request.h" beforeDir="false" afterPath="$PROJECT_DIR$/Messages/Request.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Messages/Response.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Messages/Response.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Messages/Response.h" beforeDir="false" afterPath="$PROJECT_DIR$/Messages/Response.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server/HttpHandler.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Server/HttpHandler.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/HttpHandler.h" beforeDir="false" afterPath="$PROJECT_DIR$/Server/HttpHandler.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/PortHandler.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Server/PortHandler.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/PortHandler.h" beforeDir="false" afterPath="$PROJECT_DIR$/Server/PortHandler.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tests/Test_Module.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/Test_Module.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/HttpServerClient" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -72,22 +80,10 @@
       <file leaf-file-name="Test_Module.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Tests/Test_Module.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="454">
-              <caret line="135" selection-start-line="135" selection-end-line="135" />
+            <state relative-caret-position="183">
+              <caret line="119" selection-start-line="119" selection-end-line="119" />
               <folding>
                 <element signature="e#76#108#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Request.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Messages/Request.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1189">
-              <caret line="47" column="27" selection-start-line="47" selection-start-column="27" selection-end-line="47" selection-end-column="27" />
-              <folding>
-                <element signature="e#44#63#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -96,8 +92,8 @@
       <file leaf-file-name="Request.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Messages/Request.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="725">
-              <caret line="25" column="26" selection-start-line="25" selection-start-column="26" selection-end-line="25" selection-end-column="26" />
+            <state relative-caret-position="183">
+              <caret line="29" column="32" selection-start-line="29" selection-start-column="32" selection-end-line="29" selection-end-column="32" />
               <folding>
                 <element signature="e#115#132#0" expanded="true" />
               </folding>
@@ -108,8 +104,8 @@
       <file leaf-file-name="HttpHandler.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Server/HttpHandler.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="406">
-              <caret line="36" column="7" lean-forward="true" selection-start-line="36" selection-start-column="7" selection-end-line="36" selection-end-column="7" />
+            <state relative-caret-position="212">
+              <caret line="51" column="269" selection-start-line="51" selection-start-column="269" selection-end-line="51" selection-end-column="269" />
               <folding>
                 <element signature="e#43#67#0" expanded="true" />
               </folding>
@@ -117,11 +113,47 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="PortHandler.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Server/PortHandler.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="357">
+              <caret line="24" column="26" lean-forward="true" selection-start-line="24" selection-start-column="26" selection-end-line="24" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PortHandler.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Server/PortHandler.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="290">
+              <caret line="22" column="18" selection-start-line="22" selection-start-column="18" selection-end-line="22" selection-end-column="18" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Response.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Messages/Response.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="203">
+              <caret line="7" selection-start-line="7" selection-end-line="7" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="server.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Test/server.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="637">
+              <caret line="32" selection-start-line="22" selection-end-line="32" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="Parser.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Messages/Parser.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="232">
-              <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+            <state relative-caret-position="162">
+              <caret line="37" selection-start-line="37" selection-end-line="37" />
               <folding>
                 <element signature="e#44#62#0" expanded="true" />
               </folding>
@@ -129,11 +161,20 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="stl_vector.h" pinned="false" current-in-tab="false">
+        <entry file="file:///usr/include/c++/5/bits/stl_vector.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="779" selection-start-line="779" selection-end-line="779" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="Parser.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Messages/Parser.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="377">
-              <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
+            <state relative-caret-position="319">
+              <caret line="21" column="4" selection-start-line="21" selection-start-column="4" selection-end-line="21" selection-end-column="4" />
               <folding>
                 <element signature="e#113#130#0" expanded="true" />
               </folding>
@@ -171,21 +212,21 @@
         <option value="$PROJECT_DIR$/Server/IOHandler.h" />
         <option value="$PROJECT_DIR$/Files/read.txt" />
         <option value="$PROJECT_DIR$/Server/IOHandler.cpp" />
-        <option value="$PROJECT_DIR$/Server/PortHandler.cpp" />
         <option value="$PROJECT_DIR$/Tests/Test_HttpServer.cpp" />
         <option value="$PROJECT_DIR$/Tests/Test_IOHandler.cpp" />
-        <option value="$PROJECT_DIR$/Test/server.cpp" />
-        <option value="$PROJECT_DIR$/Server/PortHandler.h" />
-        <option value="$PROJECT_DIR$/Server/HttpHandler.h" />
         <option value="$PROJECT_DIR$/Server/HttpServer.cpp" />
         <option value="$PROJECT_DIR$/Messages/Response.h" />
+        <option value="$PROJECT_DIR$/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/Messages/Request.h" />
         <option value="$PROJECT_DIR$/Messages/Request.cpp" />
-        <option value="$PROJECT_DIR$/Messages/Response.cpp" />
-        <option value="$PROJECT_DIR$/CMakeLists.txt" />
-        <option value="$PROJECT_DIR$/Tests/Test_Module.cpp" />
+        <option value="$PROJECT_DIR$/Server/HttpHandler.h" />
+        <option value="$PROJECT_DIR$/Test/server.cpp" />
         <option value="$PROJECT_DIR$/Messages/Parser.h" />
+        <option value="$PROJECT_DIR$/Messages/Response.cpp" />
+        <option value="$PROJECT_DIR$/Tests/Test_Module.cpp" />
         <option value="$PROJECT_DIR$/Messages/Parser.cpp" />
+        <option value="$PROJECT_DIR$/Server/PortHandler.h" />
+        <option value="$PROJECT_DIR$/Server/PortHandler.cpp" />
         <option value="$PROJECT_DIR$/Server/HttpHandler.cpp" />
       </list>
     </option>
@@ -209,6 +250,26 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope">
+        <subPane subId="Project Source Files">
+          <expand>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="Tests" type="cbb8eebc:String" user="Tests" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+        <subPane subId="Project Files">
+          <expand>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="Tests" type="cbb8eebc:String" user="Tests" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -229,27 +290,12 @@
             <path>
               <item name="HttpServerClient" type="b2602c69:ProjectViewProjectNode" />
               <item name="HttpServerClient" type="462c0819:PsiDirectoryNode" />
+              <item name="Test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="HttpServerClient" type="b2602c69:ProjectViewProjectNode" />
+              <item name="HttpServerClient" type="462c0819:PsiDirectoryNode" />
               <item name="Tests" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="Scope">
-        <subPane subId="Project Source Files">
-          <expand>
-            <path>
-              <item name="Root" type="cbb8eebc:String" user="Root" />
-              <item name="Tests" type="cbb8eebc:String" user="Tests" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-        <subPane subId="Project Files">
-          <expand>
-            <path>
-              <item name="Root" type="cbb8eebc:String" user="Root" />
-              <item name="Tests" type="cbb8eebc:String" user="Tests" />
             </path>
           </expand>
           <select />
@@ -284,10 +330,10 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.HttpServerClient">
-    <configuration name="suite2" type="CMakeBoostTestRunConfigurationType" factoryName="Boost Test" temporary="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="HttpServerClient" TARGET_NAME="HttpServerClient" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="HttpServerClient" RUN_TARGET_NAME="HttpServerClient" TEST_CLASS="suite2" TEST_MODE="SUITE_TEST" />
+  <component name="RunManager" selected="Boost.Test.test_server_read">
+    <configuration name="test_message_request_get" type="CMakeBoostTestRunConfigurationType" factoryName="Boost Test" temporary="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="HttpServerClient" TARGET_NAME="HttpServerClient" RUN_TARGET_PROJECT_NAME="HttpServerClient" RUN_TARGET_NAME="HttpServerClient" TEST_CLASS="suite3" TEST_METHOD="test_message_request_get" TEST_MODE="SUITE_TEST" />
+    <configuration name="test_message_request_get_bad" type="CMakeBoostTestRunConfigurationType" factoryName="Boost Test" temporary="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="HttpServerClient" TARGET_NAME="HttpServerClient" RUN_TARGET_PROJECT_NAME="HttpServerClient" RUN_TARGET_NAME="HttpServerClient" TEST_CLASS="suite3" TEST_METHOD="test_message_request_get_bad" TEST_MODE="SUITE_TEST" />
     <configuration name="test_server_intialization (1)" type="CMakeBoostTestRunConfigurationType" factoryName="Boost Test" temporary="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="HttpServerClient" TARGET_NAME="HttpServerClient" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="HttpServerClient" RUN_TARGET_NAME="HttpServerClient" TEST_CLASS="suite2" TEST_METHOD="test_server_intialization" TEST_MODE="SUITE_TEST" />
-    <configuration name="test_server_intialization" type="CMakeBoostTestRunConfigurationType" factoryName="Boost Test" temporary="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="HttpServerClient" TARGET_NAME="HttpServerClient" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="HttpServerClient" RUN_TARGET_NAME="HttpServerClient" TEST_METHOD="test_server_intialization" TEST_MODE="SUITE_TEST" />
     <configuration name="test_server_read" type="CMakeBoostTestRunConfigurationType" factoryName="Boost Test" temporary="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="HttpServerClient" TARGET_NAME="HttpServerClient" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="HttpServerClient" RUN_TARGET_NAME="HttpServerClient" TEST_CLASS="suite2" TEST_METHOD="test_server_read" TEST_MODE="SUITE_TEST" />
     <configuration name="Build All" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="HttpServerClient" RUN_TARGET_NAME="HttpServerClient" EXPLICIT_BUILD_TARGET_NAME="all" />
     <configuration name="HttpServerClient" type="CMakeRunConfiguration" factoryName="Application" WORKING_DIR="file://$PROJECT_DIR$/cmake-build-debug" PASS_PARENT_ENVS_2="true" PROJECT_NAME="HttpServerClient" TARGET_NAME="HttpServerClient" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="HttpServerClient" RUN_TARGET_NAME="HttpServerClient" />
@@ -308,18 +354,18 @@
       <item itemvalue="Application.Build All" />
       <item itemvalue="Application.HttpServerClient" />
       <item itemvalue="Python tests.Unittests in Test" />
-      <item itemvalue="Boost.Test.test_server_intialization" />
-      <item itemvalue="Boost.Test.suite2" />
       <item itemvalue="Boost.Test.test_server_intialization (1)" />
       <item itemvalue="Boost.Test.test_server_read" />
+      <item itemvalue="Boost.Test.test_message_request_get" />
+      <item itemvalue="Boost.Test.test_message_request_get_bad" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Boost.Test.test_server_read" />
+        <item itemvalue="Boost.Test.test_message_request_get_bad" />
+        <item itemvalue="Boost.Test.test_message_request_get" />
         <item itemvalue="Boost.Test.test_server_intialization (1)" />
         <item itemvalue="Python tests.Unittests in Test" />
-        <item itemvalue="Boost.Test.suite2" />
-        <item itemvalue="Boost.Test.test_server_intialization" />
       </list>
     </recent_temporary>
   </component>
@@ -336,6 +382,7 @@
       <workItem from="1541160823855" duration="19542000" />
       <workItem from="1541279039088" duration="3120000" />
       <workItem from="1541328815420" duration="1462000" />
+      <workItem from="1541349244470" duration="5987000" />
     </task>
     <task id="LOCAL-00001" summary="Creating tests for /Server/IOHandler + fixing Io bugs">
       <created>1541259739998</created>
@@ -362,39 +409,39 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="test_file_write - 2018.11.03 at 17h 28m 12s.xml">
-      <configuration name="test_file_write" configurationId="CMakeBoostTestRunConfigurationType" />
-    </history-entry>
-    <history-entry file="test_file_write - 2018.11.03 at 17h 29m 19s.xml">
-      <configuration name="test_file_write" configurationId="CMakeBoostTestRunConfigurationType" />
-    </history-entry>
-    <history-entry file="test_file_write - 2018.11.03 at 17h 29m 50s.xml">
-      <configuration name="test_file_write" configurationId="CMakeBoostTestRunConfigurationType" />
-    </history-entry>
-    <history-entry file="test_file_write - 2018.11.03 at 17h 36m 59s.xml">
-      <configuration name="test_file_write" configurationId="CMakeBoostTestRunConfigurationType" />
-    </history-entry>
-    <history-entry file="test_file_read_overflow - 2018.11.03 at 17h 51m 02s.xml">
-      <configuration name="test_file_read_overflow" configurationId="CMakeBoostTestRunConfigurationType" />
-    </history-entry>
-    <history-entry file="test_file_write - 2018.11.03 at 20h 09m 48s.xml">
-      <configuration name="test_file_write" configurationId="CMakeBoostTestRunConfigurationType" />
-    </history-entry>
-    <history-entry file="test_server_intialization_(1) - 2018.11.03 at 21h 31m 34s.xml">
-      <configuration name="test_server_intialization (1)" configurationId="CMakeBoostTestRunConfigurationType" />
-    </history-entry>
-    <history-entry file="test_server_intialization_(1) - 2018.11.03 at 21h 43m 54s.xml">
-      <configuration name="test_server_intialization (1)" configurationId="CMakeBoostTestRunConfigurationType" />
-    </history-entry>
-    <history-entry file="test_server_read - 2018.11.03 at 21h 58m 48s.xml">
+    <history-entry file="test_server_read - 2018.11.04 at 19h 57m 39s.xml">
       <configuration name="test_server_read" configurationId="CMakeBoostTestRunConfigurationType" />
     </history-entry>
-    <history-entry file="test_server_read - 2018.11.03 at 22h 51m 01s.xml">
+    <history-entry file="test_server_read - 2018.11.04 at 19h 58m 02s.xml">
+      <configuration name="test_server_read" configurationId="CMakeBoostTestRunConfigurationType" />
+    </history-entry>
+    <history-entry file="test_server_read - 2018.11.04 at 19h 59m 30s.xml">
+      <configuration name="test_server_read" configurationId="CMakeBoostTestRunConfigurationType" />
+    </history-entry>
+    <history-entry file="test_server_read - 2018.11.04 at 20h 00m 46s.xml">
+      <configuration name="test_server_read" configurationId="CMakeBoostTestRunConfigurationType" />
+    </history-entry>
+    <history-entry file="test_server_read - 2018.11.04 at 20h 02m 54s.xml">
+      <configuration name="test_server_read" configurationId="CMakeBoostTestRunConfigurationType" />
+    </history-entry>
+    <history-entry file="test_server_read - 2018.11.04 at 20h 05m 42s.xml">
+      <configuration name="test_server_read" configurationId="CMakeBoostTestRunConfigurationType" />
+    </history-entry>
+    <history-entry file="test_server_read - 2018.11.04 at 20h 08m 19s.xml">
+      <configuration name="test_server_read" configurationId="CMakeBoostTestRunConfigurationType" />
+    </history-entry>
+    <history-entry file="test_server_read - 2018.11.04 at 20h 10m 05s.xml">
+      <configuration name="test_server_read" configurationId="CMakeBoostTestRunConfigurationType" />
+    </history-entry>
+    <history-entry file="test_server_read - 2018.11.04 at 20h 10m 56s.xml">
+      <configuration name="test_server_read" configurationId="CMakeBoostTestRunConfigurationType" />
+    </history-entry>
+    <history-entry file="test_server_read - 2018.11.04 at 20h 13m 40s.xml">
       <configuration name="test_server_read" configurationId="CMakeBoostTestRunConfigurationType" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="59933000" />
+    <option name="totallyTimeSpent" value="65920000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -409,12 +456,13 @@
     <frame x="0" y="-1" width="1920" height="1046" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="3" visible="true" weight="0.24934107" />
+      <window_info content_ui="combo" id="Project" order="3" visible="true" weight="0.24934107" />
       <window_info anchor="bottom" id="TODO" order="13" />
+      <window_info anchor="bottom" id="Messages" order="5" weight="0.32849163" />
       <window_info anchor="bottom" id="CMake" order="0" weight="0.3294979" />
       <window_info anchor="bottom" id="Event Log" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="4" weight="0.32960895" />
-      <window_info anchor="bottom" id="Run" order="8" weight="0.32849163" />
+      <window_info active="true" anchor="bottom" id="Run" order="8" visible="true" weight="0.32849163" />
       <window_info id="Structure" order="5" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="1" weight="0.32924107" />
       <window_info id="Favorites" order="1" side_tool="true" />
@@ -425,32 +473,31 @@
       <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="6" />
       <window_info anchor="right" id="Database" order="0" />
-      <window_info anchor="bottom" id="Messages" order="5" weight="0.32849163" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Cvs" order="11" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="7" />
     </layout>
     <layout-to-restore>
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
-      <window_info anchor="bottom" id="Version Control" order="3" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Run" order="7" weight="0.3294979" />
+      <window_info anchor="bottom" id="Cvs" order="10" weight="0.25" />
       <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.2498618" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="12" />
-      <window_info anchor="bottom" id="Run" order="7" weight="0.3294979" />
-      <window_info anchor="bottom" id="Find" order="6" />
+      <window_info anchor="bottom" id="CMake" order="0" weight="0.3294979" />
+      <window_info anchor="bottom" id="Message" order="5" />
       <window_info anchor="bottom" id="Debug" order="9" weight="0.4" />
       <window_info anchor="right" id="Database" order="0" />
-      <window_info anchor="bottom" id="Messages" order="4" weight="0.3294979" />
       <window_info anchor="bottom" id="Terminal" order="1" visible="true" weight="0.3294979" />
       <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Inspection" order="11" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="10" weight="0.25" />
+      <window_info anchor="bottom" id="Version Control" order="3" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Find" order="6" />
+      <window_info anchor="bottom" id="Messages" order="4" weight="0.3294979" />
       <window_info id="Favorites" order="0" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="5" />
-      <window_info anchor="bottom" id="CMake" order="0" weight="0.3294979" />
-      <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -515,14 +562,36 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/Server/HttpHandler.cpp</url>
-          <line>45</line>
+          <line>49</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/Tests/Test_Module.cpp</url>
+          <line>135</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/Tests/Test_Module.cpp</url>
+          <line>152</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="7" />
+      <option name="time" value="12" />
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="CMakeBoostTestRunConfigurationType">
+        <watch expression="*request" language="ObjectiveC" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="debuggerHistoryManager">
+    <expressions id="watch">
+      <expression>
+        <expression-string>*request</expression-string>
+        <language-id>ObjectiveC</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
     <expressions id="evaluateExpression">
       <expression>
         <expression-string>data_str.length()</expression-string>
@@ -542,13 +611,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Server/HttpServer.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2523">
-          <caret line="87" column="17" selection-start-line="87" selection-start-column="17" selection-end-line="87" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Tests/Test_Module.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3683">
@@ -772,13 +834,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Server/PortHandler.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="14" selection-start-line="14" selection-end-line="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Server/HttpServer.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="435">
@@ -789,51 +844,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Server/HttpHandler.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="38" column="11" selection-start-line="38" selection-start-column="11" selection-end-line="38" selection-end-column="11" />
-          <folding>
-            <element signature="e#165#189#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Test/server.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2407">
-          <caret line="83" column="24" selection-start-line="83" selection-start-column="24" selection-end-line="83" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Server/PortHandler.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Server/IOHandler.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="493">
           <caret line="17" column="12" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Messages/Request.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="725">
-          <caret line="25" column="26" selection-start-line="25" selection-start-column="26" selection-end-line="25" selection-end-column="26" />
-          <folding>
-            <element signature="e#115#132#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Messages/Response.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="6" column="19" selection-start-line="6" selection-start-column="19" selection-end-line="6" selection-end-column="19" />
         </state>
       </provider>
     </entry>
@@ -863,48 +877,103 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Messages/Request.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1189">
-          <caret line="47" column="27" selection-start-line="47" selection-start-column="27" selection-end-line="47" selection-end-column="27" />
+        <state relative-caret-position="468">
+          <caret line="36" selection-start-line="36" selection-end-line="36" />
           <folding>
             <element signature="e#44#63#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Tests/Test_Module.cpp">
+    <entry file="file://$PROJECT_DIR$/Server/HttpHandler.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="454">
-          <caret line="135" selection-start-line="135" selection-end-line="135" />
+        <state relative-caret-position="649">
+          <caret line="44" column="27" selection-start-line="44" selection-start-column="27" selection-end-line="44" selection-end-column="27" />
           <folding>
-            <element signature="e#76#108#0" expanded="true" />
+            <element signature="e#165#189#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Messages/Parser.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="377">
-          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
+        <state relative-caret-position="319">
+          <caret line="21" column="4" selection-start-line="21" selection-start-column="4" selection-end-line="21" selection-end-column="4" />
           <folding>
             <element signature="e#113#130#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file:///usr/include/c++/5/bits/stl_vector.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="779" selection-start-line="779" selection-end-line="779" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Messages/Parser.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+        <state relative-caret-position="162">
+          <caret line="37" selection-start-line="37" selection-end-line="37" />
           <folding>
             <element signature="e#44#62#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Server/PortHandler.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="290">
+          <caret line="22" column="18" selection-start-line="22" selection-start-column="18" selection-end-line="22" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Test/server.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="637">
+          <caret line="32" selection-start-line="22" selection-end-line="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Messages/Response.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="203">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tests/Test_Module.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="119" selection-start-line="119" selection-end-line="119" />
+          <folding>
+            <element signature="e#76#108#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Messages/Request.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="29" column="32" selection-start-line="29" selection-start-column="32" selection-end-line="29" selection-end-column="32" />
+          <folding>
+            <element signature="e#115#132#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Server/PortHandler.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="24" column="26" lean-forward="true" selection-start-line="24" selection-start-column="26" selection-end-line="24" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Server/HttpHandler.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="406">
-          <caret line="36" column="7" lean-forward="true" selection-start-line="36" selection-start-column="7" selection-end-line="36" selection-end-column="7" />
+        <state relative-caret-position="212">
+          <caret line="51" column="269" selection-start-line="51" selection-start-column="269" selection-end-line="51" selection-end-column="269" />
           <folding>
             <element signature="e#43#67#0" expanded="true" />
           </folding>

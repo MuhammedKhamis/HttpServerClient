@@ -12,6 +12,7 @@
 #include <pthread.h>
 #include "IOHandler.h"
 #include "PortHandler.h"
+#include "../Messages/Request.h"
 using namespace std;
 
 #define MAX_REQ_SZ 10240
@@ -40,9 +41,8 @@ private:
     void close();
     static void * startHelper(void * runner);
     static void cleanupHelper(void * runner);
-    void handleGet(vector<string> tokens);
-    void handlePost(vector<string> tokens);
-    vector<string> tokenize(string s);
+    void handleGet(Request request);
+    void handlePost(Request request);
 };
 
 #endif //HTTPSERVERCLIENT_HTTPHANDLER_H

@@ -15,6 +15,7 @@ class Response {
 
  public:
   Response(vector<string> tokens);
+  Response(const vector<string> &tokens);
   virtual ~Response();
 
  private:

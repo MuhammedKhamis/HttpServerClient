@@ -20,8 +20,8 @@ public:
     PortHandler(int socket_fd);
     virtual ~PortHandler();
 
-    int write(void* buffer, int sz);
-    int read(void* buffer, int sz);
+    int write(char* buffer, int sz);
+    int read(char* buffer, int sz);
     int closeConnection();
 
 private:
