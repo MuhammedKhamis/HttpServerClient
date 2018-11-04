@@ -75,7 +75,7 @@ BOOST_AUTO_TEST_SUITE(suite1, * utf::label("IOHandler"))
     BOOST_AUTO_TEST_CASE( test_file_read )
     {
       IOHandler handler;
-      char* data ;
+      char data[1024] ;
       handler.readData("read.txt" , data , 15 * sizeof(char) ) ;
       BOOST_REQUIRE( strcmp(data , "successful read") == 0 ) ;
     }
@@ -83,7 +83,7 @@ BOOST_AUTO_TEST_SUITE(suite1, * utf::label("IOHandler"))
     BOOST_AUTO_TEST_CASE( test_file_read_overflow )
     {
       IOHandler handler;
-      char* data ;
+      char data[1024] ;
       BOOST_REQUIRE_NO_THROW( handler.readData("read.txt" , data , 16 * sizeof(char) ) ) ;
     }
 

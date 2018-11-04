@@ -4,7 +4,7 @@ project(HttpServerClient)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -pthread")
 
-set(Boost_INCLUDE_DIR /mnt/16BE8F73BE8F4A67/program/IDES/boost_1_65_0)
+set(Boost_INCLUDE_DIR /home/muhammed/boost_1_68_0/)
 
 set(APP_SERVER ./Server)
 set(APP_FILES ./Files)
@@ -31,4 +31,10 @@ add_executable(HttpServerClient
         Server/HttpServer.cpp
         Server/HttpHandler.cpp
         Server/PortHandler.cpp
-        Tests/Test_Module.cpp Messages/Request.cpp Messages/Request.h Messages/Response.cpp Messages/Response.h Messages/Parser.cpp Messages/Parser.h)
+        Tests/Test_Module.cpp
+        Messages/Request.cpp
+        Messages/Request.h
+        Messages/Response.cpp
+        Messages/Response.h
+        Messages/Parser.cpp
+        Messages/Parser.h)
