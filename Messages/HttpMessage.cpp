@@ -9,7 +9,9 @@ HttpMessage::HttpMessage(string body, HTTP_METHODS method) {
     this->method = method;
 }
 
-HttpMessage::HttpMessage() {}
+HttpMessage::HttpMessage() {
+    body = "";
+}
 
 void HttpMessage::setMethod(HTTP_METHODS method) {
     this->method = method;

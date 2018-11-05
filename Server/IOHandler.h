@@ -13,6 +13,7 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <time.h>
+#include <unistd.h>
 using namespace std;
 
 class IOHandler{
@@ -28,6 +29,7 @@ public:
 
 private:
     bool fileExist(string fileName);
+    string getWorkingDir();
 
 };
 #endif //HTTPSERVERCLIENT_IOHANDLER_H

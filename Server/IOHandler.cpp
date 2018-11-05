@@ -8,12 +8,20 @@ IOHandler::IOHandler() {}
 
 
 bool IOHandler::fileExist(string fileName) {
+    fileName = getWorkingDir() + fileName;
     struct stat buffer;
     return (stat (fileName.c_str(), &buffer) == 0);
 }
 
+string IOHandler::getWorkingDir() {
+    char cwd[PATH_MAX];
+    getcwd(cwd, sizeof(cwd));
+    return string(cwd);
+}
+
 int IOHandler::getFileSize(string fileName) {
     if(fileExist(fileName)){
+        fileName = getWorkingDir() + fileName;
         ifstream in(fileName.c_str(), ifstream::ate | ifstream::binary);
         int len = in.tellg();
         in.close();
@@ -24,6 +32,7 @@ int IOHandler::getFileSize(string fileName) {
 
 time_t IOHandler::getLastModified(string fileName) {
     if(fileExist(fileName)){
+        fileName = getWorkingDir() + fileName;
         struct stat info;
         stat(fileName.c_str(), &info);
         return info.st_mtim.tv_sec;
@@ -32,8 +41,10 @@ time_t IOHandler::getLastModified(string fileName) {
 }
 
 
+
 string IOHandler::getContentType(string &fileName) {
 
+    fileName = getWorkingDir() + fileName;
     string contentType;
     if (fileName.substr(fileName.find_last_of(".") + 1) == "html"){
         contentType = "text/html";
@@ -59,7 +70,8 @@ string IOHandler::getContentType(string &fileName) {
 
 int IOHandler::readData(string fileName, char *data, int len) {
     if(fileExist(fileName)){
-        FILE* fp = fopen(fileName.c_str(),"rb+");
+        fileName = getWorkingDir() + fileName;
+        FILE* fp = fopen(fileName.c_str(),"rb");
         int read = fread(data, 1, len, fp);
         data[len] = '\0' ;
         fclose(fp);
@@ -70,6 +82,7 @@ int IOHandler::readData(string fileName, char *data, int len) {
 
 int IOHandler::writeData(string fileName, char *data, int len) {
     if (fileExist(fileName)){
+        fileName = getWorkingDir() + fileName;
         FILE* fp = fopen(fileName.c_str(),"wb+");
         int written = fwrite(data, 1, len, fp);
         fclose(fp);
