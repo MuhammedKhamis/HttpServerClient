@@ -12,12 +12,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ef7ce604-f648-450f-9720-aae2e404cca5" name="Default Changelist" comment="Handling GET/POST">
-      <change beforePath="$PROJECT_DIR$/Messages/HttpMessage.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Messages/HttpMessage.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Messages/HttpMessage.h" beforeDir="false" afterPath="$PROJECT_DIR$/Messages/HttpMessage.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Messages/Request.h" beforeDir="false" afterPath="$PROJECT_DIR$/Messages/Request.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Messages/Response.h" beforeDir="false" afterPath="$PROJECT_DIR$/Messages/Response.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Server/HttpHandler.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Server/HttpHandler.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/IOHandler.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Server/IOHandler.cpp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -45,21 +40,21 @@
           <entry key="h" value="36" />
           <entry key="hpp" value="1" />
           <entry key="test_file_read_overflow (disassembly)" value="3" />
-          <entry key="test_server_read (disassembly)" value="12" />
+          <entry key="test_server_read (disassembly)" value="13" />
           <entry key="txt" value="7" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CMakeLists.txt" value="5" />
-          <entry key="Disassembly" value="15" />
+          <entry key="Disassembly" value="16" />
           <entry key="ObjectiveC" value="88" />
           <entry key="PLAIN_TEXT" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="cpp" value="4724" />
+          <entry key="cpp" value="4790" />
           <entry key="h" value="2564" />
           <entry key="mm" value="7" />
           <entry key="txt" value="49" />
@@ -69,25 +64,25 @@
         <counts>
           <entry key="CMakeLists.txt" value="13" />
           <entry key="Doxygen file" value="15" />
-          <entry key="ObjectiveC" value="7280" />
+          <entry key="ObjectiveC" value="7346" />
           <entry key="PLAIN_TEXT" value="36" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages" />
       <usages-collector id="statistics.cidr.testingFrameworks.usages">
         <counts>
-          <entry key="Boost Test" value="71" />
+          <entry key="Boost Test" value="77" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Server/HttpHandler.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="328">
-              <caret line="68" column="50" selection-start-line="68" selection-start-column="50" selection-end-line="68" selection-end-column="50" />
+            <state relative-caret-position="372">
+              <caret line="70" column="54" selection-start-line="70" selection-start-column="54" selection-end-line="70" selection-end-column="54" />
             </state>
           </provider>
         </entry>
@@ -104,11 +99,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Server/IOHandler.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="376">
-              <caret line="75" column="18" selection-start-line="75" selection-start-column="18" selection-end-line="75" selection-end-column="18" />
+            <state relative-caret-position="222">
+              <caret line="74" column="33" selection-start-line="74" selection-start-column="33" selection-end-line="74" selection-end-column="33" />
             </state>
           </provider>
         </entry>
@@ -220,8 +215,8 @@
         <option value="$PROJECT_DIR$/Messages/HttpMessage.cpp" />
         <option value="$PROJECT_DIR$/Messages/Request.h" />
         <option value="$PROJECT_DIR$/Messages/Response.h" />
-        <option value="$PROJECT_DIR$/Server/HttpHandler.cpp" />
         <option value="$PROJECT_DIR$/Server/IOHandler.cpp" />
+        <option value="$PROJECT_DIR$/Server/HttpHandler.cpp" />
       </list>
     </option>
   </component>
@@ -400,7 +395,7 @@
       <workItem from="1541328815420" duration="1462000" />
       <workItem from="1541349244470" duration="5987000" />
       <workItem from="1541359981241" duration="5981000" />
-      <workItem from="1541435589946" duration="19333000" />
+      <workItem from="1541435589946" duration="20186000" />
     </task>
     <task id="LOCAL-00001" summary="Creating tests for /Server/IOHandler + fixing Io bugs">
       <created>1541259739998</created>
@@ -427,24 +422,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="test_server_read - 2018.11.05 at 23h 48m 51s.xml">
-      <configuration name="test_server_read" configurationId="CMakeBoostTestRunConfigurationType" />
-    </history-entry>
-    <history-entry file="test_server_read - 2018.11.05 at 23h 50m 05s.xml">
-      <configuration name="test_server_read" configurationId="CMakeBoostTestRunConfigurationType" />
-    </history-entry>
-    <history-entry file="test_server_read - 2018.11.05 at 23h 50m 34s.xml">
-      <configuration name="test_server_read" configurationId="CMakeBoostTestRunConfigurationType" />
-    </history-entry>
-    <history-entry file="test_server_read - 2018.11.05 at 23h 53m 20s.xml">
-      <configuration name="test_server_read" configurationId="CMakeBoostTestRunConfigurationType" />
-    </history-entry>
-    <history-entry file="test_server_read - 2018.11.05 at 23h 53m 41s.xml">
-      <configuration name="test_server_read" configurationId="CMakeBoostTestRunConfigurationType" />
-    </history-entry>
-    <history-entry file="test_server_read - 2018.11.05 at 23h 56m 57s.xml">
-      <configuration name="test_server_read" configurationId="CMakeBoostTestRunConfigurationType" />
-    </history-entry>
     <history-entry file="test_server_read - 2018.11.05 at 23h 57m 30s.xml">
       <configuration name="test_server_read" configurationId="CMakeBoostTestRunConfigurationType" />
     </history-entry>
@@ -457,9 +434,27 @@
     <history-entry file="test_server_read - 2018.11.06 at 00h 00m 32s.xml">
       <configuration name="test_server_read" configurationId="CMakeBoostTestRunConfigurationType" />
     </history-entry>
+    <history-entry file="test_server_read - 2018.11.06 at 00h 01m 07s.xml">
+      <configuration name="test_server_read" configurationId="CMakeBoostTestRunConfigurationType" />
+    </history-entry>
+    <history-entry file="test_server_read - 2018.11.06 at 00h 01m 22s.xml">
+      <configuration name="test_server_read" configurationId="CMakeBoostTestRunConfigurationType" />
+    </history-entry>
+    <history-entry file="test_server_read - 2018.11.06 at 00h 02m 12s.xml">
+      <configuration name="test_server_read" configurationId="CMakeBoostTestRunConfigurationType" />
+    </history-entry>
+    <history-entry file="test_server_read - 2018.11.06 at 00h 03m 06s.xml">
+      <configuration name="test_server_read" configurationId="CMakeBoostTestRunConfigurationType" />
+    </history-entry>
+    <history-entry file="test_server_read - 2018.11.06 at 00h 13m 31s.xml">
+      <configuration name="test_server_read" configurationId="CMakeBoostTestRunConfigurationType" />
+    </history-entry>
+    <history-entry file="test_server_read - 2018.11.06 at 00h 13m 59s.xml">
+      <configuration name="test_server_read" configurationId="CMakeBoostTestRunConfigurationType" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="91234000" />
+    <option name="totallyTimeSpent" value="92087000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -484,9 +479,9 @@
       <window_info anchor="bottom" id="Messages" order="4" weight="0.32845187" />
       <window_info anchor="bottom" id="Message" order="5" />
       <window_info anchor="bottom" id="Find" order="6" />
-      <window_info active="true" anchor="bottom" id="Run" order="7" visible="true" weight="0.32845187" />
+      <window_info anchor="bottom" id="Run" order="7" weight="0.32845187" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Debug" order="9" weight="0.39958158" />
+      <window_info active="true" anchor="bottom" id="Debug" order="9" visible="true" weight="0.39958158" />
       <window_info anchor="bottom" id="Cvs" order="10" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="11" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="12" />
@@ -558,9 +553,14 @@
           <option name="timeStamp" value="21" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/Messages/Response.cpp</url>
-          <line>26</line>
-          <option name="timeStamp" value="32" />
+          <url>file://$PROJECT_DIR$/Server/HttpHandler.cpp</url>
+          <line>72</line>
+          <option name="timeStamp" value="33" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/Server/HttpHandler.cpp</url>
+          <line>65</line>
+          <option name="timeStamp" value="34" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -777,16 +777,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Messages/Response.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="376">
-          <caret line="27" selection-start-line="27" selection-end-line="27" />
-          <folding>
-            <element signature="e#117#135#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Messages/HttpMessage.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="440">
@@ -801,17 +791,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Server/HttpHandler.cpp">
+    <entry file="file://$PROJECT_DIR$/Messages/Response.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="328">
-          <caret line="68" column="50" selection-start-line="68" selection-start-column="50" selection-end-line="68" selection-end-column="50" />
+        <state relative-caret-position="376">
+          <caret line="27" selection-start-line="27" selection-end-line="27" />
+          <folding>
+            <element signature="e#117#135#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Server/IOHandler.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="376">
-          <caret line="75" column="18" selection-start-line="75" selection-start-column="18" selection-end-line="75" selection-end-column="18" />
+        <state relative-caret-position="222">
+          <caret line="74" column="33" selection-start-line="74" selection-start-column="33" selection-end-line="74" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Server/HttpHandler.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="372">
+          <caret line="70" column="54" selection-start-line="70" selection-start-column="54" selection-end-line="70" selection-end-column="54" />
         </state>
       </provider>
     </entry>

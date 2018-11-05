@@ -62,17 +62,16 @@ void HttpHandler::handleGet(Request request) {
          delete res;
          return;
      }
-     char* data = (char*)malloc( (sz+1) * sizeof(char)) ;
-     data[sz] = 0;
-     ioHandler->readData(fileName, data, sz+1);
+     vector<char> data;
+     data.resize(sz+1);
+     ioHandler->readData(fileName, &data[0], sz+1);
      res = new Response(true);
      res->setKeyVal("Content-Length", to_string(sz));
      res->setKeyVal("Content-Type", ioHandler->getContentType(fileName));
-     res->setBody(string(data));
+     res->setBody(string(data.begin(),data.end()));
      string r = res->toString();
      portHandler->write((char*)r.c_str(), r.size());
      delete res;
-     delete [] data;
      }
 
 void HttpHandler::handlePost(Request reuqest) {
