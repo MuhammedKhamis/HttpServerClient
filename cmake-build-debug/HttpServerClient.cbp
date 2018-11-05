@@ -88,6 +88,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/media/muhammed/Shared/Work/HttpServerClient/Messages/HttpMessage.cpp">
+			<Option target="HttpServerClient"/>
+		</Unit>
+		<Unit filename="/media/muhammed/Shared/Work/HttpServerClient/Messages/HttpMessage.h">
+			<Option target="HttpServerClient"/>
+		</Unit>
 		<Unit filename="/media/muhammed/Shared/Work/HttpServerClient/Messages/Parser.cpp">
 			<Option target="HttpServerClient"/>
 		</Unit>

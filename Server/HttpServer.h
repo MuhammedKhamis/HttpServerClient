@@ -30,7 +30,7 @@ private:
     int maxBacklog;
     int server_fd;
     unsigned int port;
-    unsigned long long timeOut;
+    time_t timeOut;
     bool haveWorkers();
 
 };

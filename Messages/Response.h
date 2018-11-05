@@ -8,20 +8,37 @@
 #include <stdio.h>
 #include <vector>
 #include <string>
+#include "HttpMessage.h"
 
 using namespace std ;
 
-class Response {
+class Response: HttpMessage  {
 
  public:
-  Response(vector<string> tokens);
-  Response(const vector<string> &tokens);
+  Response(bool status);
+
   virtual ~Response();
 
+  string toString();
+
+    void setMethod(HTTP_METHODS method){
+        HttpMessage::setMethod(method);
+    }
+    HTTP_METHODS getMethod() const{
+        return HttpMessage::getMethod();
+    }
+    void setKeyVal(string key, string val){
+        HttpMessage::setKeyVal(key,val);
+    }
+    void setBody(string body){
+        HttpMessage::setBody(body);
+    }
+    string getKey_val(string key){
+        return HttpMessage::getKey_val(key);
+    }
  private:
-    vector<string> tokens ;
-
-
+    bool status;
+    string convertCurrentTimeToString();
 
 };
 

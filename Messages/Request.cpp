@@ -5,37 +5,48 @@
 #include <iterator>
 #include <algorithm>
 #include <sstream>
+#include <IOHandler.h>
 #include "Request.h"
 
 
-Request::Request() {}
+Request::Request()
+      :HttpMessage(){}
 
-Request::Request(HTTP_METHODS method, const string &file_name, const string &host_name)
-    : method(method), file_name(file_name), host_name(host_name) {}
+Request::Request(HTTP_METHODS method, const string &file_name, const string &host_name, const string &body)
+    : HttpMessage(body, method), fileName(file_name), hostName(host_name) {
 
-void Request::setMethod(HTTP_METHODS method) {
-  Request::method = method;
+  // Call coming from Client
+  key_val["Host"] = host_name;
+  key_val["Connection"] = "Keep-Alive";
+  key_val["User-Agent"] = "Client/1.0";
+  key_val["Accept-Language"] = "en-us";
+  key_val["Accept-Encoding"] = "gzip, deflate";
+  if(method == POST){
+    key_val["Content-Length"] = to_string(this->body.size());
+  }
 }
-void Request::setFile_name(const string &file_name) {
-  Request::file_name = file_name;
+
+void Request::setFileName(const string &file_name) {
+  this->fileName = file_name;
 }
-void Request::setHost_name(const string &host_name) {
-  Request::host_name = host_name;
+void Request::setHostName(const string &host_name) {
+  this->hostName = host_name;
 }
-void Request::setKey_val(string key , string val) {
-  Request::key_val[key] = val ;
+
+string Request::toString() {
+  stringstream ss;
+  ss << method << " " << fileName << " " << "HTTP/1.1\r\n";
+  ss << fieldsAndBody();
+  return ss.str();
+
 }
-HTTP_METHODS Request::getMethod() const {
-  return method;
-}
+
+
 const string &Request::getFile_name() const {
-  return file_name;
+  return fileName;
 }
 const string &Request::getHost_name() const {
-  return host_name;
-}
-string Request::getKey_val(string key){
-  return key_val[key];
+  return hostName;
 }
 
 Request::~Request() {

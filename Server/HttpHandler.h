@@ -23,7 +23,7 @@ public:
     HttpHandler(IOHandler* ioHandler, PortHandler* portHandler, string serverName);
     ~HttpHandler();
     bool isFinished();
-    unsigned long long getCreateTime();
+    time_t getCreateTime();
     bool start();
 
 private:
@@ -40,7 +40,6 @@ private:
     void run();
     void close();
     static void * startHelper(void * runner);
-    static void cleanupHelper(void * runner);
     void handleGet(Request request);
     void handlePost(Request request);
 };

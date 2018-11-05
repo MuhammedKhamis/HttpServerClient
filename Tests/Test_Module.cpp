@@ -137,7 +137,6 @@ BOOST_AUTO_TEST_SUITE(suite3, * utf::label("Messages"))
     string data = "get /server /http/1.1\r\nHost: local\r\n" ;
 
     Request* request = Parser::createRequest(data) ;
-
     BOOST_REQUIRE(request->getMethod() == GET) ;
     BOOST_REQUIRE(request->getFile_name() == "/server") ;
     BOOST_REQUIRE(request->getHost_name() == "/http/1.1") ;

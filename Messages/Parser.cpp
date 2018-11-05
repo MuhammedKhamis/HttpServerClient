@@ -34,14 +34,19 @@ Request* Parser::createRequest(string data) {
   if(err != 0 )
     return NULL;
 
-  for(int i=1 ; i < tokens.size() && tokens[i] != "" ; i++) {
+  int i = 1;
+  for(; i < tokens.size() && tokens[i] != "" ; i++) {
     err = parse_key_val(tokens[i] , request);
     if(err != 0)
       return NULL ;
   }
-  if(request->getMethod() == POST){
-    //Todo parse file
+
+  string requestBody;
+  while (i + 1 < tokens.size()){
+      i++;
+      requestBody += tokens[i];
   }
+  request->setBody(requestBody);
   return request ;
 }
 
@@ -66,8 +71,8 @@ int Parser::parse_first_line(string f_line , Request* request) {
     return -1;
   }
 
-  request->setFile_name(vstrings[1]) ;
-  request->setHost_name(vstrings[2]) ;
+  request->setFileName(vstrings[1]) ;
+  request->setHostName(vstrings[2]) ;
 
   return 0 ;
 }
@@ -75,17 +80,29 @@ int Parser::parse_first_line(string f_line , Request* request) {
 
 int Parser::parse_key_val(string f_line , Request* request) {
 
-  set<string> key_set = {"Accept-Charset", "Accept-Encoding", "Accept-Language",
-                         "Authorization", "Expect", "From", "Host", "If-Match",
-                         "If-Modified-Since", "If-None-Match", "If-Range",
-                         "If-Unmodified-Since", "Max-Forwards", "Proxy-Authorization",
-                         "Range", "Referer", "TE", "User-Agent" } ;
+  set<string> key_set = {"A-IM","Accept","Accept-Charset", "Accept-Encoding", "Accept-Language",
+                         "Accept-Datetime","Access-Control-Request-Method","Access-Control-Request-Headers",
+                         "Authorization",
+                         "Cache-Control","Connection","Content-Length","Content-MD5","Content-Type", "Cookie",
+                         "Date",
+                         "Expect",
+                         "Forwarded", "From",
+                         "Host",
+                         "If-Match", "If-Modified-Since", "If-None-Match", "If-Range", "If-Unmodified-Since",
+                         "Max-Forwards",
+                         "Origin",
+                         "Pragma","Proxy-Authorization",
+                         "Range", "Referer",
+                         "TE",
+                         "User-Agent","Upgrade",
+                         "Via",
+                         "Warning"} ;
 
   size_t pos = 0;
   string key , value ;
-  if ((pos = f_line.find(" ")) != std::string::npos) {
+  if ((pos = f_line.find(": ")) != std::string::npos) {
     key = f_line.substr(0, pos);
-    f_line.erase(0, pos + 1);
+    f_line.erase(0, pos + 2);
   }
 
   value = f_line ;
@@ -95,15 +112,7 @@ int Parser::parse_key_val(string f_line , Request* request) {
     return -1 ;
   }
 
-  key.pop_back() ;
-
-//  if(key_set.count(key) == 0){
-//    perror("Key is not supported\n") ;
-//    return -1 ;
-//  }
-
-  request->setKey_val(key , value);
-
+  request->setKeyVal(key, value);
   return 0 ;
 }
 

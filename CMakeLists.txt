@@ -37,4 +37,6 @@ add_executable(HttpServerClient
         Messages/Response.cpp
         Messages/Response.h
         Messages/Parser.cpp
-        Messages/Parser.h)
+        Messages/Parser.h
+        Messages/HttpMessage.cpp
+        Messages/HttpMessage.h)

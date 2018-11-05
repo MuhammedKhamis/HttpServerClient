@@ -24,6 +24,7 @@ public:
     int readData(string fileName, char* data , int len);
     time_t getLastModified(string fileName);
     int getFileSize(string fileName);
+    string getContentType(string &fileName);
 
 private:
     bool fileExist(string fileName);
