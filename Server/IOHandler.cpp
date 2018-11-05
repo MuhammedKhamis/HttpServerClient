@@ -59,7 +59,7 @@ string IOHandler::getContentType(string &fileName) {
     } else if (fileName.substr(fileName.find_last_of(".") + 1) == "jpg") {
         contentType = "image/jpg";
     } else if (fileName.substr(fileName.find_last_of(".") + 1) == "jpeg") {
-        contentType = "image/jpg";
+        contentType = "image/jpeg";
     } else if (fileName.substr(fileName.find_last_of(".") + 1) == "gif"){
         contentType = "image/gif";
     } else {
@@ -73,7 +73,7 @@ int IOHandler::readData(string fileName, char *data, int len) {
         fileName = getWorkingDir() + fileName;
         FILE* fp = fopen(fileName.c_str(),"rb");
         int read = fread(data, 1, len, fp);
-        data[len] = '\0' ;
+        data[len-1] = '\0' ;
         fclose(fp);
         return read;
     }

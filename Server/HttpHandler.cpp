@@ -50,6 +50,7 @@ void HttpHandler::run() {
 }
 
 void HttpHandler::handleGet(Request request) {
+
      string fileName = request.getFile_name();
      int sz = ioHandler->getFileSize(fileName);
     Response *res = NULL;
@@ -61,7 +62,8 @@ void HttpHandler::handleGet(Request request) {
          delete res;
          return;
      }
-     char* data = new char[sz+1]() ;
+     char* data = (char*)malloc( (sz+1) * sizeof(char)) ;
+     data[sz] = 0;
      ioHandler->readData(fileName, data, sz+1);
      res = new Response(true);
      res->setKeyVal("Content-Length", to_string(sz));

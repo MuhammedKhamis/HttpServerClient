@@ -37,8 +37,12 @@ string HttpMessage::fieldsAndBody() {
         ss << it->first << ": " << it->second << "\r\n";
     }
     ss << "\r\n";
-    ss << body << "\r\n";
+    ss << body;
     return ss.str();
+}
+
+string HttpMessage::getBody() {
+    return body;
 }
 
 void HttpMessage::setKeyVal(string key, string val) {

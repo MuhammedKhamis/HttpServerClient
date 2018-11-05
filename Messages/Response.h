@@ -21,6 +21,11 @@ class Response: HttpMessage  {
 
   string toString();
 
+
+    string getBody(){
+        HttpMessage::getBody();
+    }
+
     void setMethod(HTTP_METHODS method){
         HttpMessage::setMethod(method);
     }

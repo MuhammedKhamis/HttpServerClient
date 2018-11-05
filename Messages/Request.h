@@ -24,7 +24,11 @@ class Request: HttpMessage {
   const string &getFile_name() const;
   const string &getHost_name() const;
 
-     void setMethod(HTTP_METHODS method){
+     string getBody(){
+      HttpMessage::getBody();
+    }
+
+    void setMethod(HTTP_METHODS method){
          HttpMessage::setMethod(method);
      }
      HTTP_METHODS getMethod() const{

@@ -21,6 +21,7 @@ public:
     virtual void setKeyVal(string key, string val) ;
     virtual void setBody(string body);
     virtual string getKey_val(string key);
+    virtual string getBody();
 
 
 protected:
