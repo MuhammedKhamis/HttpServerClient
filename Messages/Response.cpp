@@ -5,7 +5,7 @@
 #include "Response.h"
 
 Response::Response(bool status)
-        :HttpMessage(), status(status){
+        : HttpMessage(), status(status){
     // Call coming from Server
 
     key_val["Date"] = convertCurrentTimeToString() ;

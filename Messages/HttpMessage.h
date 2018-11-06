@@ -15,6 +15,7 @@ class HttpMessage {
 public:
     HttpMessage(string body, HTTP_METHODS method);
     HttpMessage();
+    virtual ~HttpMessage() = default;
     virtual void setMethod(HTTP_METHODS method);
     virtual HTTP_METHODS getMethod() const;
     virtual string toString() = 0;

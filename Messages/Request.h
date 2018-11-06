@@ -13,7 +13,7 @@
 using namespace std ;
 
 
-class Request: HttpMessage {
+class Request: public HttpMessage {
 
  public:
   Request();

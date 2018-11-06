@@ -12,7 +12,7 @@
 
 using namespace std ;
 
-class Response: HttpMessage  {
+class Response: public HttpMessage  {
 
  public:
   Response(bool status);

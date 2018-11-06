@@ -62,8 +62,7 @@ void HttpHandler::handleGet(Request request) {
          delete res;
          return;
      }
-     vector<char> data;
-     data.resize(sz+1);
+     vector<char> data(sz+1,0);
      ioHandler->readData(fileName, &data[0], sz+1);
      res = new Response(true);
      res->setKeyVal("Content-Length", to_string(sz));
@@ -76,6 +75,16 @@ void HttpHandler::handleGet(Request request) {
 
 void HttpHandler::handlePost(Request reuqest) {
     //TODO
+    int sz = reuqest.getBody().size();
+    char* data = (char*)reuqest.getBody().c_str();
+    string fileName = reuqest.getFile_name();
+
+    int status = ioHandler->writeData(fileName,data,sz);
+
+    HttpMessage *res = new Response(status != -1);
+    string r = res->toString();
+    portHandler->write((char*)r.c_str(), r.size());
+    delete res;
 }
 
 bool HttpHandler::start() {

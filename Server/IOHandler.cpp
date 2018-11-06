@@ -81,13 +81,10 @@ int IOHandler::readData(string fileName, char *data, int len) {
 }
 
 int IOHandler::writeData(string fileName, char *data, int len) {
-    if (fileExist(fileName)){
         fileName = getWorkingDir() + fileName;
         FILE* fp = fopen(fileName.c_str(),"wb+");
         int written = fwrite(data, 1, len, fp);
         fclose(fp);
         return written;
-    }
-    return -1;
 }
 
