@@ -21,8 +21,8 @@ int main(int argc, char const *argv[])
 
         // parse user command
         Request requestObj = ClientParser.parseInputCommand(userCommand);
-        serverAddress = requestObj.getServerAddress();
-        portNo = requestObj.getPortNumber();
+        serverAddress = requestObj.getHostName();
+        portNo = requestObj.getPort();
 
         // non-persistent 
         HttpClient client(dataDirectory);

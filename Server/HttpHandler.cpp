@@ -51,7 +51,7 @@ void HttpHandler::run() {
 
 void HttpHandler::handleGet(Request request) {
 
-     string fileName = request.getFile_name();
+     string fileName = request.getFileName();
      int sz = ioHandler->getFileSize(fileName);
     Response *res = NULL;
     if(sz == -1){
@@ -77,7 +77,7 @@ void HttpHandler::handlePost(Request reuqest) {
     //TODO
     int sz = reuqest.getBody().size();
     char* data = (char*)reuqest.getBody().c_str();
-    string fileName = reuqest.getFile_name();
+    string fileName = reuqest.getFileName();
 
     int status = ioHandler->writeData(fileName,data,sz);
 

@@ -4,6 +4,8 @@
 
 #include "Response.h"
 
+Response::Response() {}
+
 Response::Response(bool status)
         : HttpMessage(), status(status){
     // Call coming from Server
@@ -27,6 +29,14 @@ string Response::toString() {
     ss << "HTTP/1.1 " << (status ? "200 OK" : "404 Not Found") << "\r\n";
     ss << fieldsAndBody();
     return ss.str();
+}
+
+void Response::setStatus(bool status) {
+    this->status = status;
+}
+
+int Response::getStatus() {
+    return status ? 200 : 404;
 }
 
 Response::~Response() {

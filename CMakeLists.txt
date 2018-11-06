@@ -27,10 +27,10 @@ configure_file(${APP_FILES}/to_modify.txt
         ${CMAKE_CURRENT_BINARY_DIR} )
 
 add_executable(HttpServerClient
-        Server/IOHandler.cpp
+        util/IOHandler.cpp
         Server/HttpServer.cpp
         Server/HttpHandler.cpp
-        Server/PortHandler.cpp
+        util/PortHandler.cpp
         Tests/Test_Module.cpp
         Messages/Request.cpp
         Messages/Request.h

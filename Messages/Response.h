@@ -15,7 +15,9 @@ using namespace std ;
 class Response: public HttpMessage  {
 
  public:
-  Response(bool status);
+
+    Response(bool status);
+    Response();
 
   virtual ~Response();
 
@@ -41,6 +43,10 @@ class Response: public HttpMessage  {
     string getKey_val(string key){
         return HttpMessage::getKey_val(key);
     }
+    void setStatus(bool status);
+
+    int getStatus();
+
  private:
     bool status;
     string convertCurrentTimeToString();

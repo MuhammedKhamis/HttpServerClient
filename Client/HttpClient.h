@@ -21,7 +21,8 @@ class HttpClient {
 
   public:
   	// constructor
-    HttpClient(string dataDirectory);
+    HttpClient(string dataDirectory, IOHandler* ioHandler, PortHandler* portHandler);
+  	~HttpClient() = default;
     // methods
     int connectionInit(char *server_address, int port_no = 80);
     int sendGETRequest(Request requestObj);

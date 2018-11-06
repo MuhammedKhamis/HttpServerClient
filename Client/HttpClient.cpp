@@ -15,8 +15,7 @@ HttpClient::connectionInit(char *server_address, int port_no = 80)
     struct sockaddr_in address; 
     sockfd = 0;
     struct sockaddr_in serv_addr; 
-    char *hello = "Hello from client"; 
-    
+
     if ((sockfd = socket(AF_INET, SOCK_STREAM, 0)) < 0) 
     { 
         printf("\n Socket creation error \n"); 

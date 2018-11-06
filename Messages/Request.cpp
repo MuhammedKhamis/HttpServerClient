@@ -5,15 +5,16 @@
 #include <iterator>
 #include <algorithm>
 #include <sstream>
-#include <IOHandler.h>
+#include "../util/IOHandler.h"
 #include "Request.h"
 
 
 Request::Request()
       :HttpMessage(){}
 
-Request::Request(HTTP_METHODS method, const string &file_name, const string &host_name, const string &body)
-    : HttpMessage(body, method), fileName(file_name), hostName(host_name) {
+Request::Request(HTTP_METHODS method, const string &file_name, const string &host_name, const string &port,
+        const string &body)
+    : HttpMessage(body, method), fileName(file_name), hostName(host_name), port(port) {
 
   // Call coming from Client
   key_val["Host"] = host_name;
@@ -33,6 +34,10 @@ void Request::setHostName(const string &host_name) {
   this->hostName = host_name;
 }
 
+void Request::setPort(const string &port) {
+  this->port = port;
+}
+
 string Request::toString() {
   stringstream ss;
   ss << method << " " << fileName << " " << "HTTP/1.1\r\n";
@@ -41,12 +46,15 @@ string Request::toString() {
 
 }
 
-
-const string &Request::getFile_name() const {
+const string &Request::getFileName() const {
   return fileName;
 }
-const string &Request::getHost_name() const {
+const string &Request::getHostName() const {
   return hostName;
+}
+
+const string &Request::getPort() const {
+  return port;
 }
 
 Request::~Request() {

@@ -3,7 +3,7 @@
 //
 
 #define BOOST_TEST_MODULE Tests
-#include <../Server/IOHandler.h>
+#include "../util/IOHandler.h"
 #include <../Server/HttpServer.h>
 #include <../Messages/Request.h>
 #include <time.h>
@@ -138,8 +138,8 @@ BOOST_AUTO_TEST_SUITE(suite3, * utf::label("Messages"))
 
     Request* request = Parser::createRequest(data) ;
     BOOST_REQUIRE(request->getMethod() == GET) ;
-    BOOST_REQUIRE(request->getFile_name() == "/server") ;
-    BOOST_REQUIRE(request->getHost_name() == "/http/1.1") ;
+    BOOST_REQUIRE(request->getFileName() == "/server") ;
+    BOOST_REQUIRE(request->getHostName() == "/http/1.1") ;
     BOOST_REQUIRE(request->getKey_val("Host") == "local") ;
 
   }

@@ -10,8 +10,8 @@
 
 #include <bits/stdc++.h>
 #include <pthread.h>
-#include "IOHandler.h"
-#include "PortHandler.h"
+#include "../util/IOHandler.h"
+#include "../util/PortHandler.h"
 #include "../Messages/Request.h"
 using namespace std;
 

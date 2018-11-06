@@ -24,35 +24,86 @@ vector<string> Parser::tokenize(string s , string delimiter) {
   return tokens ;
 }
 
-Request* Parser::createRequest(string data) {
-  Request* request = new Request() ;
+Response* Parser::createResponse(string data) {
 
-  vector<string> tokens = tokenize(data , "\r\n") ;
+  Response* response = new Response();
+  vector<string> tokens = tokenize(data , "\r\n");
 
-  int err = parse_first_line(tokens[0] , request);
-
+  int err = parse_first_line(tokens[0], response);
   if(err != 0 )
     return NULL;
 
+   err = parseString(tokens, response);
+   if(err){
+     return NULL;
+   }
+    return response;
+}
+
+int Parser::parseString(vector<string> tokens, HttpMessage* message) {
+
+  int err;
+
   int i = 1;
   for(; i < tokens.size() && tokens[i] != "" ; i++) {
-    err = parse_key_val(tokens[i] , request);
+    err = parse_key_val(tokens[i] , message);
     if(err != 0)
-      return NULL ;
+      return err ;
   }
-
   string requestBody;
   while (i + 1 < tokens.size()){
-      i++;
-      requestBody += tokens[i];
+    i++;
+    requestBody += tokens[i];
   }
-  request->setBody(requestBody);
-  return request ;
+  message->setBody(requestBody);
+  return 0;
+}
+
+Request Parser::parseInputCommand(string command) {
+    vector<string> tokens = tokenize(command, " ");
+    string method = tokens[0];
+    string fileName = tokens[1];
+    string hostName = tokens[2];
+    string port = "80";
+    if(tokens.size() == 4){
+        port = tokens[3];
+    }
+    HTTP_METHODS methodType = method == "GET" ? GET : POST;
+    Request request(methodType, fileName, hostName, port);
+    return request;
+}
+
+Request* Parser::createRequest(string data) {
+
+  Request* request = new Request();
+  vector<string> tokens = tokenize(data , "\r\n");
+
+  int err = parse_first_line(tokens[0], request);
+  if(err != 0 )
+    return NULL;
+
+  err = parseString(tokens, request);
+  if(!err){
+    return request;
+  }
+  return NULL;
+
+}
+
+int Parser::parse_first_line(string f_line, Response *response) {
+    vector<string> vstrings = tokenize(f_line , " ") ;
+    if(vstrings.size() < 3){
+        return -1 ;
+    }
+    string httpType = vstrings[0];
+    string status = vstrings[1];
+    response->setStatus(status == "200");
+
 }
 
 int Parser::parse_first_line(string f_line , Request* request) {
 
-  vector<string> vstrings = tokenize(f_line , " ") ;
+    vector<string> vstrings = tokenize(f_line , " ") ;
 
   if(vstrings.size() != 3){
     perror("First line in request has wrong format\n Required :\n Method File_name Host_name\n") ;
@@ -70,7 +121,6 @@ int Parser::parse_first_line(string f_line , Request* request) {
     perror("wrong method");
     return -1;
   }
-
   request->setFileName(vstrings[1]) ;
   request->setHostName(vstrings[2]) ;
 
@@ -78,7 +128,7 @@ int Parser::parse_first_line(string f_line , Request* request) {
 }
 
 
-int Parser::parse_key_val(string f_line , Request* request) {
+int Parser::parse_key_val(string f_line , HttpMessage* request) {
 
   set<string> key_set = {"A-IM","Accept","Accept-Charset", "Accept-Encoding", "Accept-Language",
                          "Accept-Datetime","Access-Control-Request-Method","Access-Control-Request-Headers",
