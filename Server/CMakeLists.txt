@@ -39,4 +39,5 @@ add_executable(${PROJECT_NAME}
         HttpServer.cpp
         HttpHandler.h
         HttpHandler.cpp
-        main.cpp)
+        Tests/Test_Module.cpp
+        )

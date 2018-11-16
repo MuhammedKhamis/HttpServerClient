@@ -18,9 +18,8 @@ HttpHandler::~HttpHandler() {
 
 void HttpHandler::run() {
     //TODO
-    bool fl = 1 ;
-
-    while(fl) {
+    int state  = 0 ;
+    do {
 
       vector<char> data (MAX_REQ_SZ , 0);
       int read = PortHandler::read(socket_fd, &data[0], MAX_REQ_SZ);
@@ -43,11 +42,13 @@ void HttpHandler::run() {
 
       if(request == NULL){
         perror("failed to create request is corrupter or in complete\n") ;
+          continue;
       }
-
-      //if(request->getKey_val("Connection") == "keep_alive")
-      cout << request->toString() << endl ;
-      cout << "HHH" << request->getBody() << endl;
+      // re-initialize the time.
+      time(&startTime);
+      if(request->getKey_val("Connection") == "closed"){
+        state = 1;
+      }
 
       if(request->getMethod() == GET){
         handleGet(*request);
@@ -55,8 +56,7 @@ void HttpHandler::run() {
         handlePost(*request);
       }
       delete request;
-      break;
-    }
+    }while (!state);
 
     // Error
 }
@@ -87,9 +87,6 @@ void HttpHandler::handleGet(Request request) {
 
 //TODO test2
 void HttpHandler::handlePost(Request request) {
-
-
-  cout << "Hamamda" <<  request.getBody() << endl;
 
 
     //TODO

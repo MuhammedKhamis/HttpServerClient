@@ -37,7 +37,7 @@ void Request::setPort(int port) {
 
 string Request::toString() {
   stringstream ss;
-  ss << method << " " << fileName << " " << "HTTP/1.1\r\n";
+  ss << enumValues[method] << " " << fileName << " " << "HTTP/1.1\r\n";
   ss << fieldsAndBody();
   return ss.str();
 

@@ -23,12 +23,12 @@ int main(int argc, char const *argv[])
     while(initFlag == 0)
     {
         // scan user command
-        char userCommand[1024] = {0};
+        string userCommand;
         printf("Enter Command: ");
-        scanf("%s", userCommand);
+        getline(cin,userCommand);
 
         // parse user command
-        Request requestObj = Parser::parseInputCommand(string(userCommand));
+        Request requestObj = Parser::parseInputCommand(userCommand);
         string serverAddress = requestObj.getHostName();
         int portNo = requestObj.getPort();
 

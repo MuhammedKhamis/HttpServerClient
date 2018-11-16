@@ -34,8 +34,8 @@ HttpClient::connectionInit(char *server_address, int port_no)
     } 
    
     if (connect(socketfd, (struct sockaddr *)&serv_addr, sizeof(serv_addr)) < 0)
-    { 
-        printf("\nConnection Failed \n"); 
+    {
+        printf("\nConnection Failed \n");
         return -1; 
     }
     return 0; // successful
