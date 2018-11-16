@@ -66,9 +66,9 @@ Request Parser::parseInputCommand(string command) {
     string method = tokens[0];
     string fileName = tokens[1];
     string hostName = tokens[2];
-    string port = "80";
+    int port = 80;
     if(tokens.size() == 4){
-        port = tokens[3];
+        port = atoi(tokens[3].c_str());
     }
     HTTP_METHODS methodType = method == "GET" ? GET : POST;
     Request request(methodType, fileName, hostName, port);

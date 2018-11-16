@@ -12,9 +12,15 @@
 int main(int argc, char const *argv[]) 
 { 
     // where to store data on client module
-    string dataDirectory = "asd";
+    string dataDirectory = ".";
 
-    while(1)
+    // non-persistent
+    HttpClient client(dataDirectory);
+    int port = 8000;
+    char serverAddress[] = "127.0.0.1";
+    int initFlag = client.connectionInit(serverAddress, port);
+
+    while(initFlag == 0)
     {
         // scan user command
         char userCommand[1024] = {0};
@@ -24,12 +30,7 @@ int main(int argc, char const *argv[])
         // parse user command
         Request requestObj = Parser::parseInputCommand(string(userCommand));
         string serverAddress = requestObj.getHostName();
-        string portNo = requestObj.getPort();
-
-        // non-persistent 
-        HttpClient client(dataDirectory);
-        int port = atoi(portNo.c_str());
-        client.connectionInit((char*)serverAddress.c_str(), port);
+        int portNo = requestObj.getPort();
 
         // GET or POST
         if(requestObj.getMethod() == GET)

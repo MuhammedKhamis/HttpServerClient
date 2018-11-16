@@ -11,20 +11,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ef7ce604-f648-450f-9720-aae2e404cca5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../Client/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/HttpClient.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/HttpClient.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/HttpClient.h" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/HttpClient.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/cmake-build-debug/HttpServerClient.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/cmake-build-debug/HttpServerClient.cbp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Messages/Request.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Messages/Request.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Messages/Request.h" beforeDir="false" afterPath="$PROJECT_DIR$/../Messages/Request.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/HttpServer.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/HttpServer.cbp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Util/IOHandler.h" beforeDir="false" afterPath="$PROJECT_DIR$/../Util/IOHandler.h" afterDir="false" />
-    </list>
+    <list default="true" id="ef7ce604-f648-450f-9720-aae2e404cca5" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -76,7 +63,7 @@
     <session id="-2133950599">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="4" />
+          <entry key="project.closed" value="5" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.11" value="1" />
           <entry key="project.open.time.3" value="1" />
@@ -327,15 +314,15 @@
       <workItem from="1542399676651" duration="51000" />
       <workItem from="1542399751776" duration="550000" />
       <workItem from="1542400751471" duration="6037000" />
-      <workItem from="1542406853830" duration="485000" />
+      <workItem from="1542406853830" duration="584000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26913000" />
+    <option name="totallyTimeSpent" value="27012000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
+    <frame x="65" y="24" width="1855" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
@@ -345,7 +332,7 @@
       <window_info anchor="bottom" id="Terminal" order="1" weight="0.32845187" />
       <window_info anchor="bottom" id="Event Log" order="2" sideWeight="0.5002764" side_tool="true" weight="0.3294979" />
       <window_info anchor="bottom" id="Version Control" order="3" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Messages" order="4" visible="true" weight="0.3294979" />
+      <window_info active="true" anchor="bottom" id="Messages" order="4" visible="true" weight="0.33943966" />
       <window_info anchor="bottom" id="Message" order="5" />
       <window_info anchor="bottom" id="Find" order="6" />
       <window_info anchor="bottom" id="Run" order="7" sideWeight="0.4997236" weight="0.3294979" />

@@ -21,15 +21,15 @@ class Request: public HttpMessage {
 
  public:
   Request();
-  Request(HTTP_METHODS method, const string &file_name, const string &host_name, const string &port,
+  Request(HTTP_METHODS method, const string &file_name, const string &host_name, int port,
           const string &body = "");
   virtual ~Request();
   void setFileName(const string &file_name);
   void setHostName(const string &host_name);
-  void setPort(const string &port);
+  void setPort(int port);
   const string &getFileName() const;
   const string &getHostName() const;
-  const string &getPort() const;
+  int getPort() const;
 
 
     string getBody(){
@@ -55,7 +55,8 @@ class Request: public HttpMessage {
   string toString();
 
  private:
-    string fileName , hostName, port ;
+    string fileName , hostName;
+    int port ;
 
 
 

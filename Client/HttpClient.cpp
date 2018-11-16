@@ -12,7 +12,6 @@ HttpClient::HttpClient(string dataDirectory)
 int
 HttpClient::connectionInit(char *server_address, int port_no)
 {
-    struct sockaddr_in address; 
     socketfd = 0;
     struct sockaddr_in serv_addr; 
 
@@ -22,13 +21,13 @@ HttpClient::connectionInit(char *server_address, int port_no)
         return -1; 
     } 
    
-    memset(&serv_addr, '0', sizeof(serv_addr)); 
+    memset(&serv_addr, '0', sizeof(serv_addr));
    
     serv_addr.sin_family = AF_INET; 
     serv_addr.sin_port = htons(port_no); 
        
     // Convert IPv4 and IPv6 addresses from text to binary form 
-    if(inet_pton(AF_INET, server_address, &serv_addr.sin_addr)<=0)  
+    if(inet_pton(AF_INET, server_address, &serv_addr.sin_addr)<=0)
     { 
         printf("\nInvalid address/ Address not supported \n"); 
         return -1; 
@@ -46,20 +45,20 @@ int
 HttpClient::sendGETRequest(Request requestObj)
 { 
     // send GET msg
-    send(socketfd , requestObj.toString().c_str() , requestObj.toString().size() , 0 );
+    PortHandler::write(socketfd , (char* )requestObj.toString().c_str() , requestObj.toString().size());
     printf("message sent\n"); 
 
     // receive reponse
     char buffer[1024] = {0};
     int valread;
-    valread = read( socketfd , buffer, 1024);
-    printf("%s\n",buffer);
+    valread = PortHandler::read(socketfd , buffer, 1024);
 
     // save data to directory
     Response responseObj = Parser::createResponse(buffer);
+    cout << responseObj.toString() << endl;
     if(responseObj.getStatus() == 200) // file found
     {
-        char *data = (char*)responseObj.toString().c_str();
+        char *data = (char*)responseObj.getBody().c_str();
         return IOHandler::writeData(requestObj.getFileName(), data, strlen(data));
     }
     return -1;
@@ -75,17 +74,17 @@ HttpClient::sendPOSTRequest(Request requestObj)
     IOHandler::readData(requestObj.getFileName(), buffer, strlen(buffer));
     
     // send POST request;
-    send(socketfd , requestObj.toString().c_str() , requestObj.toString().size() , 0 );
+    PortHandler::write(socketfd , (char* )requestObj.toString().c_str() , requestObj.toString().size());
     printf("message sent\n"); 
 
     // receive reponse
     char retBuffer[1024] = {0};
     int valread;
-    valread = read( socketfd , retBuffer, 1024);
-    printf("%s\n",retBuffer);
+    valread = PortHandler::read( socketfd , retBuffer, 1024);
 
     // make sure its OK to send data
     Response responseObj = Parser::createResponse(retBuffer);
+    cout << responseObj.getBody() << endl;
     if(responseObj.getStatus() == 200) // ready to receive file
     {
         return 0;    
