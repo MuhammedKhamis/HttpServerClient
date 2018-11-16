@@ -3,20 +3,17 @@
 //
 
 #include "HttpHandler.h"
-#include "../Messages/Parser.h"
-#include "../Messages/Response.h"
-#include <string.h>
 
-HttpHandler::HttpHandler(IOHandler *ioHandler, PortHandler *portHandler, string serverName) {
-    this->ioHandler = ioHandler;
-    this->portHandler = portHandler;
+
+HttpHandler::HttpHandler(int socket_fd, string serverName) {
     handler_id = 0;
     finished = false;
+    this->socket_fd = socket_fd;
     this->serverName = serverName;
 }
 
 HttpHandler::~HttpHandler() {
-    delete portHandler ;
+    PortHandler::closeConnection(socket_fd);
 }
 
 void HttpHandler::run() {
@@ -26,9 +23,7 @@ void HttpHandler::run() {
     while(fl) {
 
       vector<char> data (MAX_REQ_SZ , 0);
-      int read = portHandler->read(&data[0], MAX_REQ_SZ);
-      printf("Here is data:\n %s\n",data);
-
+      int read = PortHandler::read(socket_fd, &data[0], MAX_REQ_SZ);
 
       if(read == -1){
         //Error
@@ -69,24 +64,24 @@ void HttpHandler::run() {
 void HttpHandler::handleGet(Request request) {
 
      string fileName = request.getFileName();
-     int sz = ioHandler->getFileSize(fileName);
+     int sz = IOHandler::getFileSize(fileName);
     Response *res = NULL;
     if(sz == -1){
          // Error
          res = new Response(false);
          string r = res->toString();
-         portHandler->write((char*)r.c_str(), r.size());
+         PortHandler::write(socket_fd, (char*)r.c_str(), r.size());
          delete res;
          return;
      }
      vector<char> data(sz+1,0);
-     ioHandler->readData(fileName, &data[0], sz+1);
+     IOHandler::readData(fileName, &data[0], sz+1);
      res = new Response(true);
      res->setKeyVal("Content-Length", to_string(sz));
-     res->setKeyVal("Content-Type", ioHandler->getContentType(fileName));
+     res->setKeyVal("Content-Type", IOHandler::getContentType(fileName));
      res->setBody(string(data.begin(),data.end()));
      string r = res->toString();
-     portHandler->write((char*)r.c_str(), r.size());
+     PortHandler::write(socket_fd, (char*)r.c_str(), r.size());
      delete res;
      }
 
@@ -103,7 +98,7 @@ void HttpHandler::handlePost(Request request) {
     string fileName = request.getFileName();
 
 
-    int status = ioHandler->writeData(fileName,data,sz);
+    int status = IOHandler::writeData(fileName,data,sz);
 
     HttpMessage *res = new Response(status != -1);
     string r = res->toString();
@@ -111,7 +106,7 @@ void HttpHandler::handlePost(Request request) {
     cout << "---------response----------" << endl ;
     cout << r << endl ;
 
-    portHandler->write((char*)r.c_str(), r.size());
+    PortHandler::write(socket_fd, (char*)r.c_str(), r.size());
     delete res;
 }
 
@@ -135,6 +130,6 @@ void* HttpHandler::startHelper(void *runner) {
 }
 
 void HttpHandler::close() {
-    this->portHandler->closeConnection();
-    this->finished = true;
+    PortHandler::closeConnection(socket_fd);
+    finished = true;
 }

@@ -11,6 +11,7 @@
 #include <bits/stdc++.h>
 #include <sys/socket.h>
 #include "HttpHandler.h"
+#include <IOHandler.h>
 using namespace std;
 
 #define SERVER_NAME "TEST"

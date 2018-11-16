@@ -85,7 +85,7 @@ void HttpServer::run() {
                 continue;
             }
 
-            HttpHandler* handler = new HttpHandler(new IOHandler(), new PortHandler(new_socket), SERVER_NAME);
+            HttpHandler* handler = new HttpHandler(new_socket, SERVER_NAME);
 
             if (handler->start()){
                 workers.emplace_back(handler);

@@ -4,10 +4,10 @@ project(HttpServerClient)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -pthread")
 
-set(Boost_INCLUDE_DIR /mnt/16BE8F73BE8F4A67/program/IDES/boost_1_65_0)
+set(Boost_INCLUDE_DIR /home/muhammed/boost_1_68_0)
 
-set(APP_SERVER ./Server)
-set(APP_FILES ./Files)
+set(APP_SERVER ../Server)
+set(APP_FILES ../Files)
 
 find_package(Boost COMPONENTS system filesystem REQUIRED)
 
@@ -26,19 +26,7 @@ configure_file(${APP_FILES}/write.txt
 configure_file(${APP_FILES}/to_modify.txt
         ${CMAKE_CURRENT_BINARY_DIR} )
 
-add_executable(HttpServerClient
-        util/IOHandler.cpp
-        Server/HttpServer.cpp
-        Server/HttpHandler.cpp
-        util/PortHandler.cpp
-        Messages/Request.cpp
-        Messages/Request.h
-        Messages/Response.cpp
-        Messages/Response.h
-        Messages/Parser.cpp
-        Messages/Parser.h
-        Messages/HttpMessage.cpp
-        Messages/HttpMessage.h
-        Client/main.cpp
-        Client/HttpClient.cpp
-        Client/HttpClient.h)
+add_executable(HttpClient
+        main.cpp
+        HttpClient.cpp
+        HttpClient.h)

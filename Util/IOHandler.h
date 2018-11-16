@@ -19,17 +19,15 @@ using namespace std;
 class IOHandler{
 
 public:
-    IOHandler();
-
-    int writeData(string fileName, char* data ,int len);
-    int readData(string fileName, char* data , int len);
-    time_t getLastModified(string fileName);
-    int getFileSize(string fileName);
-    string getContentType(string &fileName);
+    static int writeData(string fileName, char* data ,int len);
+    static int readData(string fileName, char* data , int len);
+    static time_t getLastModified(string fileName);
+    static int getFileSize(string fileName);
+    static string getContentType(string &fileName);
 
 private:
-    bool fileExist(string fileName);
-    string getWorkingDir();
+    IOHandler();
+    static bool fileExist(string fileName);
 
 };
 #endif //HTTPSERVERCLIENT_IOHANDLER_H

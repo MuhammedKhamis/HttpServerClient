@@ -10,9 +10,13 @@
 
 #include <bits/stdc++.h>
 #include <pthread.h>
-#include "../util/IOHandler.h"
-#include "../util/PortHandler.h"
-#include "../Messages/Request.h"
+#include <IOHandler.h>
+#include <PortHandler.h>
+#include <Request.h>
+#include <Parser.h>
+#include <Response.h>
+#include <string.h>
+
 using namespace std;
 
 #define MAX_REQ_SZ 10240
@@ -20,7 +24,7 @@ using namespace std;
 class HttpHandler{
 
 public:
-    HttpHandler(IOHandler* ioHandler, PortHandler* portHandler, string serverName);
+    HttpHandler(int socket_fd, string serverName);
     ~HttpHandler();
     bool isFinished();
     time_t getCreateTime();
@@ -31,8 +35,7 @@ private:
     //attributes
     time_t startTime;
     bool finished;
-    IOHandler* ioHandler;
-    PortHandler* portHandler;
+    int socket_fd;
     pthread_t handler_id;
     string serverName;
 
