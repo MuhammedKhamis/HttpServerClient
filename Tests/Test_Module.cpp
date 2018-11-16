@@ -15,134 +15,134 @@ namespace utf = boost::unit_test;
 
 BOOST_AUTO_TEST_SUITE(suite1, * utf::label("IOHandler"))
 
-    BOOST_AUTO_TEST_CASE( test_file_exist )
-    {
-      IOHandler handler;
-      BOOST_REQUIRE(handler.getFileSize("smile.jpeg") != -1) ;
-    }
+BOOST_AUTO_TEST_CASE( test_file_exist )
+{
+  IOHandler handler;
+  BOOST_REQUIRE(handler.getFileSize("smile.jpeg") != -1) ;
+}
 
-    BOOST_AUTO_TEST_CASE( test_file_dont_exist )
-    {
-      IOHandler handler;
-      BOOST_REQUIRE(handler.getFileSize("smile_no.jpeg") == -1) ;
-    }
+BOOST_AUTO_TEST_CASE( test_file_dont_exist )
+{
+  IOHandler handler;
+  BOOST_REQUIRE(handler.getFileSize("smile_no.jpeg") == -1) ;
+}
 
-    BOOST_AUTO_TEST_CASE( test_file_last_modified )
-    {
-      IOHandler handler;
-      ofstream modify ;
-      struct timespec curr ;
+BOOST_AUTO_TEST_CASE( test_file_last_modified )
+{
+  IOHandler handler;
+  ofstream modify ;
+  struct timespec curr ;
 
 
-      modify.open("to_modify.txt" , ios::out ) ;
+  modify.open("to_modify.txt" , ios::out ) ;
 
-      timespec_get( &curr , TIME_UTC ) ;
+  timespec_get( &curr , TIME_UTC ) ;
 
-      modify << "now modify ." ;
+  modify << "now modify ." ;
 
-      modify.close() ;
+  modify.close() ;
 
-      BOOST_REQUIRE(handler.getLastModified("to_modify.txt") == curr.tv_sec) ;
+  BOOST_REQUIRE(handler.getLastModified("to_modify.txt") == curr.tv_sec) ;
 
-    }
+}
 
-    BOOST_AUTO_TEST_CASE( test_file_last_modified_wrong )
-    {
-      IOHandler handler;
-      ofstream modify ;
-      struct timespec curr ;
+BOOST_AUTO_TEST_CASE( test_file_last_modified_wrong )
+{
+  IOHandler handler;
+  ofstream modify ;
+  struct timespec curr ;
 
-      modify.open("to_modify.txt" , ios::out ) ;
+  modify.open("to_modify.txt" , ios::out ) ;
 
-      timespec_get( &curr , TIME_UTC ) ;
+  timespec_get( &curr , TIME_UTC ) ;
 
-      usleep(1000000);
+  usleep(1000000);
 
-      modify << "now modify ." ;
+  modify << "now modify ." ;
 
-      modify.close() ;
+  modify.close() ;
 
-      BOOST_REQUIRE(handler.getLastModified("to_modify.txt") != curr.tv_sec) ;
+  BOOST_REQUIRE(handler.getLastModified("to_modify.txt") != curr.tv_sec) ;
 
-    }
+}
 
-    BOOST_AUTO_TEST_CASE( test_file_size )
-    {
-      IOHandler handler;
-      BOOST_REQUIRE(handler.getFileSize("smile.jpeg") == 6467) ;
-    }
+BOOST_AUTO_TEST_CASE( test_file_size )
+{
+  IOHandler handler;
+  BOOST_REQUIRE(handler.getFileSize("smile.jpeg") == 6467) ;
+}
 
-    BOOST_AUTO_TEST_CASE( test_file_read )
-    {
-      IOHandler handler;
-      char data[1024] ;
-      handler.readData("read.txt" , data , 15 * sizeof(char) ) ;
-      BOOST_REQUIRE( strcmp(data , "successful read") == 0 ) ;
-    }
+BOOST_AUTO_TEST_CASE( test_file_read )
+{
+  IOHandler handler;
+  char data[1024] ;
+  handler.readData("read.txt" , data , 15 * sizeof(char) ) ;
+  BOOST_REQUIRE( strcmp(data , "successful read") == 0 ) ;
+}
 
-    BOOST_AUTO_TEST_CASE( test_file_read_overflow )
-    {
-      IOHandler handler;
-      char data[1024] ;
-      BOOST_REQUIRE_NO_THROW( handler.readData("read.txt" , data , 16 * sizeof(char) ) ) ;
-    }
+BOOST_AUTO_TEST_CASE( test_file_read_overflow )
+{
+  IOHandler handler;
+  char data[1024] ;
+  BOOST_REQUIRE_NO_THROW( handler.readData("read.txt" , data , 16 * sizeof(char) ) ) ;
+}
 
-    BOOST_AUTO_TEST_CASE( test_file_write )
-    {
-      IOHandler handler;
-      string data_str = "write successful" ;
-      char* data = (char*) data_str.c_str() ;
-      handler.writeData("write.txt" , data , strlen(data) * sizeof(char) ) ;
+BOOST_AUTO_TEST_CASE( test_file_write )
+{
+  IOHandler handler;
+  string data_str = "write successful" ;
+  char* data = (char*) data_str.c_str() ;
+  handler.writeData("write.txt" , data , strlen(data) * sizeof(char) ) ;
 
-      string read_str ;
-      ifstream myfile ("write.txt");
-      if (myfile.is_open())
-      {
-        getline (myfile,read_str) ;
-        myfile.close();
-      }
-      BOOST_REQUIRE( data_str == read_str ) ;
-    }
+  string read_str ;
+  ifstream myfile ("write.txt");
+  if (myfile.is_open())
+  {
+    getline (myfile,read_str) ;
+    myfile.close();
+  }
+  BOOST_REQUIRE( data_str == read_str ) ;
+}
 
 BOOST_AUTO_TEST_SUITE_END()
 
 BOOST_AUTO_TEST_SUITE(suite2, * utf::label("HttpServer"))
 
-  BOOST_AUTO_TEST_CASE( test_server_intialization )
-  {
-    //creating server with directory none , 20 workers
-    // , 1000 queue size  , on port 8080 , with 5 seconds time out
-    HttpServer server("NONE" , 20 , 1000 , 8000 , 5);
+BOOST_AUTO_TEST_CASE( test_server_intialization )
+{
+  //creating server with directory none , 20 workers
+  // , 1000 queue size  , on port 8080 , with 5 seconds time out
+  HttpServer server("NONE" , 20 , 1000 , 8000 , 5);
 
-    BOOST_REQUIRE_NO_THROW( server.initServer() ) ;
-  }
+  BOOST_REQUIRE_NO_THROW( server.initServer() ) ;
+}
 
-  BOOST_AUTO_TEST_CASE( test_server_read )
-  {
-    //creating server with directory none , 20 workers
-    // , 1000 queue size  , on port 8080 , with 5 seconds time out
-    HttpServer server("NONE" , 20 , 1000 , 8000 , 5);
-    server.initServer() ;
-    server.run() ;
+BOOST_AUTO_TEST_CASE( test_server_read )
+{
+  //creating server with directory none , 20 workers
+  // , 1000 queue size  , on port 8080 , with 5 seconds time out
+  HttpServer server("NONE" , 20 , 1000 , 8000 , 5);
+  server.initServer() ;
+  server.run() ;
 
-    BOOST_REQUIRE_NO_THROW( server.initServer() ) ;
-  }
+  BOOST_REQUIRE_NO_THROW( server.initServer() ) ;
+}
 
 BOOST_AUTO_TEST_SUITE_END()
 
 BOOST_AUTO_TEST_SUITE(suite3, * utf::label("Messages"))
 
-  BOOST_AUTO_TEST_CASE( test_message_request_get ){
+BOOST_AUTO_TEST_CASE( test_message_request_get ){
 
-    string data = "get /server /http/1.1\r\nHost: local\r\n" ;
+  string data = "get /server /http/1.1\r\nHost: local\r\n" ;
 
-    Request* request = Parser::createRequest(data) ;
-    BOOST_REQUIRE(request->getMethod() == GET) ;
-    BOOST_REQUIRE(request->getFileName() == "/server") ;
-    BOOST_REQUIRE(request->getHostName() == "/http/1.1") ;
-    BOOST_REQUIRE(request->getKey_val("Host") == "local") ;
+  Request* request = Parser::createRequest(data) ;
+  BOOST_REQUIRE(request->getMethod() == GET) ;
+  BOOST_REQUIRE(request->getFileName() == "/server") ;
+  BOOST_REQUIRE(request->getHostName() == "/http/1.1") ;
+  BOOST_REQUIRE(request->getKey_val("Host") == "local") ;
 
-  }
+}
 
 BOOST_AUTO_TEST_CASE( test_message_request_get_bad ){
 
@@ -169,8 +169,6 @@ BOOST_AUTO_TEST_CASE( test_message_request_get_bad ){
   BOOST_REQUIRE(request5 == NULL) ;
 
 }
-
-
 
 BOOST_AUTO_TEST_SUITE_END()
 

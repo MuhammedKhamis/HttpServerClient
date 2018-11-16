@@ -10,13 +10,13 @@ HttpClient::HttpClient(string dataDirectory)
 /* interface methods */
 /*************************************/
 int
-HttpClient::connectionInit(char *server_address, int port_no = 80)
+HttpClient::connectionInit(char *server_address, int port_no)
 {
     struct sockaddr_in address; 
-    sockfd = 0;
+    socketfd = 0;
     struct sockaddr_in serv_addr; 
 
-    if ((sockfd = socket(AF_INET, SOCK_STREAM, 0)) < 0) 
+    if ((socketfd = socket(AF_INET, SOCK_STREAM, 0)) < 0)
     { 
         printf("\n Socket creation error \n"); 
         return -1; 
@@ -34,7 +34,7 @@ HttpClient::connectionInit(char *server_address, int port_no = 80)
         return -1; 
     } 
    
-    if (connect(sockfd, (struct sockaddr *)&serv_addr, sizeof(serv_addr)) < 0) 
+    if (connect(socketfd, (struct sockaddr *)&serv_addr, sizeof(serv_addr)) < 0)
     { 
         printf("\nConnection Failed \n"); 
         return -1; 
@@ -46,21 +46,21 @@ int
 HttpClient::sendGETRequest(Request requestObj)
 { 
     // send GET msg
-    send(sockfd , requestObj.toString() , strlen(requestObj.toString()) , 0 );
+    send(socketfd , requestObj.toString().c_str() , requestObj.toString().size() , 0 );
     printf("message sent\n"); 
 
     // receive reponse
     char buffer[1024] = {0};
     int valread;
-    valread = read( sockfd , buffer, 1024); 
+    valread = read( socketfd , buffer, 1024);
     printf("%s\n",buffer);
 
     // save data to directory
-    Response responseObj = Parser.parseReponseMessage(buffer);
+    Response responseObj = Parser::createResponse(buffer);
     if(responseObj.getStatus() == 200) // file found
     {
-        char *data = responseObj.getData();
-        return IOHandler.writeData(requestObj.getFileName(), data, strlen(data));
+        char *data = (char*)responseObj.toString().c_str();
+        return IOHandler::writeData(requestObj.getFileName(), data, strlen(data));
     }
     return -1;
 }
@@ -72,21 +72,20 @@ HttpClient::sendPOSTRequest(Request requestObj)
 {
     // read file
     char buffer[1024] = {0};
-    IOHandler.readData(requestObj.getFileName(), buffer, strlen(buffer));
+    IOHandler::readData(requestObj.getFileName(), buffer, strlen(buffer));
     
-    // send POST request
-    requestObj.setData(buffer);
-    send(sockfd , requestObj.toString() , strlen(requestObj.toString()) , 0 );
+    // send POST request;
+    send(socketfd , requestObj.toString().c_str() , requestObj.toString().size() , 0 );
     printf("message sent\n"); 
 
     // receive reponse
     char retBuffer[1024] = {0};
     int valread;
-    valread = read( sockfd , retBuffer, 1024); 
+    valread = read( socketfd , retBuffer, 1024);
     printf("%s\n",retBuffer);
 
     // make sure its OK to send data
-    Response responseObj = Parser.parseReponseMessage(retBuffer);
+    Response responseObj = Parser::createResponse(retBuffer);
     if(responseObj.getStatus() == 200) // ready to receive file
     {
         return 0;    

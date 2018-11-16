@@ -80,6 +80,7 @@ int IOHandler::readData(string fileName, char *data, int len) {
     return -1;
 }
 
+//TODO test1
 int IOHandler::writeData(string fileName, char *data, int len) {
         fileName = getWorkingDir() + fileName;
         FILE* fp = fopen(fileName.c_str(),"wb+");

@@ -8,8 +8,16 @@ using namespace std ;
 #include <sys/socket.h> 
 #include <stdlib.h> 
 #include <netinet/in.h> 
-#include <string.h> 
+#include <string.h>
+#include "../util/IOHandler.h"
+#include "../util/PortHandler.h"
+#include "../Messages/Request.h"
+#include "../Messages/Response.h"
+#include "../Messages/Parser.h"
+#include <bits/stdc++.h>
+#include <sys/types.h>
 
+using namespace std;
 /* Class Definition */
 /*************************************/
 class HttpClient {
@@ -20,7 +28,8 @@ class HttpClient {
 		int socketfd;
 
   public:
-  	// constructor
+  	//
+    HttpClient(string dataDirectory);
     HttpClient(string dataDirectory, IOHandler* ioHandler, PortHandler* portHandler);
   	~HttpClient() = default;
     // methods

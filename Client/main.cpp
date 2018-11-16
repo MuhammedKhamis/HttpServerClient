@@ -1,8 +1,10 @@
 /* import libraries */
 /*************************************/
-#include <stdio.h> 
-#include "Request.h" 
+#include <stdio.h>
+#include <string>
+#include "../Messages/Request.h"
 #include "HttpClient.h"
+#include "../Messages/Parser.h"
 
 
 /* main function */
@@ -20,16 +22,17 @@ int main(int argc, char const *argv[])
         scanf("%s", userCommand);
 
         // parse user command
-        Request requestObj = ClientParser.parseInputCommand(userCommand);
-        serverAddress = requestObj.getHostName();
-        portNo = requestObj.getPort();
+        Request requestObj = Parser::parseInputCommand(string(userCommand));
+        string serverAddress = requestObj.getHostName();
+        string portNo = requestObj.getPort();
 
         // non-persistent 
         HttpClient client(dataDirectory);
-        client.init(serverAddress, portNo);
+        int port = atoi(portNo.c_str());
+        client.connectionInit((char*)serverAddress.c_str(), port);
 
         // GET or POST
-        if(requestObj.getRequestType() == "GET")
+        if(requestObj.getMethod() == GET)
         {
             if(client.sendGETRequest(requestObj)<0)
                 perror("something went wrong");
@@ -40,23 +43,4 @@ int main(int argc, char const *argv[])
         
     }
     return 0; 
-} 
-
-
-
-Request
-parseInputCommand(char* userCommand)
-{
-    vector<string> inputData = Parser::tokenize(string(userCommand), " ");
-    string methodType = inputData[0];
-    string fileName = inputData[1];
-    string hostName = inputData[2];
-    string portNumber = "80";
-    if(inputData.size() == 4)
-    {
-        portNumber = inputData[3];
-    }
-    
-    Request requestObj(methodType, fileName, hostName, portNumber);
-    return requestObj;
 }

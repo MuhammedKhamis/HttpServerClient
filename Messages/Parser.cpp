@@ -55,7 +55,9 @@ int Parser::parseString(vector<string> tokens, HttpMessage* message) {
     i++;
     requestBody += tokens[i];
   }
+  cout << "In parse string: "<< requestBody << endl;
   message->setBody(requestBody);
+  cout << "messege body: " << message->getBody() << endl;
   return 0;
 }
 

@@ -12,7 +12,7 @@ PortHandler::~PortHandler() {
     closeConnection();
 }
 
-int PortHandler::read(char *buffer, int sz) {
+int PortHandler::read(char *buffer, int sz ) {
     return recv(socked_fd, buffer, sz, 0);
 }
 

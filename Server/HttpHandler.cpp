@@ -21,31 +21,48 @@ HttpHandler::~HttpHandler() {
 
 void HttpHandler::run() {
     //TODO
-    char data[MAX_REQ_SZ];
-    memset(data, 0, MAX_REQ_SZ);
-    int read = portHandler->read(data, MAX_REQ_SZ);
-    if(read == -1){
+    bool fl = 1 ;
+
+    while(fl) {
+
+      vector<char> data (MAX_REQ_SZ , 0);
+      int read = portHandler->read(&data[0], MAX_REQ_SZ);
+      printf("Here is data:\n %s\n",data);
+
+
+      if(read == -1){
         //Error
         return;
-    }
-    if(read == 0){
+      }
+      if(read == 0){
         // nothing to read.
         return;
-    }
-    string req(data);
+      }
 
-    Request* request = Parser::createRequest(data) ;
+      string req = "" ;
+      for(char i : data){
+        req.push_back(i) ;
+      }
 
-    if(request == NULL){
-      perror("failed to create request is corrupter or in complete\n") ;
-    }
+      Request* request = Parser::createRequest(req.c_str()) ;
 
-    if(request->getMethod() == GET){
+      if(request == NULL){
+        perror("failed to create request is corrupter or in complete\n") ;
+      }
+
+      //if(request->getKey_val("Connection") == "keep_alive")
+      cout << request->toString() << endl ;
+      cout << "HHH" << request->getBody() << endl;
+
+      if(request->getMethod() == GET){
         handleGet(*request);
-    } else if(request->getMethod() == POST){
+      } else if(request->getMethod() == POST){
         handlePost(*request);
+      }
+      delete request;
+      break;
     }
-    delete request;
+
     // Error
 }
 
@@ -73,16 +90,27 @@ void HttpHandler::handleGet(Request request) {
      delete res;
      }
 
-void HttpHandler::handlePost(Request reuqest) {
+//TODO test2
+void HttpHandler::handlePost(Request request) {
+
+
+  cout << "Hamamda" <<  request.getBody() << endl;
+
+
     //TODO
-    int sz = reuqest.getBody().size();
-    char* data = (char*)reuqest.getBody().c_str();
-    string fileName = reuqest.getFileName();
+    int sz = request.getBody().size();
+    char* data = (char*)request.getBody().c_str();
+    string fileName = request.getFileName();
+
 
     int status = ioHandler->writeData(fileName,data,sz);
 
     HttpMessage *res = new Response(status != -1);
     string r = res->toString();
+
+    cout << "---------response----------" << endl ;
+    cout << r << endl ;
+
     portHandler->write((char*)r.c_str(), r.size());
     delete res;
 }

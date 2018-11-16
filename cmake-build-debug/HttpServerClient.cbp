@@ -8,44 +8,44 @@
 		<Option virtualFolders="CMake Files\;CMake Files\Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/media/muhammed/Shared/Work/HttpServerClient/cmake-build-debug"/>
+				<Option working_dir="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient1/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j12 -f &quot;/media/muhammed/Shared/Work/HttpServerClient/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j12 -f &quot;/media/muhammed/Shared/Work/HttpServerClient/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j12 -f &quot;/media/muhammed/Shared/Work/HttpServerClient/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j12 -f &quot;/media/muhammed/Shared/Work/HttpServerClient/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/mnt/DE3E99B43E9985E5/projects\ and\ models/compilers/HttpServerClient1/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/mnt/DE3E99B43E9985E5/projects\ and\ models/compilers/HttpServerClient1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/mnt/DE3E99B43E9985E5/projects\ and\ models/compilers/HttpServerClient1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/mnt/DE3E99B43E9985E5/projects\ and\ models/compilers/HttpServerClient1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/media/muhammed/Shared/Work/HttpServerClient/cmake-build-debug"/>
+				<Option working_dir="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient1/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j12 -f &quot;/media/muhammed/Shared/Work/HttpServerClient/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j12 -f &quot;/media/muhammed/Shared/Work/HttpServerClient/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j12 -f &quot;/media/muhammed/Shared/Work/HttpServerClient/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j12 -f &quot;/media/muhammed/Shared/Work/HttpServerClient/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/mnt/DE3E99B43E9985E5/projects\ and\ models/compilers/HttpServerClient1/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/mnt/DE3E99B43E9985E5/projects\ and\ models/compilers/HttpServerClient1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/mnt/DE3E99B43E9985E5/projects\ and\ models/compilers/HttpServerClient1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/mnt/DE3E99B43E9985E5/projects\ and\ models/compilers/HttpServerClient1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/media/muhammed/Shared/Work/HttpServerClient/cmake-build-debug"/>
+				<Option working_dir="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient1/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j12 -f &quot;/media/muhammed/Shared/Work/HttpServerClient/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j12 -f &quot;/media/muhammed/Shared/Work/HttpServerClient/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j12 -f &quot;/media/muhammed/Shared/Work/HttpServerClient/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j12 -f &quot;/media/muhammed/Shared/Work/HttpServerClient/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/mnt/DE3E99B43E9985E5/projects\ and\ models/compilers/HttpServerClient1/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/mnt/DE3E99B43E9985E5/projects\ and\ models/compilers/HttpServerClient1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/mnt/DE3E99B43E9985E5/projects\ and\ models/compilers/HttpServerClient1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/mnt/DE3E99B43E9985E5/projects\ and\ models/compilers/HttpServerClient1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="HttpServerClient">
-				<Option output="/media/muhammed/Shared/Work/HttpServerClient/cmake-build-debug/HttpServerClient" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/media/muhammed/Shared/Work/HttpServerClient/cmake-build-debug"/>
+				<Option output="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient1/cmake-build-debug/HttpServerClient" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient1/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/home/muhammed/boost_1_68_0"/>
-					<Add directory="/media/muhammed/Shared/Work/HttpServerClient/./Server"/>
+					<Add directory="/mnt/16BE8F73BE8F4A67/program/IDES/boost_1_65_0"/>
+					<Add directory="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient1/./Server"/>
 					<Add directory="/usr/include/c++/5"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
 					<Add directory="/usr/include/c++/5/backward"/>
@@ -56,21 +56,21 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j12 -f &quot;/media/muhammed/Shared/Work/HttpServerClient/cmake-build-debug/Makefile&quot;  VERBOSE=1 HttpServerClient"/>
-					<CompileFile command="/usr/bin/make -j12 -f &quot;/media/muhammed/Shared/Work/HttpServerClient/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j12 -f &quot;/media/muhammed/Shared/Work/HttpServerClient/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j12 -f &quot;/media/muhammed/Shared/Work/HttpServerClient/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/mnt/DE3E99B43E9985E5/projects\ and\ models/compilers/HttpServerClient1/cmake-build-debug/Makefile&quot;  VERBOSE=1 HttpServerClient"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/mnt/DE3E99B43E9985E5/projects\ and\ models/compilers/HttpServerClient1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/mnt/DE3E99B43E9985E5/projects\ and\ models/compilers/HttpServerClient1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/mnt/DE3E99B43E9985E5/projects\ and\ models/compilers/HttpServerClient1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="HttpServerClient/fast">
-				<Option output="/media/muhammed/Shared/Work/HttpServerClient/cmake-build-debug/HttpServerClient" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/media/muhammed/Shared/Work/HttpServerClient/cmake-build-debug"/>
+				<Option output="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient1/cmake-build-debug/HttpServerClient" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient1/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/home/muhammed/boost_1_68_0"/>
-					<Add directory="/media/muhammed/Shared/Work/HttpServerClient/./Server"/>
+					<Add directory="/mnt/16BE8F73BE8F4A67/program/IDES/boost_1_65_0"/>
+					<Add directory="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient1/./Server"/>
 					<Add directory="/usr/include/c++/5"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
 					<Add directory="/usr/include/c++/5/backward"/>
@@ -81,77 +81,83 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j12 -f &quot;/media/muhammed/Shared/Work/HttpServerClient/cmake-build-debug/Makefile&quot;  VERBOSE=1 HttpServerClient/fast"/>
-					<CompileFile command="/usr/bin/make -j12 -f &quot;/media/muhammed/Shared/Work/HttpServerClient/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j12 -f &quot;/media/muhammed/Shared/Work/HttpServerClient/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j12 -f &quot;/media/muhammed/Shared/Work/HttpServerClient/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/mnt/DE3E99B43E9985E5/projects\ and\ models/compilers/HttpServerClient1/cmake-build-debug/Makefile&quot;  VERBOSE=1 HttpServerClient/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/mnt/DE3E99B43E9985E5/projects\ and\ models/compilers/HttpServerClient1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/mnt/DE3E99B43E9985E5/projects\ and\ models/compilers/HttpServerClient1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/mnt/DE3E99B43E9985E5/projects\ and\ models/compilers/HttpServerClient1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/media/muhammed/Shared/Work/HttpServerClient/Messages/HttpMessage.cpp">
+		<Unit filename="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient1/Client/HttpClient.cpp">
 			<Option target="HttpServerClient"/>
 		</Unit>
-		<Unit filename="/media/muhammed/Shared/Work/HttpServerClient/Messages/HttpMessage.h">
+		<Unit filename="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient1/Client/HttpClient.h">
 			<Option target="HttpServerClient"/>
 		</Unit>
-		<Unit filename="/media/muhammed/Shared/Work/HttpServerClient/Messages/Parser.cpp">
+		<Unit filename="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient1/Client/main.cpp">
 			<Option target="HttpServerClient"/>
 		</Unit>
-		<Unit filename="/media/muhammed/Shared/Work/HttpServerClient/Messages/Parser.h">
+		<Unit filename="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient1/Messages/HttpMessage.cpp">
 			<Option target="HttpServerClient"/>
 		</Unit>
-		<Unit filename="/media/muhammed/Shared/Work/HttpServerClient/Messages/Request.cpp">
+		<Unit filename="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient1/Messages/HttpMessage.h">
 			<Option target="HttpServerClient"/>
 		</Unit>
-		<Unit filename="/media/muhammed/Shared/Work/HttpServerClient/Messages/Request.h">
+		<Unit filename="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient1/Messages/Parser.cpp">
 			<Option target="HttpServerClient"/>
 		</Unit>
-		<Unit filename="/media/muhammed/Shared/Work/HttpServerClient/Messages/Response.cpp">
+		<Unit filename="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient1/Messages/Parser.h">
 			<Option target="HttpServerClient"/>
 		</Unit>
-		<Unit filename="/media/muhammed/Shared/Work/HttpServerClient/Messages/Response.h">
+		<Unit filename="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient1/Messages/Request.cpp">
 			<Option target="HttpServerClient"/>
 		</Unit>
-		<Unit filename="/media/muhammed/Shared/Work/HttpServerClient/Server/HttpHandler.cpp">
+		<Unit filename="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient1/Messages/Request.h">
 			<Option target="HttpServerClient"/>
 		</Unit>
-		<Unit filename="/media/muhammed/Shared/Work/HttpServerClient/Server/HttpHandler.h">
+		<Unit filename="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient1/Messages/Response.cpp">
 			<Option target="HttpServerClient"/>
 		</Unit>
-		<Unit filename="/media/muhammed/Shared/Work/HttpServerClient/Server/HttpServer.cpp">
+		<Unit filename="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient1/Messages/Response.h">
 			<Option target="HttpServerClient"/>
 		</Unit>
-		<Unit filename="/media/muhammed/Shared/Work/HttpServerClient/Server/HttpServer.h">
+		<Unit filename="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient1/Server/HttpHandler.cpp">
 			<Option target="HttpServerClient"/>
 		</Unit>
-		<Unit filename="/media/muhammed/Shared/Work/HttpServerClient/Tests/Test_Module.cpp">
+		<Unit filename="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient1/Server/HttpHandler.h">
 			<Option target="HttpServerClient"/>
 		</Unit>
-		<Unit filename="/media/muhammed/Shared/Work/HttpServerClient/util/IOHandler.cpp">
+		<Unit filename="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient1/Server/HttpServer.cpp">
 			<Option target="HttpServerClient"/>
 		</Unit>
-		<Unit filename="/media/muhammed/Shared/Work/HttpServerClient/util/IOHandler.h">
+		<Unit filename="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient1/Server/HttpServer.h">
 			<Option target="HttpServerClient"/>
 		</Unit>
-		<Unit filename="/media/muhammed/Shared/Work/HttpServerClient/util/PortHandler.cpp">
+		<Unit filename="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient1/util/IOHandler.cpp">
 			<Option target="HttpServerClient"/>
 		</Unit>
-		<Unit filename="/media/muhammed/Shared/Work/HttpServerClient/util/PortHandler.h">
+		<Unit filename="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient1/util/IOHandler.h">
 			<Option target="HttpServerClient"/>
 		</Unit>
-		<Unit filename="/media/muhammed/Shared/Work/HttpServerClient/CMakeLists.txt">
+		<Unit filename="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient1/util/PortHandler.cpp">
+			<Option target="HttpServerClient"/>
+		</Unit>
+		<Unit filename="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient1/util/PortHandler.h">
+			<Option target="HttpServerClient"/>
+		</Unit>
+		<Unit filename="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient1/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
-		<Unit filename="/media/muhammed/Shared/Work/HttpServerClient/Files/read.txt">
+		<Unit filename="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient1/Files/read.txt">
 			<Option virtualFolder="CMake Files\Files\"/>
 		</Unit>
-		<Unit filename="/media/muhammed/Shared/Work/HttpServerClient/Files/smile.jpeg">
+		<Unit filename="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient1/Files/smile.jpeg">
 			<Option virtualFolder="CMake Files\Files\"/>
 		</Unit>
-		<Unit filename="/media/muhammed/Shared/Work/HttpServerClient/Files/to_modify.txt">
+		<Unit filename="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient1/Files/to_modify.txt">
 			<Option virtualFolder="CMake Files\Files\"/>
 		</Unit>
-		<Unit filename="/media/muhammed/Shared/Work/HttpServerClient/Files/write.txt">
+		<Unit filename="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient1/Files/write.txt">
 			<Option virtualFolder="CMake Files\Files\"/>
 		</Unit>
 	</Project>

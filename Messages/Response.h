@@ -25,7 +25,7 @@ class Response: public HttpMessage  {
 
 
     string getBody(){
-        HttpMessage::getBody();
+        return HttpMessage::getBody();
     }
 
     void setMethod(HTTP_METHODS method){
