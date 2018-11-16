@@ -2,9 +2,9 @@
 /*************************************/
 #include <stdio.h>
 #include <string>
-#include "../Messages/Request.h"
+#include <Request.h>
 #include "HttpClient.h"
-#include "../Messages/Parser.h"
+#include <Parser.h>
 
 
 /* main function */

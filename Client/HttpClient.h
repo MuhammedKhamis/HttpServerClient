@@ -5,16 +5,17 @@
 /*************************************/
 using namespace std ;
 #include <stdio.h> 
-#include <sys/socket.h> 
-#include <stdlib.h> 
-#include <netinet/in.h> 
+#include <sys/socket.h>
+#include <stdlib.h>
+#include <netinet/in.h>
 #include <string.h>
-#include "../util/IOHandler.h"
-#include "../util/PortHandler.h"
-#include "../Messages/Request.h"
-#include "../Messages/Response.h"
-#include "../Messages/Parser.h"
+#include <IOHandler.h>
+#include <PortHandler.h>
+#include <Request.h>
+#include <Response.h>
+#include <Parser.h>
 #include <bits/stdc++.h>
+#include <arpa/inet.h>
 #include <sys/types.h>
 
 using namespace std;

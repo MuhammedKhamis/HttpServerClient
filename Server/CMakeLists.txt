@@ -18,6 +18,8 @@ include_directories(${APP_SERVER})
 include_directories(${APP_UTIL})
 include_directories(${APP_MESSEGES})
 
+file(GLOB_RECURSE SRC_FILES ${APP_UTIL}/* ${APP_MESSEGES}/*)
+
 
 configure_file(${APP_FILES}/smile.jpeg
         ${CMAKE_CURRENT_BINARY_DIR} COPYONLY)
@@ -32,11 +34,9 @@ configure_file(${APP_FILES}/to_modify.txt
         ${CMAKE_CURRENT_BINARY_DIR} )
 
 add_executable(${PROJECT_NAME}
-
+        ${SRC_FILES}
         HttpServer.h
         HttpServer.cpp
         HttpHandler.h
         HttpHandler.cpp
         main.cpp)
-
-target_link_libraries(${PROJECT_NAME} PRIVATE ${APP_UTIL} ${APP_MESSEGES})

@@ -27,6 +27,7 @@ public:
 
 private:
     IOHandler();
+    static string getWorkingDir();
     static bool fileExist(string fileName);
 
 };

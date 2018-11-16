@@ -8,6 +8,10 @@
 #include <string>
 #include <vector>
 #include <map>
+#include <iterator>
+#include <algorithm>
+#include <sstream>
+#include <IOHandler.h>
 #include "HttpMessage.h"
 
 using namespace std ;

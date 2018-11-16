@@ -92,6 +92,24 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/media/muhammed/Shared/Work/HttpServerClient/Messages/HttpMessage.cpp">
+			<Option target="HttpServer"/>
+		</Unit>
+		<Unit filename="/media/muhammed/Shared/Work/HttpServerClient/Messages/HttpMessage.h">
+			<Option target="HttpServer"/>
+		</Unit>
+		<Unit filename="/media/muhammed/Shared/Work/HttpServerClient/Messages/Request.cpp">
+			<Option target="HttpServer"/>
+		</Unit>
+		<Unit filename="/media/muhammed/Shared/Work/HttpServerClient/Messages/Request.h">
+			<Option target="HttpServer"/>
+		</Unit>
+		<Unit filename="/media/muhammed/Shared/Work/HttpServerClient/Messages/Response.cpp">
+			<Option target="HttpServer"/>
+		</Unit>
+		<Unit filename="/media/muhammed/Shared/Work/HttpServerClient/Messages/Response.h">
+			<Option target="HttpServer"/>
+		</Unit>
 		<Unit filename="/media/muhammed/Shared/Work/HttpServerClient/Server/HttpHandler.cpp">
 			<Option target="HttpServer"/>
 		</Unit>
@@ -105,6 +123,24 @@
 			<Option target="HttpServer"/>
 		</Unit>
 		<Unit filename="/media/muhammed/Shared/Work/HttpServerClient/Server/main.cpp">
+			<Option target="HttpServer"/>
+		</Unit>
+		<Unit filename="/media/muhammed/Shared/Work/HttpServerClient/Util/IOHandler.cpp">
+			<Option target="HttpServer"/>
+		</Unit>
+		<Unit filename="/media/muhammed/Shared/Work/HttpServerClient/Util/IOHandler.h">
+			<Option target="HttpServer"/>
+		</Unit>
+		<Unit filename="/media/muhammed/Shared/Work/HttpServerClient/Util/Parser.cpp">
+			<Option target="HttpServer"/>
+		</Unit>
+		<Unit filename="/media/muhammed/Shared/Work/HttpServerClient/Util/Parser.h">
+			<Option target="HttpServer"/>
+		</Unit>
+		<Unit filename="/media/muhammed/Shared/Work/HttpServerClient/Util/PortHandler.cpp">
+			<Option target="HttpServer"/>
+		</Unit>
+		<Unit filename="/media/muhammed/Shared/Work/HttpServerClient/Util/PortHandler.h">
 			<Option target="HttpServer"/>
 		</Unit>
 		<Unit filename="/media/muhammed/Shared/Work/HttpServerClient/Server/CMakeLists.txt">

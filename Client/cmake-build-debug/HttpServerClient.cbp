@@ -46,6 +46,8 @@
 				<Compiler>
 					<Add directory="/home/muhammed/boost_1_68_0"/>
 					<Add directory="/media/muhammed/Shared/Work/HttpServerClient/Client/../Server"/>
+					<Add directory="/media/muhammed/Shared/Work/HttpServerClient/Client/../Util"/>
+					<Add directory="/media/muhammed/Shared/Work/HttpServerClient/Client/../Messages"/>
 					<Add directory="/usr/include/c++/5"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
 					<Add directory="/usr/include/c++/5/backward"/>
@@ -71,6 +73,8 @@
 				<Compiler>
 					<Add directory="/home/muhammed/boost_1_68_0"/>
 					<Add directory="/media/muhammed/Shared/Work/HttpServerClient/Client/../Server"/>
+					<Add directory="/media/muhammed/Shared/Work/HttpServerClient/Client/../Util"/>
+					<Add directory="/media/muhammed/Shared/Work/HttpServerClient/Client/../Messages"/>
 					<Add directory="/usr/include/c++/5"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
 					<Add directory="/usr/include/c++/5/backward"/>
@@ -95,6 +99,42 @@
 			<Option target="HttpClient"/>
 		</Unit>
 		<Unit filename="/media/muhammed/Shared/Work/HttpServerClient/Client/main.cpp">
+			<Option target="HttpClient"/>
+		</Unit>
+		<Unit filename="/media/muhammed/Shared/Work/HttpServerClient/Messages/HttpMessage.cpp">
+			<Option target="HttpClient"/>
+		</Unit>
+		<Unit filename="/media/muhammed/Shared/Work/HttpServerClient/Messages/HttpMessage.h">
+			<Option target="HttpClient"/>
+		</Unit>
+		<Unit filename="/media/muhammed/Shared/Work/HttpServerClient/Messages/Request.cpp">
+			<Option target="HttpClient"/>
+		</Unit>
+		<Unit filename="/media/muhammed/Shared/Work/HttpServerClient/Messages/Request.h">
+			<Option target="HttpClient"/>
+		</Unit>
+		<Unit filename="/media/muhammed/Shared/Work/HttpServerClient/Messages/Response.cpp">
+			<Option target="HttpClient"/>
+		</Unit>
+		<Unit filename="/media/muhammed/Shared/Work/HttpServerClient/Messages/Response.h">
+			<Option target="HttpClient"/>
+		</Unit>
+		<Unit filename="/media/muhammed/Shared/Work/HttpServerClient/Util/IOHandler.cpp">
+			<Option target="HttpClient"/>
+		</Unit>
+		<Unit filename="/media/muhammed/Shared/Work/HttpServerClient/Util/IOHandler.h">
+			<Option target="HttpClient"/>
+		</Unit>
+		<Unit filename="/media/muhammed/Shared/Work/HttpServerClient/Util/Parser.cpp">
+			<Option target="HttpClient"/>
+		</Unit>
+		<Unit filename="/media/muhammed/Shared/Work/HttpServerClient/Util/Parser.h">
+			<Option target="HttpClient"/>
+		</Unit>
+		<Unit filename="/media/muhammed/Shared/Work/HttpServerClient/Util/PortHandler.cpp">
+			<Option target="HttpClient"/>
+		</Unit>
+		<Unit filename="/media/muhammed/Shared/Work/HttpServerClient/Util/PortHandler.h">
 			<Option target="HttpClient"/>
 		</Unit>
 		<Unit filename="/media/muhammed/Shared/Work/HttpServerClient/Client/CMakeLists.txt">
