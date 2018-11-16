@@ -1,10 +1,9 @@
-//
-// Created by muhammed on 02/11/18.
-//
-
 #include "HttpServer.h"
 
-HttpServer::HttpServer(string currDir, int workers, int backlog, unsigned int port, unsigned long long timeOut) {
+/* construtor */
+/**************************************/
+HttpServer::HttpServer(string currDir, int workers, int backlog, unsigned int port, unsigned long long timeOut)
+{
     this->maxBacklog = backlog;
     this->currDir = currDir;
     this->maxWorkers = workers;
@@ -13,27 +12,17 @@ HttpServer::HttpServer(string currDir, int workers, int backlog, unsigned int po
     server_fd = 0;
 }
 
+/* destrutor */
+/**************************************/
 HttpServer::~HttpServer() {
 
 }
 
-bool HttpServer::haveWorkers() {
-    time_t currTime = 0;
-    for(auto it = this->workers.begin() ; it != this->workers.end();){
-        HttpHandler* curr = *it;
-        time(&currTime) ;
-        if(curr->isFinished() || difftime(currTime, curr->getCreateTime()) > timeOut){
-            it = workers.erase(it);
-            delete curr ;
-        }else{
-            it++;
-        }
-    }
-    return workers.size() < maxWorkers;
-}
-
-int HttpServer::initServer() {
-
+/* init server */
+/**************************************/
+int
+HttpServer::init()
+{
     struct sockaddr_in address;
     int opt = 1;
     int addrlen = sizeof(address);
@@ -73,7 +62,11 @@ int HttpServer::initServer() {
     return 0;
 }
 
-void HttpServer::run() {
+/* run server */
+/**************************************/
+void
+HttpServer::run()
+{
     while (1){
         while (haveWorkers()) {
             int new_socket;
@@ -85,7 +78,7 @@ void HttpServer::run() {
                 continue;
             }
 
-            HttpHandler* handler = new HttpHandler(new IOHandler(), new PortHandler(new_socket), SERVER_NAME);
+            ConnectionHandler* handler = new ConnectionHandler(new IOHandler(), new PortHandler(new_socket), SERVER_NAME);
 
             if (handler->start()){
                 workers.emplace_back(handler);
@@ -94,4 +87,24 @@ void HttpServer::run() {
             }
         }
     }
+}
+
+
+/* construtor */
+/**************************************/
+bool
+HttpServer::haveWorkers()
+{
+    time_t currTime = 0;
+    for(auto it = this->workers.begin() ; it != this->workers.end();){
+        ConnectionHandler* curr = *it;
+        time(&currTime) ;
+        if(curr->isFinished() || difftime(currTime, curr->getCreateTime()) > timeOut){
+            it = workers.erase(it);
+            delete curr ;
+        }else{
+            it++;
+        }
+    }
+    return workers.size() < maxWorkers;
 }

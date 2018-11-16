@@ -8,7 +8,11 @@ using namespace std ;
 #include <sys/socket.h> 
 #include <stdlib.h> 
 #include <netinet/in.h> 
-#include <string.h> 
+#include "../util/IOHandler.h"
+#include "../util/PortHandler.h"
+#include "../Messages/Request.h"
+#include "../Messages/Response.h"
+#include <string>
 
 /* Class Definition */
 /*************************************/
@@ -21,7 +25,7 @@ class HttpClient {
 
   public:
   	// constructor
-    HttpClient(string dataDirectory, IOHandler* ioHandler, PortHandler* portHandler);
+    HttpClient(string dataDirectory);
   	~HttpClient() = default;
     // methods
     int connectionInit(char *server_address, int port_no = 80);

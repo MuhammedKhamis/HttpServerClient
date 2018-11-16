@@ -7,8 +7,52 @@
 
 /* main function */
 /*************************************/
-int main(int argc, char const *argv[]) 
+/*int main(int argc, char const *argv[]) 
 { 
+    char* connectionType = agrv[3];
+    char* serverAddress = argv[1];
+    char* portNo = argv[2];
+    
+    return 0; 
+} */
+
+
+
+void
+runPersistentConnection(char* serverAddress, int portNo)
+{
+    // where to store data on client module
+    string dataDirectory = "asd";
+    // non-persistent 
+    HttpClient client(dataDirectory);
+    client.init(serverAddress, portNo);
+
+    while(1)
+    {
+        // scan user command
+        char userCommand[1024] = {0};
+        printf("Enter Command: ");
+        scanf("%s", userCommand);
+
+        // parse user command
+        Request requestObj = ClientParser.parseInputCommand(userCommand);
+
+        // GET or POST
+        if(requestObj.getRequestType() == "GET")
+        {
+            if(client.sendGETRequest(requestObj)<0)
+                perror("something went wrong");
+        }else{
+            if(client.sendPOSTRequest(requestObj)<0)
+                perror("something went wrong");
+        }
+        
+    }
+}
+
+void
+runNonPersistentConnection()
+{
     // where to store data on client module
     string dataDirectory = "asd";
 
@@ -39,24 +83,4 @@ int main(int argc, char const *argv[])
         }
         
     }
-    return 0; 
-} 
-
-
-
-Request
-parseInputCommand(char* userCommand)
-{
-    vector<string> inputData = Parser::tokenize(string(userCommand), " ");
-    string methodType = inputData[0];
-    string fileName = inputData[1];
-    string hostName = inputData[2];
-    string portNumber = "80";
-    if(inputData.size() == 4)
-    {
-        portNumber = inputData[3];
-    }
-    
-    Request requestObj(methodType, fileName, hostName, portNumber);
-    return requestObj;
 }

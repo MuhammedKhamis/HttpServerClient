@@ -1,13 +1,8 @@
-//
-// Created by muhammed on 02/11/18.
-//
+#include "ConnectionHandler.h"
 
-#include "HttpHandler.h"
-#include "../Messages/Parser.h"
-#include "../Messages/Response.h"
-#include <string.h>
-
-HttpHandler::HttpHandler(IOHandler *ioHandler, PortHandler *portHandler, string serverName) {
+/* construtor */
+/**************************************/
+ConnectionHandler::ConnectionHandler(IOHandler *ioHandler, PortHandler *portHandler, string serverName) {
     this->ioHandler = ioHandler;
     this->portHandler = portHandler;
     handler_id = 0;
@@ -15,11 +10,15 @@ HttpHandler::HttpHandler(IOHandler *ioHandler, PortHandler *portHandler, string 
     this->serverName = serverName;
 }
 
-HttpHandler::~HttpHandler() {
+/* destrutor */
+/**************************************/
+ConnectionHandler::~ConnectionHandler() {
     delete portHandler ;
 }
 
-void HttpHandler::run() {
+/* run handler */
+/**************************************/
+void ConnectionHandler::run() {
     //TODO
     char data[MAX_REQ_SZ];
     memset(data, 0, MAX_REQ_SZ);
@@ -49,7 +48,9 @@ void HttpHandler::run() {
     // Error
 }
 
-void HttpHandler::handleGet(Request request) {
+/* handle GET requests */
+/**************************************/
+void ConnectionHandler::handleGet(Request request) {
 
      string fileName = request.getFileName();
      int sz = ioHandler->getFileSize(fileName);
@@ -73,7 +74,9 @@ void HttpHandler::handleGet(Request request) {
      delete res;
      }
 
-void HttpHandler::handlePost(Request reuqest) {
+/* handle POST request */
+/**************************************/
+void ConnectionHandler::handlePost(Request reuqest) {
     //TODO
     int sz = reuqest.getBody().size();
     char* data = (char*)reuqest.getBody().c_str();
@@ -87,26 +90,28 @@ void HttpHandler::handlePost(Request reuqest) {
     delete res;
 }
 
-bool HttpHandler::start() {
+/* start thread */
+/**************************************/
+bool ConnectionHandler::start() {
     time(&startTime);
     return (pthread_create(&handler_id, NULL, startHelper, (void* )this) == 0);
 }
 
-bool HttpHandler::isFinished() {
+bool ConnectionHandler::isFinished() {
     return this->finished;
 }
 
-time_t HttpHandler::getCreateTime() {
+time_t ConnectionHandler::getCreateTime() {
     return this->startTime;
 }
 
-void* HttpHandler::startHelper(void *runner) {
-    ((HttpHandler*)runner)->run();
-    ((HttpHandler*)runner)->close();
+void* ConnectionHandler::startHelper(void *runner) {
+    ((ConnectionHandler*)runner)->run();
+    ((ConnectionHandler*)runner)->close();
     return NULL;
 }
 
-void HttpHandler::close() {
+void ConnectionHandler::close() {
     this->portHandler->closeConnection();
     this->finished = true;
 }
