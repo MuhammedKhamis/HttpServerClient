@@ -32,7 +32,7 @@ configure_file(${APP_FILES}/write.txt
 configure_file(${APP_FILES}/to_modify.txt
         ${CMAKE_CURRENT_BINARY_DIR} )
 
-add_executable(HttpClient
+add_executable(HttpClient.out
         ${SRC_FILES}
         main.cpp
         HttpClient.cpp

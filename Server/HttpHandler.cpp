@@ -91,7 +91,9 @@ void HttpHandler::handlePost(Request request) {
 
     //TODO
     int sz = request.getBody().size();
-    char* data = (char*)request.getBody().c_str();
+    string body = request.getBody().c_str();
+    char* data = (char*)body.c_str();
+
     string fileName = request.getFileName();
 
 

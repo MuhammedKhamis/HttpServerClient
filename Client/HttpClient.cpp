@@ -54,14 +54,19 @@ HttpClient::sendGETRequest(Request requestObj)
     valread = PortHandler::read(socketfd , buffer, 1024);
 
     // save data to directory
-    Response responseObj = Parser::createResponse(buffer);
-    cout << responseObj.toString() << endl;
-    if(responseObj.getStatus() == 200) // file found
+    Response *responseObj = Parser::createResponse(buffer);
+    cout << responseObj->toString() << endl;
+    int ret = 0;
+    const char *data = 0;
+    if(responseObj->getStatus() == 200) // file found
     {
-        char *data = (char*)responseObj.getBody().c_str();
-        return IOHandler::writeData(requestObj.getFileName(), data, strlen(data));
+        string body = responseObj->getBody();
+        //IMPORTANT DON't DELETE IT
+        data = body.c_str();
+        ret = IOHandler::writeData(requestObj.getFileName(), (char*)data, strlen(data));
     }
-    return -1;
+    delete responseObj;
+    return ret;
 }
 
 
@@ -83,12 +88,14 @@ HttpClient::sendPOSTRequest(Request requestObj)
     valread = PortHandler::read( socketfd , retBuffer, 1024);
 
     // make sure its OK to send data
-    Response responseObj = Parser::createResponse(retBuffer);
-    cout << responseObj.getBody() << endl;
-    if(responseObj.getStatus() == 200) // ready to receive file
+    Response *responseObj = Parser::createResponse(retBuffer);
+    cout << responseObj->getBody() << endl;
+    if(responseObj->getStatus() == 200) // ready to receive file
     {
+        delete responseObj;
         return 0;    
     }
+    delete responseObj;
     return -1;
 }
 

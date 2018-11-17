@@ -55,9 +55,7 @@ int Parser::parseString(vector<string> tokens, HttpMessage* message) {
     i++;
     requestBody += tokens[i];
   }
-  cout << "In parse string: "<< requestBody << endl;
   message->setBody(requestBody);
-  cout << "messege body: " << message->getBody() << endl;
   return 0;
 }
 
@@ -100,7 +98,7 @@ int Parser::parse_first_line(string f_line, Response *response) {
     string httpType = vstrings[0];
     string status = vstrings[1];
     response->setStatus(status == "200");
-
+    return 0;
 }
 
 int Parser::parse_first_line(string f_line , Request* request) {

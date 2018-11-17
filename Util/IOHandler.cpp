@@ -8,7 +8,7 @@ IOHandler::IOHandler() {}
 
 
 bool IOHandler::fileExist(string fileName) {
-    fileName = getWorkingDir() + fileName;
+    fileName = getExtendedFileName(fileName);
     struct stat buffer;
     return (stat (fileName.c_str(), &buffer) == 0);
 }
@@ -18,10 +18,13 @@ string IOHandler::getWorkingDir() {
     getcwd(cwd, sizeof(cwd));
     return string(cwd);
 }
+string IOHandler::getExtendedFileName(string fileName) {
+    return getWorkingDir() + '/' + fileName;
+}
 
 int IOHandler::getFileSize(string fileName) {
     if(fileExist(fileName)){
-        fileName = getWorkingDir() + fileName;
+        fileName = getExtendedFileName(fileName);;
         ifstream in(fileName.c_str(), ifstream::ate | ifstream::binary);
         int len = in.tellg();
         in.close();
@@ -32,7 +35,7 @@ int IOHandler::getFileSize(string fileName) {
 
 time_t IOHandler::getLastModified(string fileName) {
     if(fileExist(fileName)){
-        fileName = getWorkingDir() + fileName;
+        fileName = getExtendedFileName(fileName);;
         struct stat info;
         stat(fileName.c_str(), &info);
         return info.st_mtim.tv_sec;
@@ -44,7 +47,7 @@ time_t IOHandler::getLastModified(string fileName) {
 
 string IOHandler::getContentType(string &fileName) {
 
-    fileName = getWorkingDir() + fileName;
+    fileName = getExtendedFileName(fileName);;
     string contentType;
     if (fileName.substr(fileName.find_last_of(".") + 1) == "html"){
         contentType = "text/html";
@@ -70,7 +73,7 @@ string IOHandler::getContentType(string &fileName) {
 
 int IOHandler::readData(string fileName, char *data, int len) {
     if(fileExist(fileName)){
-        fileName = getWorkingDir() + fileName;
+        fileName = getExtendedFileName(fileName);
         FILE* fp = fopen(fileName.c_str(),"rb");
         int read = fread(data, 1, len, fp);
         data[len-1] = '\0' ;
@@ -82,7 +85,7 @@ int IOHandler::readData(string fileName, char *data, int len) {
 
 //TODO test1
 int IOHandler::writeData(string fileName, char *data, int len) {
-        fileName = getWorkingDir() + fileName;
+        fileName = getExtendedFileName(fileName);;
         FILE* fp = fopen(fileName.c_str(),"wb+");
         int written = fwrite(data, 1, len, fp);
         fclose(fp);

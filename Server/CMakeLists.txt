@@ -33,7 +33,7 @@ configure_file(${APP_FILES}/write.txt
 configure_file(${APP_FILES}/to_modify.txt
         ${CMAKE_CURRENT_BINARY_DIR} )
 
-add_executable(${PROJECT_NAME}
+add_executable(HttpServer.out
         ${SRC_FILES}
         HttpServer.h
         HttpServer.cpp

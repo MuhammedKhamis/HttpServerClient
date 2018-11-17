@@ -28,6 +28,7 @@ public:
 private:
     IOHandler();
     static string getWorkingDir();
+    static string getExtendedFileName(string fileName);
     static bool fileExist(string fileName);
 
 };
