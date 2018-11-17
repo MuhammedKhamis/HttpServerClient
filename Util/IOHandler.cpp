@@ -53,21 +53,24 @@ string IOHandler::getContentType(string &fileName) {
 
     fileName = getStorageDir() + fileName;
     string contentType;
-    if (fileName.substr(fileName.find_last_of(".") + 1) == "html"){
+    string ext = fileName.substr(fileName.find_last_of(".") + 1);
+    if ( ext == "html"){
         contentType = "text/html";
-    } else if (fileName.substr(fileName.find_last_of(".") + 1) == "txt") {
+    } else if (ext == "txt") {
         contentType = "text/txt";
-    } else if (fileName.substr(fileName.find_last_of(".") + 1) == "css") {
+    } else if (ext == "css") {
         contentType = "text/css";
-    } else if (fileName.substr(fileName.find_last_of(".") + 1) == "js") {
+    } else if (ext == "js") {
         contentType = "text/javascript";
-    }else if  (fileName.substr(fileName.find_last_of(".") + 1) == "png") {
+    }else if  (ext == "png") {
         contentType = "image/png";
-    } else if (fileName.substr(fileName.find_last_of(".") + 1) == "jpg") {
+    } else if (ext == "jpg") {
         contentType = "image/jpg";
-    } else if (fileName.substr(fileName.find_last_of(".") + 1) == "jpeg") {
+    } else if (ext == "jpeg") {
         contentType = "image/jpeg";
-    } else if (fileName.substr(fileName.find_last_of(".") + 1) == "gif"){
+    } else if (ext == "svg") {
+        contentType = "image/svg";
+    }else if (ext == "gif"){
         contentType = "image/gif";
     } else {
         contentType = "none/none";
