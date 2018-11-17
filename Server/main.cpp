@@ -7,7 +7,7 @@
 
 #define workers 20
 #define backlog 50
-#define timeOut 30
+#define timeOut 100
 
 using namespace std;
 

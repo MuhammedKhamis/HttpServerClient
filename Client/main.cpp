@@ -9,9 +9,8 @@
 
 /* main function */
 /*************************************/
-int main(int argc, char *argv[])
-{
 
+static void* runThread(void *p){
 
     // where to store data on client module
     string dataDirectory = ".";
@@ -19,16 +18,16 @@ int main(int argc, char *argv[])
     HttpClient client(dataDirectory);
 
     // reading args
-    int port = atoi(argv[2]);
-    char *serverAddress = argv[1];
+    int port = 8000;
+    char *serverAddress = "127.0.0.1";
 
     int initFlag = client.connectionInit(serverAddress, port);
     while(initFlag == 0)
     {
         // scan user command
-        string userCommand;
-        printf("Enter Command: ");
-        getline(cin,userCommand);
+        string userCommand = "GET read.txt 0.0.0.0";
+        //printf("Enter Command: ");
+        //getline(cin,userCommand);
 
         // parse user command
         Request requestObj = Parser::parseInputCommand(userCommand);
@@ -59,6 +58,19 @@ int main(int argc, char *argv[])
                 initFlag = client.connectionInit(serverAddress, port);
             }
         }
+    }
+}
+
+int main(int argc, char *argv[])
+{
+    pthread_t ts[10];
+    for(int i = 0 ; i < 10 ; i++){
+        pthread_create(&ts[i],NULL, runThread, NULL);
+    }
+    void *status;
+    for(int i = 0 ; i < 10 ; i++){
+        pthread_join(ts[i], &status);
+        free(status);
     }
     return 0; 
 }
