@@ -30,6 +30,7 @@ public:
 private:
     bool fileExist(string fileName);
     string getWorkingDir();
+    string getStorageDir();
 
 };
 #endif //HTTPSERVERCLIENT_IOHANDLER_H
