@@ -24,7 +24,7 @@ BOOST_AUTO_TEST_CASE( test_server_intialization )
     BOOST_REQUIRE_NO_THROW( server.initServer() ) ;
     }
 
-BOOST_AUTO_TEST_CASE( test_server_read )
+BOOST_AUTO_TEST_CASE( test_server_run )
     {
         //creating server with directory none , 20 workers
         // , 1000 queue size  , on port 8080 , with 5 seconds time out
@@ -33,6 +33,7 @@ BOOST_AUTO_TEST_CASE( test_server_read )
         server.run() ;
         BOOST_REQUIRE_NO_THROW( server.initServer() ) ;
     }
+
 
 BOOST_AUTO_TEST_SUITE_END()
 
