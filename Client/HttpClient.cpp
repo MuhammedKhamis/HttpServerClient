@@ -50,7 +50,6 @@ HttpClient::sendGETRequest(Request requestObj)
     if(status == -1){
         return -1;
     }
-    printf("message sent\n");
 
     // receive reponse
     vector<char> buffer(MAX_RES_SZ, 0);
@@ -61,7 +60,6 @@ HttpClient::sendGETRequest(Request requestObj)
 
     // save data to directory
     Response *responseObj = Parser::createResponse(r);
-    cout << responseObj->toString() << endl;
     int ret = 0;
     const char *data = 0;
     if(responseObj->getStatus() == 200) // file found
@@ -69,7 +67,7 @@ HttpClient::sendGETRequest(Request requestObj)
         string body = responseObj->getBody();
         //IMPORTANT DON't DELETE IT
         data = body.c_str();
-        ret = IOHandler::writeData(requestObj.getFileName(), (char*)data, body.size());
+        ret = IOHandler::writeData(Client , requestObj.getFileName(), (char*)data, body.size());
     }
     delete responseObj;
     return ret;
@@ -81,9 +79,9 @@ int
 HttpClient::sendPOSTRequest(Request requestObj)
 {
     // read file
-    int sz = IOHandler::getFileSize(requestObj.getFileName()) + 1;
+    int sz = IOHandler::getFileSize(Client ,requestObj.getFileName()) + 1;
     vector<char> buffer(sz, 0);
-    int status = IOHandler::readData(requestObj.getFileName(), &buffer[0], sz);
+    int status = IOHandler::readData(Client , requestObj.getFileName(), &buffer[0], sz);
     if(status == -1){
         return -1;
     }

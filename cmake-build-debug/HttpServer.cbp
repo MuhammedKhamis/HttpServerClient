@@ -2,10 +2,10 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6"/>
 	<Project>
-		<Option title="HttpServerClient"/>
+		<Option title="HttpServer"/>
 		<Option makefile_is_custom="1"/>
 		<Option compiler="gcc"/>
-		<Option virtualFolders="CMake Files\;CMake Files\Files\;"/>
+		<Option virtualFolders="CMake Files\;CMake Files\Server\;CMake Files\Server\Files\;"/>
 		<Build>
 			<Target title="all">
 				<Option working_dir="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient/cmake-build-debug"/>
@@ -37,15 +37,17 @@
 					<DistClean command="/usr/bin/make -j4 -f &quot;/mnt/DE3E99B43E9985E5/projects\ and\ models/compilers/HttpServerClient/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="HttpServerClient">
-				<Option output="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient/cmake-build-debug/HttpServerClient" prefix_auto="0" extension_auto="0"/>
+			<Target title="HttpServer.out">
+				<Option output="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient/cmake-build-debug/HttpServer.out" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add directory="/mnt/16BE8F73BE8F4A67/program/IDES/boost_1_65_0"/>
-					<Add directory="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient/./Server"/>
+					<Add directory="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient/Server"/>
+					<Add directory="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient/Util"/>
+					<Add directory="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient/Messages"/>
 					<Add directory="/usr/include/c++/5"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
 					<Add directory="/usr/include/c++/5/backward"/>
@@ -56,21 +58,23 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/mnt/DE3E99B43E9985E5/projects\ and\ models/compilers/HttpServerClient/cmake-build-debug/Makefile&quot;  VERBOSE=1 HttpServerClient"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/mnt/DE3E99B43E9985E5/projects\ and\ models/compilers/HttpServerClient/cmake-build-debug/Makefile&quot;  VERBOSE=1 HttpServer.out"/>
 					<CompileFile command="/usr/bin/make -j4 -f &quot;/mnt/DE3E99B43E9985E5/projects\ and\ models/compilers/HttpServerClient/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -j4 -f &quot;/mnt/DE3E99B43E9985E5/projects\ and\ models/compilers/HttpServerClient/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make -j4 -f &quot;/mnt/DE3E99B43E9985E5/projects\ and\ models/compilers/HttpServerClient/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="HttpServerClient/fast">
-				<Option output="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient/cmake-build-debug/HttpServerClient" prefix_auto="0" extension_auto="0"/>
+			<Target title="HttpServer.out/fast">
+				<Option output="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient/cmake-build-debug/HttpServer.out" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add directory="/mnt/16BE8F73BE8F4A67/program/IDES/boost_1_65_0"/>
-					<Add directory="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient/./Server"/>
+					<Add directory="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient/Server"/>
+					<Add directory="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient/Util"/>
+					<Add directory="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient/Messages"/>
 					<Add directory="/usr/include/c++/5"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
 					<Add directory="/usr/include/c++/5/backward"/>
@@ -81,87 +85,96 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/mnt/DE3E99B43E9985E5/projects\ and\ models/compilers/HttpServerClient/cmake-build-debug/Makefile&quot;  VERBOSE=1 HttpServerClient/fast"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/mnt/DE3E99B43E9985E5/projects\ and\ models/compilers/HttpServerClient/cmake-build-debug/Makefile&quot;  VERBOSE=1 HttpServer.out/fast"/>
 					<CompileFile command="/usr/bin/make -j4 -f &quot;/mnt/DE3E99B43E9985E5/projects\ and\ models/compilers/HttpServerClient/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -j4 -f &quot;/mnt/DE3E99B43E9985E5/projects\ and\ models/compilers/HttpServerClient/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make -j4 -f &quot;/mnt/DE3E99B43E9985E5/projects\ and\ models/compilers/HttpServerClient/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient/Client/HttpClient.cpp">
+			<Option target="HttpServer.out"/>
+		</Unit>
+		<Unit filename="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient/Client/HttpClient.h">
+			<Option target="HttpServer.out"/>
+		</Unit>
 		<Unit filename="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient/Messages/HttpMessage.cpp">
-			<Option target="HttpServerClient"/>
+			<Option target="HttpServer.out"/>
 		</Unit>
 		<Unit filename="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient/Messages/HttpMessage.h">
-			<Option target="HttpServerClient"/>
-		</Unit>
-		<Unit filename="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient/Messages/Parser.cpp">
-			<Option target="HttpServerClient"/>
-		</Unit>
-		<Unit filename="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient/Messages/Parser.h">
-			<Option target="HttpServerClient"/>
+			<Option target="HttpServer.out"/>
 		</Unit>
 		<Unit filename="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient/Messages/Request.cpp">
-			<Option target="HttpServerClient"/>
+			<Option target="HttpServer.out"/>
 		</Unit>
 		<Unit filename="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient/Messages/Request.h">
-			<Option target="HttpServerClient"/>
+			<Option target="HttpServer.out"/>
 		</Unit>
 		<Unit filename="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient/Messages/Response.cpp">
-			<Option target="HttpServerClient"/>
+			<Option target="HttpServer.out"/>
 		</Unit>
 		<Unit filename="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient/Messages/Response.h">
-			<Option target="HttpServerClient"/>
+			<Option target="HttpServer.out"/>
 		</Unit>
 		<Unit filename="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient/Server/HttpHandler.cpp">
-			<Option target="HttpServerClient"/>
+			<Option target="HttpServer.out"/>
 		</Unit>
 		<Unit filename="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient/Server/HttpHandler.h">
-			<Option target="HttpServerClient"/>
+			<Option target="HttpServer.out"/>
 		</Unit>
 		<Unit filename="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient/Server/HttpServer.cpp">
-			<Option target="HttpServerClient"/>
+			<Option target="HttpServer.out"/>
 		</Unit>
 		<Unit filename="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient/Server/HttpServer.h">
-			<Option target="HttpServerClient"/>
+			<Option target="HttpServer.out"/>
 		</Unit>
 		<Unit filename="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient/Tests/IOHandlerTests.cpp">
-			<Option target="HttpServerClient"/>
+			<Option target="HttpServer.out"/>
 		</Unit>
 		<Unit filename="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient/Tests/MessagesTests.cpp">
-			<Option target="HttpServerClient"/>
+			<Option target="HttpServer.out"/>
+		</Unit>
+		<Unit filename="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient/Tests/ParserTests.cpp">
+			<Option target="HttpServer.out"/>
 		</Unit>
 		<Unit filename="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient/Tests/ServerTests.cpp">
-			<Option target="HttpServerClient"/>
+			<Option target="HttpServer.out"/>
 		</Unit>
 		<Unit filename="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient/Tests/main.cpp">
-			<Option target="HttpServerClient"/>
+			<Option target="HttpServer.out"/>
 		</Unit>
-		<Unit filename="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient/util/IOHandler.cpp">
-			<Option target="HttpServerClient"/>
+		<Unit filename="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient/Util/IOHandler.cpp">
+			<Option target="HttpServer.out"/>
 		</Unit>
-		<Unit filename="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient/util/IOHandler.h">
-			<Option target="HttpServerClient"/>
+		<Unit filename="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient/Util/IOHandler.h">
+			<Option target="HttpServer.out"/>
 		</Unit>
-		<Unit filename="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient/util/PortHandler.cpp">
-			<Option target="HttpServerClient"/>
+		<Unit filename="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient/Util/Parser.cpp">
+			<Option target="HttpServer.out"/>
 		</Unit>
-		<Unit filename="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient/util/PortHandler.h">
-			<Option target="HttpServerClient"/>
+		<Unit filename="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient/Util/Parser.h">
+			<Option target="HttpServer.out"/>
+		</Unit>
+		<Unit filename="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient/Util/PortHandler.cpp">
+			<Option target="HttpServer.out"/>
+		</Unit>
+		<Unit filename="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient/Util/PortHandler.h">
+			<Option target="HttpServer.out"/>
 		</Unit>
 		<Unit filename="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
-		<Unit filename="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient/Files/read.txt">
-			<Option virtualFolder="CMake Files\Files\"/>
+		<Unit filename="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient/Server/Files/read.txt">
+			<Option virtualFolder="CMake Files\Server\Files\"/>
 		</Unit>
-		<Unit filename="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient/Files/smile.jpeg">
-			<Option virtualFolder="CMake Files\Files\"/>
+		<Unit filename="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient/Server/Files/smile.jpeg">
+			<Option virtualFolder="CMake Files\Server\Files\"/>
 		</Unit>
-		<Unit filename="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient/Files/to_modify.txt">
-			<Option virtualFolder="CMake Files\Files\"/>
+		<Unit filename="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient/Server/Files/to_modify.txt">
+			<Option virtualFolder="CMake Files\Server\Files\"/>
 		</Unit>
-		<Unit filename="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient/Files/write.txt">
-			<Option virtualFolder="CMake Files\Files\"/>
+		<Unit filename="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient/Server/Files/write.txt">
+			<Option virtualFolder="CMake Files\Server\Files\"/>
 		</Unit>
 	</Project>
 </CodeBlocks_project_file>

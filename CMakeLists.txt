@@ -7,7 +7,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -pthread")
 set(Boost_INCLUDE_DIR /mnt/16BE8F73BE8F4A67/program/IDES/boost_1_65_0)
 
 set(APP_SERVER Server)
-set(APP_FILES Files)
+set(APP_FILES "Server/Files")
 set(APP_UTIL Util)
 set(APP_MESSEGES Messages)
 set(APP_TESTS Tests)
@@ -38,5 +38,5 @@ configure_file(${APP_FILES}/to_modify.txt
 add_executable(HttpServer.out
         Server/HttpServer.cpp
         Server/HttpHandler.cpp
-        ${SRC_FILES}
-        )
+        Client/HttpClient.cpp
+        ${SRC_FILES})
