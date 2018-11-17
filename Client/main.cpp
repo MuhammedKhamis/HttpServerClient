@@ -58,7 +58,9 @@ static void* runThread(void *p){
                 initFlag = client.connectionInit(serverAddress, port);
             }
         }
+        initFlag = 1;
     }
+    return NULL;
 }
 
 int main(int argc, char *argv[])

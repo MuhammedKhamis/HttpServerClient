@@ -44,7 +44,6 @@
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/home/muhammed/boost_1_68_0"/>
 					<Add directory="/media/muhammed/Shared/Work/HttpServerClient/Server/../Server"/>
 					<Add directory="/media/muhammed/Shared/Work/HttpServerClient/Server/../Util"/>
 					<Add directory="/media/muhammed/Shared/Work/HttpServerClient/Server/../Messages"/>
@@ -71,7 +70,6 @@
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/home/muhammed/boost_1_68_0"/>
 					<Add directory="/media/muhammed/Shared/Work/HttpServerClient/Server/../Server"/>
 					<Add directory="/media/muhammed/Shared/Work/HttpServerClient/Server/../Util"/>
 					<Add directory="/media/muhammed/Shared/Work/HttpServerClient/Server/../Messages"/>
