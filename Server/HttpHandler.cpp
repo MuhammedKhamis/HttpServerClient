@@ -24,7 +24,7 @@ int HttpHandler::getSocketfd() {
 void HttpHandler::run() {
     //TODO
 
-    int state  = 1 ;
+    int state  = 0 ;
     do {
 
       vector<char> data (MAX_REQ_SZ , 0);
@@ -77,8 +77,8 @@ void HttpHandler::handleGet(Request request) {
          delete res;
          return;
      }
-     vector<char> data(sz+1,0);
-     IOHandler::readData( Server , fileName, &data[0], sz+1);
+     vector<char> data(sz,0);
+     IOHandler::readData( Server , fileName, &data[0], sz);
      res = new Response(true, serverName);
 
      res->setKeyVal("Last-Modified", IOHandler::getLastModified(Server , fileName));

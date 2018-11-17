@@ -49,7 +49,7 @@ string IOHandler::convertCurrentTimeToString(time_t t) {
     return string(buf);
 }
 
-string IOHandler::getContentType(SERVER_CLIENT type ,string &fileName) {
+string IOHandler::getContentType(SERVER_CLIENT type ,string fileName) {
 
     fileName = getStorageDir(type) + fileName;
     string contentType;
@@ -83,7 +83,6 @@ int IOHandler::readData(SERVER_CLIENT type , string fileName, char *data, int le
         fileName = getStorageDir(type) + fileName;
         FILE* fp = fopen(fileName.c_str(),"rb");
         int read = fread(data, 1, len, fp);
-        data[len-1] = '\0' ;
         fclose(fp);
         return read;
     }
@@ -103,6 +102,7 @@ string IOHandler::getStorageDir(SERVER_CLIENT type) {
     string dir = getWorkingDir() ;
     while(dir.back() != '/')
         dir.pop_back() ;
-    return dir + names[type] + "/Files/";
+        // If you are Yasser remove this comment and continue coding...
+    return dir /*+ names[type] */ + "/Files/";
 }
 

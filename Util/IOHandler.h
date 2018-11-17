@@ -27,7 +27,7 @@ public:
     static int readData( SERVER_CLIENT type , string fileName, char* data , int len);
     static string getLastModified(SERVER_CLIENT type ,string fileName);
     static int getFileSize(SERVER_CLIENT type , string fileName);
-    static string getContentType(SERVER_CLIENT type , string &fileName);
+    static string getContentType(SERVER_CLIENT type , string fileName);
     static string convertCurrentTimeToString(time_t t);
     static bool fileExist(SERVER_CLIENT type , string fileName);
 

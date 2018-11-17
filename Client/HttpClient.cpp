@@ -72,8 +72,10 @@ HttpClient::sendGETRequest(Request requestObj)
         string body = responseObj->getBody();
         //IMPORTANT DON't DELETE IT
         data = body.c_str();
-        ret = IOHandler::writeData(Client , requestObj.getFileName(), (char*)data, body.size());
+        int len = stoi(responseObj->getKey_val("Content-Length"));
+        ret = IOHandler::writeData(Client , requestObj.getFileName(), (char*)data, len);
     }
+    cout << responseObj->toString() << endl;
     delete responseObj;
     return ret;
 }
