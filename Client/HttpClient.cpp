@@ -62,6 +62,11 @@ HttpClient::sendGETRequest(Request requestObj)
     Response *responseObj = Parser::createResponse(r);
     int ret = 0;
     const char *data = 0;
+
+    //connection is dead
+    if(responseObj == NULL)
+        return -1 ;
+
     if(responseObj->getStatus() == 200) // file found
     {
         string body = responseObj->getBody();

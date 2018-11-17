@@ -23,7 +23,8 @@ int HttpHandler::getSocketfd() {
 
 void HttpHandler::run() {
     //TODO
-    int state  = 0 ;
+
+    int state  = 1 ;
     do {
 
       vector<char> data (MAX_REQ_SZ , 0);

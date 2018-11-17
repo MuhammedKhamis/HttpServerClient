@@ -128,13 +128,13 @@
 		<Unit filename="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient/Server/HttpServer.h">
 			<Option target="HttpServer.out"/>
 		</Unit>
+		<Unit filename="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient/Tests/ClientTests.cpp">
+			<Option target="HttpServer.out"/>
+		</Unit>
 		<Unit filename="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient/Tests/IOHandlerTests.cpp">
 			<Option target="HttpServer.out"/>
 		</Unit>
 		<Unit filename="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient/Tests/MessagesTests.cpp">
-			<Option target="HttpServer.out"/>
-		</Unit>
-		<Unit filename="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient/Tests/ParserTests.cpp">
 			<Option target="HttpServer.out"/>
 		</Unit>
 		<Unit filename="/mnt/DE3E99B43E9985E5/projects and models/compilers/HttpServerClient/Tests/ServerTests.cpp">

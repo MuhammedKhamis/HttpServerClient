@@ -28,7 +28,7 @@ void Response::setStatus(bool status) {
 }
 
 int Response::getStatus() {
-    return status ? 200 : 404;
+    return this->status ? 200 : 404;
 }
 
 Response::~Response() {
