@@ -18,6 +18,9 @@ using namespace std ;
 #include <arpa/inet.h>
 #include <sys/types.h>
 
+
+#define MAX_RES_SZ 10240
+
 using namespace std;
 /* Class Definition */
 /*************************************/
@@ -31,8 +34,8 @@ class HttpClient {
   public:
   	//
     HttpClient(string dataDirectory);
-    HttpClient(string dataDirectory, IOHandler* ioHandler, PortHandler* portHandler);
   	~HttpClient() = default;
+
     // methods
     int connectionInit(char *server_address, int port_no = 80);
     int sendGETRequest(Request requestObj);

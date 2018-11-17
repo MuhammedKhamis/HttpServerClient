@@ -39,5 +39,5 @@ add_executable(HttpServer.out
         HttpServer.cpp
         HttpHandler.h
         HttpHandler.cpp
-        Tests/Test_Module.cpp
-        )
+        #Tests/Test_Module.cpp
+        main.cpp)

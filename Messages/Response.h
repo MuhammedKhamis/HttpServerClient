@@ -8,6 +8,8 @@
 #include <stdio.h>
 #include <vector>
 #include <string>
+#include <IOHandler.h>
+
 #include "HttpMessage.h"
 
 using namespace std ;
@@ -16,7 +18,7 @@ class Response: public HttpMessage  {
 
  public:
 
-    Response(bool status);
+    Response(bool status,string serverName);
     Response();
 
   virtual ~Response();

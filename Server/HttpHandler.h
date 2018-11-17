@@ -29,6 +29,7 @@ public:
     bool isFinished();
     time_t getCreateTime();
     bool start();
+    int getSocketfd();
 
 private:
 

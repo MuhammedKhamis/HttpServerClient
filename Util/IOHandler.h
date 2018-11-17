@@ -21,9 +21,10 @@ class IOHandler{
 public:
     static int writeData(string fileName, char* data ,int len);
     static int readData(string fileName, char* data , int len);
-    static time_t getLastModified(string fileName);
+    static string getLastModified(string fileName);
     static int getFileSize(string fileName);
     static string getContentType(string &fileName);
+    static string convertCurrentTimeToString(time_t t);
 
 private:
     IOHandler();

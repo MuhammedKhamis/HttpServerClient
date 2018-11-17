@@ -13,7 +13,12 @@ HttpHandler::HttpHandler(int socket_fd, string serverName) {
 }
 
 HttpHandler::~HttpHandler() {
-    PortHandler::closeConnection(socket_fd);
+    cout << "Thread that use fd =  " << getSocketfd() << " is Closed" << endl;
+    close();
+}
+
+int HttpHandler::getSocketfd() {
+    return socket_fd;
 }
 
 void HttpHandler::run() {
@@ -46,7 +51,7 @@ void HttpHandler::run() {
       }
       // re-initialize the time.
       time(&startTime);
-      if(request->getKey_val("Connection") == "closed"){
+      if(request->getKey_val("Connection") == "close"){
         state = 1;
       }
 
@@ -68,7 +73,7 @@ void HttpHandler::handleGet(Request request) {
     Response *res = NULL;
     if(sz == -1){
          // Error
-         res = new Response(false);
+         res = new Response(false, serverName);
          string r = res->toString();
          PortHandler::write(socket_fd, (char*)r.c_str(), r.size());
          delete res;
@@ -76,11 +81,15 @@ void HttpHandler::handleGet(Request request) {
      }
      vector<char> data(sz+1,0);
      IOHandler::readData(fileName, &data[0], sz+1);
-     res = new Response(true);
+     res = new Response(true, serverName);
+
+     res->setKeyVal("Last-Modified", IOHandler::getLastModified(fileName));
      res->setKeyVal("Content-Length", to_string(sz));
      res->setKeyVal("Content-Type", IOHandler::getContentType(fileName));
+
      res->setBody(string(data.begin(),data.end()));
      string r = res->toString();
+
      PortHandler::write(socket_fd, (char*)r.c_str(), r.size());
      delete res;
      }
@@ -99,7 +108,7 @@ void HttpHandler::handlePost(Request request) {
 
     int status = IOHandler::writeData(fileName,data,sz);
 
-    HttpMessage *res = new Response(status != -1);
+    HttpMessage *res = new Response(status != -1, serverName);
     string r = res->toString();
 
     cout << "---------response----------" << endl ;

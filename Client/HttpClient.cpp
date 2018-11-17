@@ -45,13 +45,17 @@ int
 HttpClient::sendGETRequest(Request requestObj)
 { 
     // send GET msg
-    PortHandler::write(socketfd , (char* )requestObj.toString().c_str() , requestObj.toString().size());
-    printf("message sent\n"); 
+    string r = requestObj.toString();
+    int status = PortHandler::write(socketfd , (char* )r.c_str() , r.size());
+    if(status == -1){
+        return -1;
+    }
+    printf("message sent\n");
 
     // receive reponse
-    char buffer[1024] = {0};
+    char buffer[MAX_RES_SZ] = {0};
     int valread;
-    valread = PortHandler::read(socketfd , buffer, 1024);
+    valread = PortHandler::read(socketfd , buffer, MAX_RES_SZ);
 
     // save data to directory
     Response *responseObj = Parser::createResponse(buffer);
@@ -75,17 +79,20 @@ int
 HttpClient::sendPOSTRequest(Request requestObj)
 {
     // read file
-    char buffer[1024] = {0};
-    IOHandler::readData(requestObj.getFileName(), buffer, strlen(buffer));
-    
+    char buffer[MAX_RES_SZ] = {0};
+    int status = IOHandler::readData(requestObj.getFileName(), buffer, MAX_RES_SZ);
+    if(status == -1){
+        return -1;
+    }
+    string r = requestObj.toString();
     // send POST request;
-    PortHandler::write(socketfd , (char* )requestObj.toString().c_str() , requestObj.toString().size());
-    printf("message sent\n"); 
+    PortHandler::write(socketfd , (char* )r.c_str() , r.size());
+    printf("message sent\n");
 
     // receive reponse
-    char retBuffer[1024] = {0};
+    char retBuffer[MAX_RES_SZ] = {0};
     int valread;
-    valread = PortHandler::read( socketfd , retBuffer, 1024);
+    valread = PortHandler::read( socketfd , retBuffer, MAX_RES_SZ);
 
     // make sure its OK to send data
     Response *responseObj = Parser::createResponse(retBuffer);

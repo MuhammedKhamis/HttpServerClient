@@ -33,14 +33,14 @@ int IOHandler::getFileSize(string fileName) {
     return -1;
 }
 
-time_t IOHandler::getLastModified(string fileName) {
+string IOHandler::getLastModified(string fileName) {
     if(fileExist(fileName)){
         fileName = getExtendedFileName(fileName);;
         struct stat info;
         stat(fileName.c_str(), &info);
-        return info.st_mtim.tv_sec;
+        return convertCurrentTimeToString(info.st_mtim.tv_nsec);
     }
-    return -1;
+    return "";
 }
 
 
@@ -81,6 +81,13 @@ int IOHandler::readData(string fileName, char *data, int len) {
         return read;
     }
     return -1;
+}
+
+string IOHandler::convertCurrentTimeToString(time_t t) {
+    char buf[1000];
+    struct tm tm = *gmtime(&t);
+    strftime(buf, sizeof buf, "%a, %d %b %Y %H:%M:%S %Z", &tm);
+    return string(buf);
 }
 
 //TODO test1

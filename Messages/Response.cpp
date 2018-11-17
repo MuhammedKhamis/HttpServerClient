@@ -6,22 +6,14 @@
 
 Response::Response() {}
 
-Response::Response(bool status)
+Response::Response(bool status, string serverName)
         : HttpMessage(), status(status){
     // Call coming from Server
 
-    key_val["Date"] = convertCurrentTimeToString() ;
-    key_val["Server"] = "Server/1.0";
+    key_val["Date"] = IOHandler::convertCurrentTimeToString(time(nullptr)) ;
+    key_val["Server"] = serverName;
     key_val["Accept-Language"] = "en-us";
     key_val["Accept-Encoding"] = "gzip, deflate";
-}
-
-string Response::convertCurrentTimeToString() {
-    char buf[1000];
-    time_t now = time(nullptr);
-    struct tm tm = *gmtime(&now);
-    strftime(buf, sizeof buf, "%a, %d %b %Y %H:%M:%S %Z", &tm);
-    return string(buf);
 }
 
 string Response::toString() {

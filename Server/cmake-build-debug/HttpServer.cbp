@@ -122,7 +122,7 @@
 		<Unit filename="/media/muhammed/Shared/Work/HttpServerClient/Server/HttpServer.h">
 			<Option target="HttpServer.out"/>
 		</Unit>
-		<Unit filename="/media/muhammed/Shared/Work/HttpServerClient/Server/Tests/Test_Module.cpp">
+		<Unit filename="/media/muhammed/Shared/Work/HttpServerClient/Server/main.cpp">
 			<Option target="HttpServer.out"/>
 		</Unit>
 		<Unit filename="/media/muhammed/Shared/Work/HttpServerClient/Util/IOHandler.cpp">

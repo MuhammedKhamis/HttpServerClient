@@ -9,17 +9,20 @@
 
 /* main function */
 /*************************************/
-int main(int argc, char const *argv[]) 
-{ 
+int main(int argc, char *argv[])
+{
+
+
     // where to store data on client module
     string dataDirectory = ".";
 
-    // non-persistent
     HttpClient client(dataDirectory);
-    int port = 8000;
-    char serverAddress[] = "127.0.0.1";
-    int initFlag = client.connectionInit(serverAddress, port);
 
+    // reading args
+    int port = atoi(argv[2]);
+    char *serverAddress = argv[1];
+
+    int initFlag = client.connectionInit(serverAddress, port);
     while(initFlag == 0)
     {
         // scan user command
@@ -29,19 +32,33 @@ int main(int argc, char const *argv[])
 
         // parse user command
         Request requestObj = Parser::parseInputCommand(userCommand);
-        string serverAddress = requestObj.getHostName();
-        int portNo = requestObj.getPort();
 
+        int status ;
         // GET or POST
         if(requestObj.getMethod() == GET)
         {
-            if(client.sendGETRequest(requestObj)<0)
-                perror("something went wrong");
+            status = client.sendGETRequest(requestObj);
         }else{
-            if(client.sendPOSTRequest(requestObj)<0)
-                perror("something went wrong");
+            status = client.sendPOSTRequest(requestObj);
         }
-        
+        if(status == -1){
+            bool ans = -1;
+            do{
+                char in;
+                cout << "Connection Closed now, do you want to reopen it ? [Y/n]";
+                cin >> in;
+                if(in == 'Y' || in == 'y'){
+                    ans = 1;
+                }else if(in ==  'N' || in == 'n'){
+                    ans = 0;
+                }
+            }while(ans == -1);
+            if(ans == 0){
+                initFlag = 1;
+            }else {
+                initFlag = client.connectionInit(serverAddress, port);
+            }
+        }
     }
     return 0; 
 }

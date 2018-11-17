@@ -2,11 +2,11 @@
 // Created by muhammed on 02/11/18.
 //
 
+#include <thread_db.h>
 #include "HttpServer.h"
 
-HttpServer::HttpServer(string currDir, int workers, int backlog, unsigned int port, unsigned long long timeOut) {
+HttpServer::HttpServer(int workers, int backlog, unsigned int port, unsigned long long timeOut) {
     this->maxBacklog = backlog;
-    this->currDir = currDir;
     this->maxWorkers = workers;
     this->port = port;
     this->timeOut = timeOut;
@@ -38,7 +38,6 @@ int HttpServer::initServer() {
     int opt = 1;
     int addrlen = sizeof(address);
 
-    chdir(currDir.c_str()) ;
 
     // Creating socket file descriptor
     if ((server_fd = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP)) == 0)
@@ -70,12 +69,18 @@ int HttpServer::initServer() {
         perror("listen");
         exit(EXIT_FAILURE);
     }
-    return 0;
+    return (pthread_create(&workerCheckerId, NULL, workerChecker, (void* )this) == 0);
+}
+
+void* HttpServer::workerChecker(void *runner) {
+    while (true){
+        ((HttpServer*)runner)->haveWorkers();
+        usleep(1000);
+    }
 }
 
 void HttpServer::run() {
     while (1){
-        while (haveWorkers()) {
             int new_socket;
             struct sockaddr_in address;
             socklen_t addrlen = sizeof(address);
@@ -88,10 +93,10 @@ void HttpServer::run() {
             HttpHandler* handler = new HttpHandler(new_socket, SERVER_NAME);
 
             if (handler->start()){
+                cout << "Connection opened with server using fd = " <<  new_socket << endl;
                 workers.emplace_back(handler);
             }else{
                 delete handler;
             }
         }
-    }
 }
