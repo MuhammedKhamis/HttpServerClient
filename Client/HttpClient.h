@@ -5,11 +5,23 @@
 /*************************************/
 using namespace std ;
 #include <stdio.h> 
-#include <sys/socket.h> 
-#include <stdlib.h> 
-#include <netinet/in.h> 
-#include <string.h> 
+#include <sys/socket.h>
+#include <stdlib.h>
+#include <netinet/in.h>
+#include <string.h>
+#include <IOHandler.h>
+#include <PortHandler.h>
+#include <Request.h>
+#include <Response.h>
+#include <Parser.h>
+#include <bits/stdc++.h>
+#include <arpa/inet.h>
+#include <sys/types.h>
 
+
+#define MAX_RES_SZ 10240
+
+using namespace std;
 /* Class Definition */
 /*************************************/
 class HttpClient {
@@ -20,9 +32,10 @@ class HttpClient {
 		int socketfd;
 
   public:
-  	// constructor
-    HttpClient(string dataDirectory, IOHandler* ioHandler, PortHandler* portHandler);
+  	//
+    HttpClient(string dataDirectory);
   	~HttpClient() = default;
+
     // methods
     int connectionInit(char *server_address, int port_no = 80);
     int sendGETRequest(Request requestObj);

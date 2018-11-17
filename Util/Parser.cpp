@@ -64,9 +64,9 @@ Request Parser::parseInputCommand(string command) {
     string method = tokens[0];
     string fileName = tokens[1];
     string hostName = tokens[2];
-    string port = "80";
+    int port = 8000;
     if(tokens.size() == 4){
-        port = tokens[3];
+        port = atoi(tokens[3].c_str());
     }
     HTTP_METHODS methodType = method == "GET" ? GET : POST;
     Request request(methodType, fileName, hostName, port);
@@ -98,7 +98,7 @@ int Parser::parse_first_line(string f_line, Response *response) {
     string httpType = vstrings[0];
     string status = vstrings[1];
     response->setStatus(status == "200");
-
+    return 0;
 }
 
 int Parser::parse_first_line(string f_line , Request* request) {

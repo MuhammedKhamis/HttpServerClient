@@ -26,7 +26,7 @@ public:
 
 
 protected:
-
+    vector<string> enumValues = { "GET", "POST" };
     string fieldsAndBody();
     map<string,string> key_val ;
     string body;

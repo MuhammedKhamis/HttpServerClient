@@ -1,62 +1,64 @@
 /* import libraries */
 /*************************************/
-#include <stdio.h> 
-#include "Request.h" 
+#include <stdio.h>
+#include <string>
+#include <Request.h>
 #include "HttpClient.h"
+#include <Parser.h>
 
 
 /* main function */
 /*************************************/
-int main(int argc, char const *argv[]) 
-{ 
-    // where to store data on client module
-    string dataDirectory = "asd";
+int main(int argc, char *argv[])
+{
 
-    while(1)
+
+    // where to store data on client module
+    string dataDirectory = ".";
+
+    HttpClient client(dataDirectory);
+
+    // reading args
+    int port = atoi(argv[2]);
+    char *serverAddress = argv[1];
+
+    int initFlag = client.connectionInit(serverAddress, port);
+    while(initFlag == 0)
     {
         // scan user command
-        char userCommand[1024] = {0};
+        string userCommand;
         printf("Enter Command: ");
-        scanf("%s", userCommand);
+        getline(cin,userCommand);
 
         // parse user command
-        Request requestObj = ClientParser.parseInputCommand(userCommand);
-        serverAddress = requestObj.getHostName();
-        portNo = requestObj.getPort();
+        Request requestObj = Parser::parseInputCommand(userCommand);
 
-        // non-persistent 
-        HttpClient client(dataDirectory);
-        client.init(serverAddress, portNo);
-
+        int status;
         // GET or POST
-        if(requestObj.getRequestType() == "GET")
+        if(requestObj.getMethod() == GET)
         {
-            if(client.sendGETRequest(requestObj)<0)
-                perror("something went wrong");
+            status = client.sendGETRequest(requestObj);
         }else{
-            if(client.sendPOSTRequest(requestObj)<0)
-                perror("something went wrong");
+            status = client.sendPOSTRequest(requestObj);
         }
-        
+        if(status == -1){
+            bool ans = -1;
+            do{
+                char in;
+                cout << "Connection Closed now, do you want to reopen it ? [Y/n]";
+                cin >> in;
+                if(in == 'Y' || in == 'y'){
+                    ans = 1;
+                }else if(in ==  'N' || in == 'n'){
+                    ans = 0;
+                }
+            }while(ans == -1);
+            if(ans == 0){
+                initFlag = 1;
+            }else {
+                initFlag = client.connectionInit(serverAddress, port);
+            }
+        }
     }
     return 0; 
-} 
-
-
-
-Request
-parseInputCommand(char* userCommand)
-{
-    vector<string> inputData = Parser::tokenize(string(userCommand), " ");
-    string methodType = inputData[0];
-    string fileName = inputData[1];
-    string hostName = inputData[2];
-    string portNumber = "80";
-    if(inputData.size() == 4)
-    {
-        portNumber = inputData[3];
-    }
-    
-    Request requestObj(methodType, fileName, hostName, portNumber);
-    return requestObj;
 }

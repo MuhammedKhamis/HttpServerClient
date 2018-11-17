@@ -17,15 +17,12 @@ using namespace std;
 
 class PortHandler{
 public:
-    PortHandler(int socket_fd);
-    virtual ~PortHandler();
-
-    int write( char* buffer, int sz);
-    int read( char* buffer, int sz);
-    int closeConnection();
+    static int write(int socked_fd, char* buffer, int sz);
+    static int read(int socked_fd, char* buffer, int sz);
+    static int closeConnection(int socked_fd);
 
 private:
-    int socked_fd;
+    PortHandler();
 };
 
 #endif //HTTPSERVERCLIENT_PORTHANDLER_H

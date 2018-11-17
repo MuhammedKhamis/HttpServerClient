@@ -3,87 +3,114 @@
 //
 
 #include "HttpHandler.h"
-#include "../Messages/Parser.h"
-#include "../Messages/Response.h"
-#include <string.h>
 
-HttpHandler::HttpHandler(IOHandler *ioHandler, PortHandler *portHandler, string serverName) {
-    this->ioHandler = ioHandler;
-    this->portHandler = portHandler;
+
+HttpHandler::HttpHandler(int socket_fd, string serverName) {
     handler_id = 0;
     finished = false;
+    this->socket_fd = socket_fd;
     this->serverName = serverName;
 }
 
 HttpHandler::~HttpHandler() {
-    delete portHandler ;
+    cout << "Thread that use fd =  " << getSocketfd() << " is Closed" << endl;
+    close();
+}
+
+int HttpHandler::getSocketfd() {
+    return socket_fd;
 }
 
 void HttpHandler::run() {
     //TODO
-    char data[MAX_REQ_SZ];
-    memset(data, 0, MAX_REQ_SZ);
-    int read = portHandler->read(data, MAX_REQ_SZ);
-    if(read == -1){
+    int state  = 0 ;
+    do {
+
+      vector<char> data (MAX_REQ_SZ , 0);
+      int read = PortHandler::read(socket_fd, &data[0], MAX_REQ_SZ);
+
+      if(read == -1){
         //Error
         return;
-    }
-    if(read == 0){
+      }
+      if(read == 0){
         // nothing to read.
         return;
-    }
-    string req(data);
+      }
 
-    Request* request = Parser::createRequest(data) ;
+      string req = string(data.begin(), data.begin() + ((read < MAX_REQ_SZ) ? read : MAX_REQ_SZ));
 
-    if(request == NULL){
-      perror("failed to create request is corrupter or in complete\n") ;
-    }
+      Request* request = Parser::createRequest(req) ;
 
-    if(request->getMethod() == GET){
+      if(request == NULL){
+        perror("failed to create request is corrupter or in complete\n") ;
+          continue;
+      }
+      // re-initialize the time.
+      time(&startTime);
+      if(request->getKey_val("Connection") == "close"){
+        state = 1;
+      }
+
+      if(request->getMethod() == GET){
         handleGet(*request);
-    } else if(request->getMethod() == POST){
+      } else if(request->getMethod() == POST){
         handlePost(*request);
-    }
-    delete request;
+      }
+      delete request;
+    }while (!state);
+
     // Error
 }
 
 void HttpHandler::handleGet(Request request) {
 
      string fileName = request.getFileName();
-     int sz = ioHandler->getFileSize(fileName);
+     int sz = IOHandler::getFileSize(fileName);
     Response *res = NULL;
     if(sz == -1){
          // Error
-         res = new Response(false);
+         res = new Response(false, serverName);
          string r = res->toString();
-         portHandler->write((char*)r.c_str(), r.size());
+         PortHandler::write(socket_fd, (char*)r.c_str(), r.size());
          delete res;
          return;
      }
      vector<char> data(sz+1,0);
-     ioHandler->readData(fileName, &data[0], sz+1);
-     res = new Response(true);
+     IOHandler::readData(fileName, &data[0], sz+1);
+     res = new Response(true, serverName);
+
+     res->setKeyVal("Last-Modified", IOHandler::getLastModified(fileName));
      res->setKeyVal("Content-Length", to_string(sz));
-     res->setKeyVal("Content-Type", ioHandler->getContentType(fileName));
+     res->setKeyVal("Content-Type", IOHandler::getContentType(fileName));
+
      res->setBody(string(data.begin(),data.end()));
      string r = res->toString();
-     portHandler->write((char*)r.c_str(), r.size());
+
+     PortHandler::write(socket_fd, (char*)r.c_str(), r.size());
      delete res;
      }
 
-void HttpHandler::handlePost(Request reuqest) {
+//TODO test2
+void HttpHandler::handlePost(Request request) {
+
+
     //TODO
-    int sz = reuqest.getBody().size();
-    char* data = (char*)reuqest.getBody().c_str();
-    string fileName = reuqest.getFileName();
+    string body = request.getBody();
+    char* data = (char*)body.c_str();
 
-    int status = ioHandler->writeData(fileName,data,sz);
+    string fileName = request.getFileName();
 
-    HttpMessage *res = new Response(status != -1);
+
+    int status = IOHandler::writeData(fileName, data, body.size());
+
+    HttpMessage *res = new Response(status != -1, serverName);
     string r = res->toString();
-    portHandler->write((char*)r.c_str(), r.size());
+
+    cout << "---------response----------" << endl ;
+    cout << r << endl ;
+
+    PortHandler::write(socket_fd, (char*)r.c_str(), r.size());
     delete res;
 }
 
@@ -107,6 +134,6 @@ void* HttpHandler::startHelper(void *runner) {
 }
 
 void HttpHandler::close() {
-    this->portHandler->closeConnection();
-    this->finished = true;
+    PortHandler::closeConnection(socket_fd);
+    finished = true;
 }
