@@ -12,21 +12,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ef7ce604-f648-450f-9720-aae2e404cca5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/HttpClient.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/HttpClient.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/cmake-build-debug/HttpClient" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/cmake-build-debug/HttpServerClient.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/cmake-build-debug/HttpServerClient.cbp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/cmake-build-debug/read.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HttpHandler.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/HttpHandler.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/HttpServer" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/HttpServer.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/HttpServer.cbp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Util/IOHandler.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Util/IOHandler.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Util/IOHandler.h" beforeDir="false" afterPath="$PROJECT_DIR$/../Util/IOHandler.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Util/Parser.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Util/Parser.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/cmake-build-debug/core" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/core" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -128,8 +115,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/HttpHandler.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="32">
-              <caret line="107" column="44" selection-start-line="107" selection-start-column="44" selection-end-line="107" selection-end-column="44" />
+            <state relative-caret-position="1197">
+              <caret line="91" column="10" lean-forward="true" selection-start-line="91" selection-start-column="10" selection-end-line="91" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -288,6 +275,12 @@
               <item name="Server" type="47feb1d3:ProjectViewModuleNode" />
               <item name="Server" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="HttpServer" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Server" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="Server" type="462c0819:PsiDirectoryNode" />
+              <item name="cmake-build-debug" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -333,15 +326,9 @@
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="HttpServer.out" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="HttpServer" TARGET_NAME="HttpServer.out" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="HttpServer" RUN_TARGET_NAME="HttpServer.out">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
     <list>
       <item itemvalue="Application.Build All" />
       <item itemvalue="Application.HttpServerClient" />
-      <item itemvalue="Application.HttpServer.out" />
       <item itemvalue="Boost.Test.test_server_read" />
       <item itemvalue="Boost.Test.test_server_intialization" />
     </list>
@@ -368,14 +355,11 @@
       <workItem from="1542399751776" duration="550000" />
       <workItem from="1542400751471" duration="6037000" />
       <workItem from="1542406853830" duration="584000" />
-      <workItem from="1542410025245" duration="4381000" />
+      <workItem from="1542410025245" duration="4662000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="test_server_read - 2018.11.17 at 01h 32m 44s.xml">
-      <configuration name="test_server_read" configurationId="CMakeBoostTestRunConfigurationType" />
-    </history-entry>
     <history-entry file="test_server_read - 2018.11.17 at 01h 34m 24s.xml">
       <configuration name="test_server_read" configurationId="CMakeBoostTestRunConfigurationType" />
     </history-entry>
@@ -403,9 +387,12 @@
     <history-entry file="test_server_read - 2018.11.17 at 02h 11m 02s.xml">
       <configuration name="test_server_read" configurationId="CMakeBoostTestRunConfigurationType" />
     </history-entry>
+    <history-entry file="test_server_read - 2018.11.17 at 02h 50m 00s.xml">
+      <configuration name="test_server_read" configurationId="CMakeBoostTestRunConfigurationType" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="31393000" />
+    <option name="totallyTimeSpent" value="31674000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
@@ -575,8 +562,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/HttpHandler.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="32">
-          <caret line="107" column="44" selection-start-line="107" selection-start-column="44" selection-end-line="107" selection-end-column="44" />
+        <state relative-caret-position="1197">
+          <caret line="91" column="10" lean-forward="true" selection-start-line="91" selection-start-column="10" selection-end-line="91" selection-end-column="10" />
         </state>
       </provider>
     </entry>
