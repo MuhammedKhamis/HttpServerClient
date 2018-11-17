@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
         // parse user command
         Request requestObj = Parser::parseInputCommand(userCommand);
 
-        int status ;
+        int status;
         // GET or POST
         if(requestObj.getMethod() == GET)
         {

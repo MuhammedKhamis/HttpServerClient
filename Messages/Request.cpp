@@ -20,7 +20,9 @@ Request::Request(HTTP_METHODS method, const string &file_name, const string &hos
   key_val["Accept-Language"] = "en-us";
   key_val["Accept-Encoding"] = "gzip, deflate";
   if(method == POST){
-    key_val["Content-Length"] = to_string(this->body.size());
+    key_val["Content-Length"] = to_string(IOHandler::getFileSize(file_name));
+    key_val["Last-Modified"] = IOHandler::getLastModified(fileName);
+    key_val["Content-Type"] = IOHandler::getContentType(fileName);
   }
 }
 

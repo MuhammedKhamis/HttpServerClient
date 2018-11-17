@@ -69,7 +69,8 @@ int HttpServer::initServer() {
         perror("listen");
         exit(EXIT_FAILURE);
     }
-    return (pthread_create(&workerCheckerId, NULL, workerChecker, (void* )this) == 0);
+    cout << "Server side started\n";
+    return pthread_create(&workerCheckerId, NULL, workerChecker, (void* )this);
 }
 
 void* HttpServer::workerChecker(void *runner) {

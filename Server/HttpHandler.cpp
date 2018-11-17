@@ -38,12 +38,9 @@ void HttpHandler::run() {
         return;
       }
 
-      string req = "" ;
-      for(char i : data){
-        req.push_back(i) ;
-      }
+      string req = string(data.begin(), data.begin() + ((read < MAX_REQ_SZ) ? read : MAX_REQ_SZ));
 
-      Request* request = Parser::createRequest(req.c_str()) ;
+      Request* request = Parser::createRequest(req) ;
 
       if(request == NULL){
         perror("failed to create request is corrupter or in complete\n") ;
@@ -99,14 +96,13 @@ void HttpHandler::handlePost(Request request) {
 
 
     //TODO
-    int sz = request.getBody().size();
-    string body = request.getBody().c_str();
+    string body = request.getBody();
     char* data = (char*)body.c_str();
 
     string fileName = request.getFileName();
 
 
-    int status = IOHandler::writeData(fileName,data,sz);
+    int status = IOHandler::writeData(fileName, data, body.size());
 
     HttpMessage *res = new Response(status != -1, serverName);
     string r = res->toString();

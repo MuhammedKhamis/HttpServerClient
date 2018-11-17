@@ -19,7 +19,7 @@
 
 using namespace std;
 
-#define MAX_REQ_SZ 10240
+#define MAX_REQ_SZ 102400
 
 class HttpHandler{
 

@@ -19,12 +19,12 @@ string IOHandler::getWorkingDir() {
     return string(cwd);
 }
 string IOHandler::getExtendedFileName(string fileName) {
-    return getWorkingDir() + '/' + fileName;
+    return getWorkingDir() + fileName;
 }
 
 int IOHandler::getFileSize(string fileName) {
     if(fileExist(fileName)){
-        fileName = getExtendedFileName(fileName);;
+        fileName = getExtendedFileName(fileName);
         ifstream in(fileName.c_str(), ifstream::ate | ifstream::binary);
         int len = in.tellg();
         in.close();
@@ -35,7 +35,7 @@ int IOHandler::getFileSize(string fileName) {
 
 string IOHandler::getLastModified(string fileName) {
     if(fileExist(fileName)){
-        fileName = getExtendedFileName(fileName);;
+        fileName = getExtendedFileName(fileName);
         struct stat info;
         stat(fileName.c_str(), &info);
         return convertCurrentTimeToString(info.st_mtim.tv_nsec);
@@ -45,25 +45,28 @@ string IOHandler::getLastModified(string fileName) {
 
 
 
-string IOHandler::getContentType(string &fileName) {
+string IOHandler::getContentType(string fileName) {
 
     fileName = getExtendedFileName(fileName);;
     string contentType;
-    if (fileName.substr(fileName.find_last_of(".") + 1) == "html"){
+    string ext = fileName.substr(fileName.find_last_of(".") + 1);
+    if ( ext == "html"){
         contentType = "text/html";
-    } else if (fileName.substr(fileName.find_last_of(".") + 1) == "txt") {
+    } else if (ext == "txt") {
         contentType = "text/txt";
-    } else if (fileName.substr(fileName.find_last_of(".") + 1) == "css") {
+    } else if (ext == "css") {
         contentType = "text/css";
-    } else if (fileName.substr(fileName.find_last_of(".") + 1) == "js") {
+    } else if (ext == "js") {
         contentType = "text/javascript";
-    }else if  (fileName.substr(fileName.find_last_of(".") + 1) == "png") {
+    }else if  (ext == "png") {
         contentType = "image/png";
-    } else if (fileName.substr(fileName.find_last_of(".") + 1) == "jpg") {
+    } else if (ext == "jpg") {
         contentType = "image/jpg";
-    } else if (fileName.substr(fileName.find_last_of(".") + 1) == "jpeg") {
+    } else if (ext == "jpeg") {
         contentType = "image/jpeg";
-    } else if (fileName.substr(fileName.find_last_of(".") + 1) == "gif"){
+    } else if (ext == "jpeg") {
+        contentType = "image/svg";
+    } else if (ext == "gif"){
         contentType = "image/gif";
     } else {
         contentType = "none/none";
@@ -92,8 +95,8 @@ string IOHandler::convertCurrentTimeToString(time_t t) {
 
 //TODO test1
 int IOHandler::writeData(string fileName, char *data, int len) {
-        fileName = getExtendedFileName(fileName);;
-        FILE* fp = fopen(fileName.c_str(),"wb+");
+        fileName = getExtendedFileName(fileName);
+        FILE* fp = fopen(fileName.c_str(),"wb");
         int written = fwrite(data, 1, len, fp);
         fclose(fp);
         return written;

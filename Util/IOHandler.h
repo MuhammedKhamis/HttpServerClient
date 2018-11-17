@@ -23,7 +23,7 @@ public:
     static int readData(string fileName, char* data , int len);
     static string getLastModified(string fileName);
     static int getFileSize(string fileName);
-    static string getContentType(string &fileName);
+    static string getContentType(string fileName);
     static string convertCurrentTimeToString(time_t t);
 
 private:

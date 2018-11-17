@@ -53,12 +53,14 @@ HttpClient::sendGETRequest(Request requestObj)
     printf("message sent\n");
 
     // receive reponse
-    char buffer[MAX_RES_SZ] = {0};
+    vector<char> buffer(MAX_RES_SZ, 0);
     int valread;
-    valread = PortHandler::read(socketfd , buffer, MAX_RES_SZ);
+    valread = PortHandler::read(socketfd , &buffer[0], MAX_RES_SZ);
+
+    r = string(buffer.begin(), buffer.begin() + ((valread < MAX_RES_SZ) ? valread : MAX_RES_SZ));
 
     // save data to directory
-    Response *responseObj = Parser::createResponse(buffer);
+    Response *responseObj = Parser::createResponse(r);
     cout << responseObj->toString() << endl;
     int ret = 0;
     const char *data = 0;
@@ -67,7 +69,7 @@ HttpClient::sendGETRequest(Request requestObj)
         string body = responseObj->getBody();
         //IMPORTANT DON't DELETE IT
         data = body.c_str();
-        ret = IOHandler::writeData(requestObj.getFileName(), (char*)data, strlen(data));
+        ret = IOHandler::writeData(requestObj.getFileName(), (char*)data, body.size());
     }
     delete responseObj;
     return ret;
@@ -79,24 +81,32 @@ int
 HttpClient::sendPOSTRequest(Request requestObj)
 {
     // read file
-    char buffer[MAX_RES_SZ] = {0};
-    int status = IOHandler::readData(requestObj.getFileName(), buffer, MAX_RES_SZ);
+    int sz = IOHandler::getFileSize(requestObj.getFileName()) + 1;
+    vector<char> buffer(sz, 0);
+    int status = IOHandler::readData(requestObj.getFileName(), &buffer[0], sz);
     if(status == -1){
         return -1;
     }
+
+    requestObj.setBody(string(buffer.begin(),buffer.end()));
+
     string r = requestObj.toString();
+
     // send POST request;
     PortHandler::write(socketfd , (char* )r.c_str() , r.size());
     printf("message sent\n");
 
     // receive reponse
-    char retBuffer[MAX_RES_SZ] = {0};
+    vector<char> retBuffer(MAX_RES_SZ, 0);
+
     int valread;
-    valread = PortHandler::read( socketfd , retBuffer, MAX_RES_SZ);
+    valread = PortHandler::read( socketfd , &retBuffer[0], MAX_RES_SZ);
+
+    r = string(retBuffer.begin(),retBuffer.begin() + ((valread < MAX_RES_SZ) ? valread : MAX_RES_SZ) );
 
     // make sure its OK to send data
-    Response *responseObj = Parser::createResponse(retBuffer);
-    cout << responseObj->getBody() << endl;
+    Response *responseObj = Parser::createResponse(r);
+    cout << responseObj->toString() << endl;
     if(responseObj->getStatus() == 200) // ready to receive file
     {
         delete responseObj;

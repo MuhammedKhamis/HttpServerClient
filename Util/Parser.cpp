@@ -64,7 +64,7 @@ Request Parser::parseInputCommand(string command) {
     string method = tokens[0];
     string fileName = tokens[1];
     string hostName = tokens[2];
-    int port = 80;
+    int port = 8000;
     if(tokens.size() == 4){
         port = atoi(tokens[3].c_str());
     }
