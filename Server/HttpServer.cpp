@@ -57,6 +57,7 @@ int HttpServer::initServer() {
     address.sin_addr.s_addr = INADDR_ANY;
     address.sin_port = htons(port);
 
+
     // Forcefully attaching socket to the port
     if (bind(server_fd, (struct sockaddr *)&address, addrlen) < 0)
     {
@@ -64,6 +65,7 @@ int HttpServer::initServer() {
         perror("bind failed");
         exit(EXIT_FAILURE);
     }
+
     if (listen(server_fd, maxBacklog) < 0)
     {
         perror("listen");

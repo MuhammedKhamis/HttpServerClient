@@ -66,7 +66,7 @@ void HttpHandler::run() {
 void HttpHandler::handleGet(Request request) {
 
      string fileName = request.getFileName();
-     int sz = IOHandler::getFileSize(fileName);
+     int sz = IOHandler::getFileSize(Server , fileName);
     Response *res = NULL;
     if(sz == -1){
          // Error
@@ -77,12 +77,12 @@ void HttpHandler::handleGet(Request request) {
          return;
      }
      vector<char> data(sz+1,0);
-     IOHandler::readData(fileName, &data[0], sz+1);
+     IOHandler::readData( Server , fileName, &data[0], sz+1);
      res = new Response(true, serverName);
 
-     res->setKeyVal("Last-Modified", IOHandler::getLastModified(fileName));
+     res->setKeyVal("Last-Modified", IOHandler::getLastModified(Server , fileName));
      res->setKeyVal("Content-Length", to_string(sz));
-     res->setKeyVal("Content-Type", IOHandler::getContentType(fileName));
+     res->setKeyVal("Content-Type", IOHandler::getContentType(Server , fileName));
 
      res->setBody(string(data.begin(),data.end()));
      string r = res->toString();
@@ -102,7 +102,7 @@ void HttpHandler::handlePost(Request request) {
     string fileName = request.getFileName();
 
 
-    int status = IOHandler::writeData(fileName, data, body.size());
+    int status = IOHandler::writeData( Server , fileName, data, body.size());
 
     HttpMessage *res = new Response(status != -1, serverName);
     string r = res->toString();

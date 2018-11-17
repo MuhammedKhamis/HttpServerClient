@@ -18,13 +18,13 @@ BOOST_AUTO_TEST_SUITE(suite1, * utf::label("IOHandler"))
 BOOST_AUTO_TEST_CASE( test_file_exist )
     {
         IOHandler handler;
-    BOOST_REQUIRE(handler.getFileSize("smile.jpeg") != -1) ;
+    BOOST_REQUIRE(handler.getFileSize(Server , "smile.jpeg") != -1) ;
     }
 
 BOOST_AUTO_TEST_CASE( test_file_dont_exist )
     {
         IOHandler handler;
-    BOOST_REQUIRE(handler.getFileSize("smile_no.jpeg") == -1) ;
+    BOOST_REQUIRE(handler.getFileSize(Server ,"smile_no.jpeg") == -1) ;
     }
 
 BOOST_AUTO_TEST_CASE( test_file_last_modified )
@@ -34,9 +34,9 @@ BOOST_AUTO_TEST_CASE( test_file_last_modified )
 
       timespec_get( &curr , TIME_UTC ) ;
 
-      handler.writeData("to_modify.txt" , "now modify ." , 12) ;
+      handler.writeData(Server , "to_modify.txt" , "now modify ." , 12) ;
 
-      BOOST_REQUIRE(handler.getLastModified("to_modify.txt") == IOHandler::convertCurrentTimeToString(curr.tv_sec) ) ;
+      BOOST_REQUIRE(handler.getLastModified(Server ,"to_modify.txt") == IOHandler::convertCurrentTimeToString(curr.tv_sec) ) ;
     }
 
 BOOST_AUTO_TEST_CASE( test_file_last_modified_wrong )
@@ -49,23 +49,23 @@ BOOST_AUTO_TEST_CASE( test_file_last_modified_wrong )
 
       usleep(1000000);
 
-      handler.writeData("to_modify.txt" , "now modify ." , 12) ;
+      handler.writeData(Server ,"to_modify.txt" , "now modify ." , 12) ;
 
-      BOOST_REQUIRE(handler.getLastModified("to_modify.txt") != IOHandler::convertCurrentTimeToString(curr.tv_sec)) ;
+      BOOST_REQUIRE(handler.getLastModified(Server ,"to_modify.txt") != IOHandler::convertCurrentTimeToString(curr.tv_sec)) ;
 
     }
 
 BOOST_AUTO_TEST_CASE( test_file_size )
     {
         IOHandler handler;
-    BOOST_REQUIRE(handler.getFileSize("smile.jpeg") == 6467) ;
+    BOOST_REQUIRE(handler.getFileSize(Server ,"read.txt") == 16 * sizeof(char)) ;
     }
 
 BOOST_AUTO_TEST_CASE( test_file_read )
     {
         IOHandler handler;
     char data[1024] ;
-    handler.readData("read.txt" , data , 16 * sizeof(char) ) ;
+    handler.readData(Server ,"read.txt" , data , 16 * sizeof(char) ) ;
     BOOST_REQUIRE( strcmp(data , "successful read") == 0 ) ;
     }
 
@@ -73,7 +73,7 @@ BOOST_AUTO_TEST_CASE( test_file_read_overflow )
     {
         IOHandler handler;
     char data[1024] ;
-    BOOST_REQUIRE_NO_THROW( handler.readData("read.txt" , data , 17 * sizeof(char) ) ) ;
+    BOOST_REQUIRE_NO_THROW( handler.readData(Server ,"read.txt" , data , 17 * sizeof(char) ) ) ;
     }
 
 BOOST_AUTO_TEST_CASE( test_file_write )
@@ -81,10 +81,10 @@ BOOST_AUTO_TEST_CASE( test_file_write )
       IOHandler handler;
       string data_str = "write successful" ;
       char* data = (char*) data_str.c_str() ;
-      handler.writeData("write.txt" , data , strlen(data) + 1 * sizeof(char) ) ;
+      handler.writeData(Server ,"write.txt" , data , strlen(data) + 1 * sizeof(char) ) ;
 
       char data2[1024] ;
-      handler.readData("write.txt" , data2 , strlen(data) + 1 * sizeof(char) ) ;
+      handler.readData(Server ,"write.txt" , data2 , strlen(data) + 1 * sizeof(char) ) ;
       BOOST_REQUIRE( strcmp(data,data2) == 0 ) ;
     }
 

@@ -16,22 +16,24 @@
 #include <unistd.h>
 using namespace std;
 
+enum SERVER_CLIENT { Server , Client };
+
 class IOHandler{
 
 public:
     IOHandler();
 
-    static int writeData(string fileName, char* data ,int len);
-    static int readData(string fileName, char* data , int len);
-    static string getLastModified(string fileName);
-    static int getFileSize(string fileName);
-    static string getContentType(string &fileName);
+    static int writeData( SERVER_CLIENT type , string fileName, char* data ,int len);
+    static int readData( SERVER_CLIENT type , string fileName, char* data , int len);
+    static string getLastModified(SERVER_CLIENT type ,string fileName);
+    static int getFileSize(SERVER_CLIENT type , string fileName);
+    static string getContentType(SERVER_CLIENT type , string &fileName);
     static string convertCurrentTimeToString(time_t t);
+    static bool fileExist(SERVER_CLIENT type , string fileName);
 
-private:
-    static bool fileExist(string fileName);
+ private:
     static string getWorkingDir();
-    static string getStorageDir();
+    static string getStorageDir(SERVER_CLIENT type);
 
 };
 #endif //HTTPSERVERCLIENT_IOHANDLER_H

@@ -7,8 +7,8 @@
 IOHandler::IOHandler() {}
 
 
-bool IOHandler::fileExist(string fileName) {
-    fileName = getStorageDir() + fileName;
+bool IOHandler::fileExist(SERVER_CLIENT type , string fileName) {
+    fileName = getStorageDir(type) + fileName;
     struct stat buffer;
     return (stat (fileName.c_str(), &buffer) == 0);
 }
@@ -21,9 +21,9 @@ string IOHandler::getWorkingDir() {
     return string(cwd);
 }
 
-int IOHandler::getFileSize(string fileName) {
-    if(fileExist(fileName)){
-        fileName = getStorageDir() + fileName;
+int IOHandler::getFileSize(SERVER_CLIENT type , string fileName) {
+    if(fileExist(type ,fileName)){
+        fileName = getStorageDir(type) + fileName;
         ifstream in(fileName.c_str(), ifstream::ate | ifstream::binary);
         int len = in.tellg();
         in.close();
@@ -32,9 +32,9 @@ int IOHandler::getFileSize(string fileName) {
     return -1;
 }
 
-string IOHandler::getLastModified(string fileName) {
-    if(fileExist(fileName)){
-        fileName = getStorageDir() + fileName;
+string IOHandler::getLastModified(SERVER_CLIENT type , string fileName) {
+    if(fileExist(type ,fileName)){
+        fileName = getStorageDir(type) + fileName;
         struct stat info;
         stat(fileName.c_str(), &info);
         return convertCurrentTimeToString(info.st_mtim.tv_sec);
@@ -49,9 +49,9 @@ string IOHandler::convertCurrentTimeToString(time_t t) {
     return string(buf);
 }
 
-string IOHandler::getContentType(string &fileName) {
+string IOHandler::getContentType(SERVER_CLIENT type ,string &fileName) {
 
-    fileName = getStorageDir() + fileName;
+    fileName = getStorageDir(type) + fileName;
     string contentType;
     string ext = fileName.substr(fileName.find_last_of(".") + 1);
     if ( ext == "html"){
@@ -78,9 +78,9 @@ string IOHandler::getContentType(string &fileName) {
     return contentType;
 }
 
-int IOHandler::readData(string fileName, char *data, int len) {
-    if(fileExist(fileName)){
-        fileName = getStorageDir() + fileName;
+int IOHandler::readData(SERVER_CLIENT type , string fileName, char *data, int len) {
+    if(fileExist(type ,fileName)){
+        fileName = getStorageDir(type) + fileName;
         FILE* fp = fopen(fileName.c_str(),"rb");
         int read = fread(data, 1, len, fp);
         data[len-1] = '\0' ;
@@ -90,18 +90,19 @@ int IOHandler::readData(string fileName, char *data, int len) {
     return -1;
 }
 
-int IOHandler::writeData(string fileName, char *data, int len) {
-        fileName = getStorageDir() + fileName;
+int IOHandler::writeData(SERVER_CLIENT type , string fileName, char *data, int len) {
+        fileName = getStorageDir(type) + fileName;
         FILE* fp = fopen(fileName.c_str(),"wb+");
         int written = fwrite(data, 1, len, fp);
         fclose(fp);
         return written;
 }
 
-string IOHandler::getStorageDir() {
+string IOHandler::getStorageDir(SERVER_CLIENT type) {
+    map<SERVER_CLIENT,string> names = { {Client,"Client"} , {Server,"Server"}} ;
     string dir = getWorkingDir() ;
     while(dir.back() != '/')
         dir.pop_back() ;
-    return dir + "Files/";
+    return dir + names[type] + "/Files/";
 }
 
