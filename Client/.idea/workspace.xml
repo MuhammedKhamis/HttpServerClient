@@ -12,7 +12,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="87953177-9d67-4097-a9b8-584d48c23d1f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/core" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Server/cmake-build-debug/core" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
@@ -87,7 +89,7 @@
         <entry file="file://$PROJECT_DIR$/../Messages/HttpMessage.cpp">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1034">
-              <caret line="47" column="16" lean-forward="true" selection-start-line="47" selection-start-column="16" selection-end-line="47" selection-end-column="16" />
+              <caret line="47" column="16" selection-start-line="47" selection-start-column="16" selection-end-line="47" selection-end-column="16" />
             </state>
           </provider>
         </entry>
@@ -144,7 +146,7 @@
         <entry file="file://$PROJECT_DIR$/HttpClient.cpp">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="2002">
-              <caret line="91" column="29" lean-forward="true" selection-start-line="91" selection-end-line="92" />
+              <caret line="91" column="29" selection-start-line="91" selection-end-line="92" />
             </state>
           </provider>
         </entry>
@@ -209,12 +211,6 @@
               <item name="Client" type="47feb1d3:ProjectViewModuleNode" />
               <item name="Client" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="HttpServerClient" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Client" type="47feb1d3:ProjectViewModuleNode" />
-              <item name="Client" type="462c0819:PsiDirectoryNode" />
-              <item name="cmake-build-debug" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -269,18 +265,17 @@
       <workItem from="1542399518564" duration="153000" />
       <workItem from="1542406953931" duration="488000" />
       <workItem from="1542407789631" duration="1812000" />
-      <workItem from="1542409997692" duration="6053000" />
+      <workItem from="1542409997692" duration="6333000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8506000" />
+    <option name="totallyTimeSpent" value="8786000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25815368" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25815368" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -291,7 +286,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Messages" order="8" visible="true" weight="0.3294979" />
+      <window_info anchor="bottom" id="Messages" order="8" visible="true" weight="0.3294979" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.33891213" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="11" show_stripe_button="false" />
@@ -377,14 +372,14 @@
     <entry file="file://$PROJECT_DIR$/HttpClient.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2002">
-          <caret line="91" column="29" lean-forward="true" selection-start-line="91" selection-end-line="92" />
+          <caret line="91" column="29" selection-start-line="91" selection-end-line="92" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../Messages/HttpMessage.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1034">
-          <caret line="47" column="16" lean-forward="true" selection-start-line="47" selection-start-column="16" selection-end-line="47" selection-end-column="16" />
+          <caret line="47" column="16" selection-start-line="47" selection-start-column="16" selection-end-line="47" selection-end-column="16" />
         </state>
       </provider>
     </entry>
