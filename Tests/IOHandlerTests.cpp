@@ -4,12 +4,12 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "../util/IOHandler.h"
+#include "../Util/IOHandler.h"
 #include <../Server/HttpServer.h>
 #include <../Messages/Request.h>
 #include <time.h>
 #include <stdio.h>
-#include "../Messages/Parser.h"
+#include "../Util/Parser.h"
 
 namespace utf = boost::unit_test;
 
@@ -36,7 +36,7 @@ BOOST_AUTO_TEST_CASE( test_file_last_modified )
 
       handler.writeData("to_modify.txt" , "now modify ." , 12) ;
 
-      BOOST_REQUIRE(handler.getLastModified("to_modify.txt") == curr.tv_sec) ;
+      BOOST_REQUIRE(handler.getLastModified("to_modify.txt") == IOHandler::convertCurrentTimeToString(curr.tv_sec) ) ;
     }
 
 BOOST_AUTO_TEST_CASE( test_file_last_modified_wrong )
@@ -51,7 +51,7 @@ BOOST_AUTO_TEST_CASE( test_file_last_modified_wrong )
 
       handler.writeData("to_modify.txt" , "now modify ." , 12) ;
 
-      BOOST_REQUIRE(handler.getLastModified("to_modify.txt") != curr.tv_sec) ;
+      BOOST_REQUIRE(handler.getLastModified("to_modify.txt") != IOHandler::convertCurrentTimeToString(curr.tv_sec)) ;
 
     }
 

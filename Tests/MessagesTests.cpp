@@ -4,12 +4,12 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "../util/IOHandler.h"
+#include "../Util/IOHandler.h"
 #include <../Server/HttpServer.h>
 #include <../Messages/Request.h>
 #include <time.h>
 #include <stdio.h>
-#include "../Messages/Parser.h"
+#include "../Util/Parser.h"
 
 namespace utf = boost::unit_test;
 
