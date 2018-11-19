@@ -65,14 +65,17 @@ static void* runThread(void *p){
 
 int main(int argc, char *argv[])
 {
-    pthread_t ts[10];
-    for(int i = 0 ; i < 10 ; i++){
+
+    int sz = 100;
+    pthread_t ts[sz];
+    for(int i = 0 ; i < sz ; i++){
         pthread_create(&ts[i],NULL, runThread, NULL);
     }
     void *status;
-    for(int i = 0 ; i < 10 ; i++){
+    for(int i = 0 ; i < sz ; i++){
         pthread_join(ts[i], &status);
         free(status);
     }
+
     return 0; 
 }

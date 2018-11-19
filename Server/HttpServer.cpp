@@ -11,6 +11,7 @@ HttpServer::HttpServer(int workers, int backlog, unsigned int port, unsigned lon
     this->port = port;
     this->timeOut = timeOut;
     server_fd = 0;
+    pthread_mutex_init(&lock,NULL);
 }
 
 HttpServer::~HttpServer() {
@@ -23,7 +24,10 @@ bool HttpServer::haveWorkers() {
         HttpHandler* curr = *it;
         time(&currTime) ;
         if(curr->isFinished() || difftime(currTime, curr->getCreateTime()) > timeOut){
+            // Critical section
+            pthread_mutex_lock(&lock);
             it = workers.erase(it);
+            pthread_mutex_unlock(&lock);
             delete curr ;
         }else{
             it++;
@@ -78,12 +82,13 @@ int HttpServer::initServer() {
 void* HttpServer::workerChecker(void *runner) {
     while (true){
         ((HttpServer*)runner)->haveWorkers();
-        usleep(1000);
+        usleep(10);
     }
 }
 
 void HttpServer::run() {
     while (1){
+        if(workers.size() < maxWorkers){
             int new_socket;
             struct sockaddr_in address;
             socklen_t addrlen = sizeof(address);
@@ -96,10 +101,14 @@ void HttpServer::run() {
             HttpHandler* handler = new HttpHandler(new_socket, SERVER_NAME);
 
             if (handler->start()){
+                // Critical section
+                pthread_mutex_lock(&lock);
                 cout << "Connection opened with server using fd = " <<  new_socket << endl;
                 workers.emplace_back(handler);
-            }else{
+                pthread_mutex_unlock(&lock);
+            }else {
                 delete handler;
             }
         }
+    }
 }

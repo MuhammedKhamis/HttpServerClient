@@ -5,9 +5,9 @@
 #include <bits/stdc++.h>
 #include "HttpServer.h"
 
-#define workers 20
-#define backlog 50
-#define timeOut 100
+#define workers 200
+#define backlog 100
+#define timeOut 20
 
 using namespace std;
 

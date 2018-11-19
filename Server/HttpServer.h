@@ -35,6 +35,7 @@ private:
     bool haveWorkers();
     static void * workerChecker(void *runner);
     pthread_t workerCheckerId = 0;
+    pthread_mutex_t lock;
 
 };
 
