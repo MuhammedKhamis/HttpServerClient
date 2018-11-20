@@ -6,25 +6,25 @@
 
 
 HttpHandler::HttpHandler(int socket_fd, string serverName) {
-    handler_id = 0;
     finished = false;
     this->socket_fd = socket_fd;
     this->serverName = serverName;
 }
 
 HttpHandler::~HttpHandler() {
-    cout << "Thread that use fd =  " << getSocketfd() << " is Closed" << endl;
     close();
+    cout << "Thread that use fd =  " << socket_fd << " is Closed" << endl;
 }
 
 int HttpHandler::getSocketfd() {
     return socket_fd;
 }
 
-void HttpHandler::run() {
-    //TODO
+pthread_t HttpHandler::getThreadId() {
+    return handler_id;
+}
 
-    int state  = 1 ;
+void HttpHandler::run() {
     do {
 
       vector<char> data (MAX_REQ_SZ , 0);
@@ -50,23 +50,23 @@ void HttpHandler::run() {
       // re-initialize the time.
       time(&startTime);
       if(request->getKey_val("Connection") == "close"){
-        state = 1;
+        finished = true;
       }
 
       if(request->getMethod() == GET){
-        handleGet(*request);
+        handleGet(request);
       } else if(request->getMethod() == POST){
-        handlePost(*request);
+        handlePost(request);
       }
       delete request;
-    }while (!state);
 
+    }while (!finished);
     // Error
 }
 
-void HttpHandler::handleGet(Request request) {
+void HttpHandler::handleGet(Request *request) {
 
-     string fileName = request.getFileName();
+     string fileName = request->getFileName();
      int sz = IOHandler::getFileSize(Server , fileName);
     Response *res = NULL;
     if(sz == -1){
@@ -92,15 +92,12 @@ void HttpHandler::handleGet(Request request) {
      delete res;
      }
 
-//TODO test2
-void HttpHandler::handlePost(Request request) {
+void HttpHandler::handlePost(Request *request) {
 
-
-    //TODO
-    string body = request.getBody();
+    string body = request->getBody();
     char* data = (char*)body.c_str();
 
-    string fileName = request.getFileName();
+    string fileName = request->getFileName();
 
 
     int status = IOHandler::writeData( Server , fileName, data, body.size());
@@ -120,6 +117,10 @@ bool HttpHandler::start() {
     return (pthread_create(&handler_id, NULL, startHelper, (void* )this) == 0);
 }
 
+void HttpHandler::finish() {
+    finished = true;
+}
+
 bool HttpHandler::isFinished() {
     return this->finished;
 }
@@ -128,13 +129,20 @@ time_t HttpHandler::getCreateTime() {
     return this->startTime;
 }
 
+void HttpHandler::runAndClose() {
+    pthread_cleanup_push(closeHelper, (void *)this);
+    run();
+    pthread_cleanup_pop(1);
+}
+
 void* HttpHandler::startHelper(void *runner) {
-    ((HttpHandler*)runner)->run();
-    ((HttpHandler*)runner)->close();
-    return NULL;
+    ((HttpHandler*)runner)->runAndClose();
+}
+
+void HttpHandler::closeHelper(void *runner) {
+    delete ((HttpHandler*)runner);
 }
 
 void HttpHandler::close() {
     PortHandler::closeConnection(socket_fd);
-    finished = true;
 }

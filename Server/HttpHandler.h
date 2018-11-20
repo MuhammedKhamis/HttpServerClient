@@ -29,7 +29,9 @@ public:
     bool isFinished();
     time_t getCreateTime();
     bool start();
+    void finish();
     int getSocketfd();
+    pthread_t getThreadId();
 
 private:
 
@@ -43,9 +45,11 @@ private:
     // methods
     void run();
     void close();
+    void runAndClose();
     static void * startHelper(void * runner);
-    void handleGet(Request request);
-    void handlePost(Request request);
+    static void closeHelper(void* runner);
+    void handleGet(Request *request);
+    void handlePost(Request *request);
 };
 
 #endif //HTTPSERVERCLIENT_HTTPHANDLER_H

@@ -53,8 +53,11 @@ HttpClient::sendGETRequest(Request requestObj)
 
     // receive reponse
     vector<char> buffer(MAX_RES_SZ, 0);
-    int valread;
-    valread = PortHandler::read(socketfd , &buffer[0], MAX_RES_SZ);
+    int valread = PortHandler::read(socketfd , &buffer[0], MAX_RES_SZ);
+
+    if(valread < 0){
+        return -1;
+    }
 
     r = string(buffer.begin(), buffer.begin() + ((valread < MAX_RES_SZ) ? valread : MAX_RES_SZ));
 
@@ -64,8 +67,9 @@ HttpClient::sendGETRequest(Request requestObj)
     const char *data = 0;
 
     //connection is dead
-    if(responseObj == NULL)
+    if(responseObj == NULL){
         return -1 ;
+    }
 
     if(responseObj->getStatus() == 200) // file found
     {
@@ -98,14 +102,20 @@ HttpClient::sendPOSTRequest(Request requestObj)
     string r = requestObj.toString();
 
     // send POST request;
-    PortHandler::write(socketfd , (char* )r.c_str() , r.size());
-    printf("message sent\n");
+    status = PortHandler::write(socketfd , (char* )r.c_str() , r.size());
+
+    if(status < 0){
+        return -1;
+    }
 
     // receive reponse
     vector<char> retBuffer(MAX_RES_SZ, 0);
 
-    int valread;
-    valread = PortHandler::read( socketfd , &retBuffer[0], MAX_RES_SZ);
+    int valread = PortHandler::read( socketfd , &retBuffer[0], MAX_RES_SZ);
+
+    if(valread < 0){
+        return -1;
+    }
 
     r = string(retBuffer.begin(),retBuffer.begin() + ((valread < MAX_RES_SZ) ? valread : MAX_RES_SZ) );
 

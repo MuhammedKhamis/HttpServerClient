@@ -21,8 +21,9 @@ static void* runThread(void *p){
     int port = 8000;
     char *serverAddress = "127.0.0.1";
 
-    int initFlag = client.connectionInit(serverAddress, port);
-    while(initFlag == 0)
+    int counter = 0;
+     counter += (client.connectionInit(serverAddress, port) <= 0);
+    while(counter < 5)
     {
         // scan user command
         string userCommand = "GET read.txt 0.0.0.0";
@@ -41,24 +42,11 @@ static void* runThread(void *p){
             status = client.sendPOSTRequest(requestObj);
         }
         if(status == -1){
-            bool ans = -1;
-            do{
-                char in;
-                cout << "Connection Closed now, do you want to reopen it ? [Y/n]";
-                cin >> in;
-                if(in == 'Y' || in == 'y'){
-                    ans = 1;
-                }else if(in ==  'N' || in == 'n'){
-                    ans = 0;
-                }
-            }while(ans == -1);
-            if(ans == 0){
-                initFlag = 1;
-            }else {
-                initFlag = client.connectionInit(serverAddress, port);
-            }
+            cout << "Connecting again...\n";
+            counter += (client.connectionInit(serverAddress, port) <= 0);
+        } else{
+            counter = 5;
         }
-        initFlag = 1;
     }
     return NULL;
 }
@@ -66,10 +54,11 @@ static void* runThread(void *p){
 int main(int argc, char *argv[])
 {
 
-    int sz = 100;
+    int sz = 50;
     pthread_t ts[sz];
     for(int i = 0 ; i < sz ; i++){
         pthread_create(&ts[i],NULL, runThread, NULL);
+        usleep(100);
     }
     void *status;
     for(int i = 0 ; i < sz ; i++){

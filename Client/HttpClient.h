@@ -19,7 +19,7 @@ using namespace std ;
 #include <sys/types.h>
 
 
-#define MAX_RES_SZ 10240
+#define MAX_RES_SZ 102400
 
 using namespace std;
 /* Class Definition */
@@ -37,7 +37,7 @@ class HttpClient {
   	~HttpClient() = default;
 
     // methods
-    int connectionInit(char *server_address, int port_no = 80);
+    int connectionInit(char *server_address, int port_no = 8000);
     int sendGETRequest(Request requestObj);
     int sendPOSTRequest(Request requestObj);
 };

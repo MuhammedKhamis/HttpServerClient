@@ -14,6 +14,8 @@
 #include <sys/types.h>
 #include <time.h>
 #include <unistd.h>
+#include <pthread.h>
+
 using namespace std;
 
 enum SERVER_CLIENT { Server , Client };
@@ -21,8 +23,6 @@ enum SERVER_CLIENT { Server , Client };
 class IOHandler{
 
 public:
-    IOHandler();
-
     static int writeData( SERVER_CLIENT type , string fileName, char* data ,int len);
     static int readData( SERVER_CLIENT type , string fileName, char* data , int len);
     static string getLastModified(SERVER_CLIENT type ,string fileName);
@@ -30,9 +30,11 @@ public:
     static string getContentType(SERVER_CLIENT type , string fileName);
     static string convertCurrentTimeToString(time_t t);
     static bool fileExist(SERVER_CLIENT type , string fileName);
+    static void initFileLock();
 
  private:
     static string getWorkingDir();
+    static pthread_mutex_t fileLock;
     static string getStorageDir(SERVER_CLIENT type);
 
 };

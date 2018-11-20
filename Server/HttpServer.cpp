@@ -5,35 +5,19 @@
 #include <thread_db.h>
 #include "HttpServer.h"
 
-HttpServer::HttpServer(int workers, int backlog, unsigned int port, unsigned long long timeOut) {
+HttpServer::HttpServer(int workers, int backlog, unsigned int port) {
     this->maxBacklog = backlog;
     this->maxWorkers = workers;
     this->port = port;
-    this->timeOut = timeOut;
     server_fd = 0;
-    pthread_mutex_init(&lock,NULL);
+    pthread_mutex_init(&lock, NULL);
+    pthread_cond_init(&toProduce, NULL);
+    pthread_cond_init(&toConsume, NULL);
+    IOHandler::initFileLock();
 }
 
 HttpServer::~HttpServer() {
 
-}
-
-bool HttpServer::haveWorkers() {
-    time_t currTime = 0;
-    for(auto it = this->workers.begin() ; it != this->workers.end();){
-        HttpHandler* curr = *it;
-        time(&currTime) ;
-        if(curr->isFinished() || difftime(currTime, curr->getCreateTime()) > timeOut){
-            // Critical section
-            pthread_mutex_lock(&lock);
-            it = workers.erase(it);
-            pthread_mutex_unlock(&lock);
-            delete curr ;
-        }else{
-            it++;
-        }
-    }
-    return workers.size() < maxWorkers;
 }
 
 int HttpServer::initServer() {
@@ -75,21 +59,52 @@ int HttpServer::initServer() {
         perror("listen");
         exit(EXIT_FAILURE);
     }
+
     cout << "Server side started\n";
     return pthread_create(&workerCheckerId, NULL, workerChecker, (void* )this);
+}
+
+void HttpServer::haveWorkers() {
+
+    pthread_mutex_lock(&lock);
+    while(workers.empty()){
+        pthread_cond_wait(&toConsume, &lock);
+    }
+
+    queue<HttpHandler*> nextQueue;
+    time_t currTime = 0;
+    unsigned long long timeOut = (2 * maxWorkers) / (workers.size() + 1);
+    while(!workers.empty()){
+
+        HttpHandler* curr = workers.front();
+        workers.pop();
+
+        time(&currTime);
+        if(difftime(currTime, curr->getCreateTime()) > timeOut){
+            curr->finish();
+        }else{
+            nextQueue.push(curr);
+        }
+    }
+    workers = nextQueue;
+
+    pthread_cond_signal(&toProduce);
+    pthread_mutex_unlock(&lock);
 }
 
 void* HttpServer::workerChecker(void *runner) {
     while (true){
         ((HttpServer*)runner)->haveWorkers();
-        usleep(10);
+        usleep(1000);
     }
 }
 
+
 void HttpServer::run() {
+
     while (1){
-        if(workers.size() < maxWorkers){
-            int new_socket;
+
+        int new_socket;
             struct sockaddr_in address;
             socklen_t addrlen = sizeof(address);
             if ((new_socket = accept(server_fd, (struct sockaddr *)&address, &addrlen))<0)
@@ -98,17 +113,23 @@ void HttpServer::run() {
                 continue;
             }
 
-            HttpHandler* handler = new HttpHandler(new_socket, SERVER_NAME);
+            pthread_mutex_lock(&lock);
+            while(workers.size() == maxWorkers){
+                pthread_cond_wait(&toProduce, &lock);
+            }
 
+            HttpHandler* handler = new HttpHandler(new_socket, SERVER_NAME);
             if (handler->start()){
-                // Critical section
-                pthread_mutex_lock(&lock);
                 cout << "Connection opened with server using fd = " <<  new_socket << endl;
-                workers.emplace_back(handler);
-                pthread_mutex_unlock(&lock);
+                workers.push(handler);
             }else {
                 delete handler;
             }
-        }
+
+            pthread_cond_signal(&toConsume);
+            pthread_mutex_unlock(&lock);
+
+        usleep(1000);
+
     }
 }

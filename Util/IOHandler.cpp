@@ -4,8 +4,13 @@
 
 #include "IOHandler.h"
 
-IOHandler::IOHandler() {}
 
+
+pthread_mutex_t IOHandler::fileLock;
+
+void IOHandler::initFileLock() {
+    pthread_mutex_init(&fileLock, NULL);
+}
 
 bool IOHandler::fileExist(SERVER_CLIENT type , string fileName) {
     fileName = getStorageDir(type) + fileName;
@@ -82,7 +87,11 @@ int IOHandler::readData(SERVER_CLIENT type , string fileName, char *data, int le
     if(fileExist(type ,fileName)){
         fileName = getStorageDir(type) + fileName;
         FILE* fp = fopen(fileName.c_str(),"rb");
+
+        pthread_mutex_lock(&fileLock);
         int read = fread(data, 1, len, fp);
+        pthread_mutex_unlock(&fileLock);
+
         fclose(fp);
         return read;
     }
@@ -92,7 +101,11 @@ int IOHandler::readData(SERVER_CLIENT type , string fileName, char *data, int le
 int IOHandler::writeData(SERVER_CLIENT type , string fileName, char *data, int len) {
         fileName = getStorageDir(type) + fileName;
         FILE* fp = fopen(fileName.c_str(),"wb+");
+
+        pthread_mutex_lock(&fileLock);
         int written = fwrite(data, 1, len, fp);
+        pthread_mutex_unlock(&fileLock);
+
         fclose(fp);
         return written;
 }
