@@ -59,16 +59,18 @@ HttpClient::sendGETRequests(vector<Request> requests)
 
     int file_counter = 0 ;
     timeval t;
-    t.tv_sec = timeOut;
     while(true) {
       //clear the socket set
       FD_ZERO(&readfds);
 
       FD_SET(socketfd, &readfds);
 
-      int activity = select( socketfd + 1 , &readfds , NULL , NULL , &t);
+        t.tv_sec = timeOut;
+        t.tv_usec = 0;
 
-      if ((activity < 0) && (errno!=EINTR))
+        int activity = select(socketfd + 1 , &readfds , NULL , NULL , &t);
+
+      if ((activity <= 0) && (errno!=EINTR))
       {
         break ;
       }

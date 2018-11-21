@@ -8,6 +8,7 @@
 
 pthread_mutex_t IOHandler::fileLock;
 
+
 void IOHandler::initFileLock() {
     pthread_mutex_init(&fileLock, NULL);
 }
@@ -86,9 +87,9 @@ string IOHandler::getContentType(SERVER_CLIENT type ,string fileName) {
 int IOHandler::readData(SERVER_CLIENT type , string fileName, char *data, int len) {
     if(fileExist(type ,fileName)){
         fileName = getStorageDir(type) + fileName;
-        FILE* fp = fopen(fileName.c_str(),"rb");
 
         pthread_mutex_lock(&fileLock);
+        FILE* fp = fopen(fileName.c_str(),"rb");
         int read = fread(data, 1, len, fp);
         pthread_mutex_unlock(&fileLock);
 
@@ -100,9 +101,9 @@ int IOHandler::readData(SERVER_CLIENT type , string fileName, char *data, int le
 
 int IOHandler::writeData(SERVER_CLIENT type , string fileName, char *data, int len) {
         fileName = getStorageDir(type) + fileName;
-        FILE* fp = fopen(fileName.c_str(),"wb+");
 
         pthread_mutex_lock(&fileLock);
+        FILE* fp = fopen(fileName.c_str(),"wb+");
         int written = fwrite(data, 1, len, fp);
         pthread_mutex_unlock(&fileLock);
 

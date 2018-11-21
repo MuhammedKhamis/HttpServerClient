@@ -29,44 +29,43 @@ pthread_t HttpHandler::getThreadId() {
 void HttpHandler::run() {
 
     vector<Request*> requests ;
+
+    struct timeval t;
     fd_set readfds ;
+    while (true){
 
-    timeval t;
-    t.tv_sec = timeOut;
-  do {
+        FD_ZERO(&readfds);
 
-    //clear the socket set
-    FD_ZERO(&readfds);
+        FD_SET(socket_fd, &readfds);
 
-    FD_SET(socket_fd, &readfds);
+        t.tv_sec = timeOut;
+        t.tv_usec = 0;
 
-      int activity = select( socket_fd + 1 , &readfds , NULL , NULL , &t);
+        int activity = select(socket_fd + 1 , &readfds , NULL , NULL , &t);
 
-      if ((activity < 0) && (errno!=EINTR))
+      if ((activity <= 0) && (errno!=EINTR))
       {
         break ;
       }
 
+       vector<char> data(MAX_REQ_SZ, 0) ;
+          int read = PortHandler::read(socket_fd, data, MAX_REQ_SZ);
 
-      vector<char> data ;
-      int read = PortHandler::read(socket_fd, data, MAX_REQ_SZ);
+          if(read <= 0){
+            //Error
+            continue;
+          }
 
-      if(read <= 0){
-        //Error
-        continue;
-      }
+          string req = string(data.begin(), data.end());
 
-      string req = string(data.begin(), data.begin());
+          Request* request = Parser::createRequest(req) ;
 
-      Request* request = Parser::createRequest(req) ;
-
-      if(request == NULL){
-        perror("failed to create request is corrupter or in complete\n") ;
-          continue;
-      }
-      requests.push_back(request) ;
-
-    }while (true);
+          if(request == NULL){
+            perror("failed to create request is corrupter or in complete\n") ;
+              continue;
+          }
+          requests.push_back(request) ;
+    }
 
     for (Request* request : requests){
       if(request->getMethod() == GET){

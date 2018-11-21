@@ -20,7 +20,7 @@
 
 using namespace std;
 
-#define timeOut 2
+#define timeOut 4
 
 #define MAX_REQ_SZ 102400
 

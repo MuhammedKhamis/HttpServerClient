@@ -19,6 +19,8 @@ class PortHandler{
 public:
     static int write(int socked_fd, char* buffer, int sz);
     static int read(int socked_fd, vector<char>& total , int sz);
+    static int writeExact(int socked_fd, char* buffer, int sz);
+    static int readExact(int socked_fd, vector<char>& total , int sz);
     static int closeConnection(int socked_fd);
 
 private:
