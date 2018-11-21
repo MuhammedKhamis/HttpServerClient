@@ -2,6 +2,7 @@
 // Created by muhammed on 02/11/18.
 //
 
+#include <semaphore.h>
 #include "HttpHandler.h"
 
 
@@ -12,6 +13,7 @@ HttpHandler::HttpHandler(int socket_fd, string serverName) {
 }
 
 HttpHandler::~HttpHandler() {
+    sem_post(sema);
     close();
     cout << "Thread that use fd =  " << socket_fd << " is Closed" << endl;
 }
@@ -25,21 +27,36 @@ pthread_t HttpHandler::getThreadId() {
 }
 
 void HttpHandler::run() {
-    do {
 
-      vector<char> data (MAX_REQ_SZ , 0);
-      int read = PortHandler::read(socket_fd, &data[0], MAX_REQ_SZ);
+    vector<Request*> requests ;
+    fd_set readfds ;
 
-      if(read == -1){
+    timeval t;
+    t.tv_sec = timeOut;
+  do {
+
+    //clear the socket set
+    FD_ZERO(&readfds);
+
+    FD_SET(socket_fd, &readfds);
+
+      int activity = select( socket_fd + 1 , &readfds , NULL , NULL , &t);
+
+      if ((activity < 0) && (errno!=EINTR))
+      {
+        break ;
+      }
+
+
+      vector<char> data ;
+      int read = PortHandler::read(socket_fd, data, MAX_REQ_SZ);
+
+      if(read <= 0){
         //Error
-        return;
-      }
-      if(read == 0){
-        // nothing to read.
-        return;
+        continue;
       }
 
-      string req = string(data.begin(), data.begin() + ((read < MAX_REQ_SZ) ? read : MAX_REQ_SZ));
+      string req = string(data.begin(), data.begin());
 
       Request* request = Parser::createRequest(req) ;
 
@@ -47,21 +64,21 @@ void HttpHandler::run() {
         perror("failed to create request is corrupter or in complete\n") ;
           continue;
       }
-      // re-initialize the time.
-      time(&startTime);
-      if(request->getKey_val("Connection") == "close"){
-        finished = true;
-      }
+      requests.push_back(request) ;
 
+    }while (true);
+
+    for (Request* request : requests){
       if(request->getMethod() == GET){
         handleGet(request);
       } else if(request->getMethod() == POST){
         handlePost(request);
       }
       delete request;
+    }
 
-    }while (!finished);
-    // Error
+
+  // Error
 }
 
 void HttpHandler::handleGet(Request *request) {
@@ -112,8 +129,9 @@ void HttpHandler::handlePost(Request *request) {
     delete res;
 }
 
-bool HttpHandler::start() {
+bool HttpHandler::start(sem_t* sema) {
     time(&startTime);
+    this->sema = sema;
     return (pthread_create(&handler_id, NULL, startHelper, (void* )this) == 0);
 }
 

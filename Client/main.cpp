@@ -23,24 +23,22 @@ static void* runThread(void *p){
 
     int counter = 0;
      counter += (client.connectionInit(serverAddress, port) <= 0);
-    while(counter < 5)
+    while(counter < 2)
     {
         // scan user command
-        string userCommand = "GET read.txt 0.0.0.0";
+        vector<string> userCommand = {"GET read.txt 0.0.0.0", "GET smile.jpeg 0.0.0.0"};
+
         //printf("Enter Command: ");
         //getline(cin,userCommand);
-
-        // parse user command
-        Request requestObj = Parser::parseInputCommand(userCommand);
-
+        vector<Request> reqs;
+        for(string command : userCommand) {
+          // parse user command
+          Request requestObj = Parser::parseInputCommand(command);
+          reqs.push_back(requestObj);
+        }
         int status;
         // GET or POST
-        if(requestObj.getMethod() == GET)
-        {
-            status = client.sendGETRequest(requestObj);
-        }else{
-            status = client.sendPOSTRequest(requestObj);
-        }
+        status = client.sendGETRequests(reqs);
         if(status == -1){
             cout << "Connecting again...\n";
             counter += (client.connectionInit(serverAddress, port) <= 0);
@@ -54,7 +52,7 @@ static void* runThread(void *p){
 int main(int argc, char *argv[])
 {
 
-    int sz = 50;
+    int sz = 1;
     pthread_t ts[sz];
     for(int i = 0 ; i < sz ; i++){
         pthread_create(&ts[i],NULL, runThread, NULL);

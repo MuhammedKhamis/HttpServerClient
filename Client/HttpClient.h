@@ -38,7 +38,7 @@ class HttpClient {
 
     // methods
     int connectionInit(char *server_address, int port_no = 8000);
-    int sendGETRequest(Request requestObj);
+    int sendGETRequests(vector<Request> requestObj);
     int sendPOSTRequest(Request requestObj);
 };
 

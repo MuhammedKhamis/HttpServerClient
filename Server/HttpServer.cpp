@@ -3,6 +3,7 @@
 //
 
 #include <thread_db.h>
+#include <semaphore.h>
 #include "HttpServer.h"
 
 HttpServer::HttpServer(int workers, int backlog, unsigned int port) {
@@ -10,9 +11,8 @@ HttpServer::HttpServer(int workers, int backlog, unsigned int port) {
     this->maxWorkers = workers;
     this->port = port;
     server_fd = 0;
-    pthread_mutex_init(&lock, NULL);
-    pthread_cond_init(&toProduce, NULL);
-    pthread_cond_init(&toConsume, NULL);
+    currentWorkers = 0;
+    sem_init(&sema, 0, maxWorkers);
     IOHandler::initFileLock();
 }
 
@@ -61,9 +61,9 @@ int HttpServer::initServer() {
     }
 
     cout << "Server side started\n";
-    return pthread_create(&workerCheckerId, NULL, workerChecker, (void* )this);
+    return 0;
 }
-
+/*
 void HttpServer::haveWorkers() {
 
     pthread_mutex_lock(&lock);
@@ -91,7 +91,8 @@ void HttpServer::haveWorkers() {
     pthread_cond_signal(&toProduce);
     pthread_mutex_unlock(&lock);
 }
-
+*/
+/*
 void* HttpServer::workerChecker(void *runner) {
     while (true){
         ((HttpServer*)runner)->haveWorkers();
@@ -99,37 +100,27 @@ void* HttpServer::workerChecker(void *runner) {
     }
 }
 
-
+*/
 void HttpServer::run() {
 
     while (1){
 
-        int new_socket;
+            int new_socket;
             struct sockaddr_in address;
             socklen_t addrlen = sizeof(address);
-            if ((new_socket = accept(server_fd, (struct sockaddr *)&address, &addrlen))<0)
-            {
+            if ((new_socket = accept(server_fd, (struct sockaddr *) &address, &addrlen)) < 0) {
                 perror("accept");
                 continue;
             }
-
-            pthread_mutex_lock(&lock);
-            while(workers.size() == maxWorkers){
-                pthread_cond_wait(&toProduce, &lock);
-            }
-
-            HttpHandler* handler = new HttpHandler(new_socket, SERVER_NAME);
-            if (handler->start()){
-                cout << "Connection opened with server using fd = " <<  new_socket << endl;
+            sem_wait(&sema);
+            HttpHandler *handler = new HttpHandler(new_socket, SERVER_NAME);
+            if (handler->start(&sema)) {
+                cout << "Connection opened with server using fd = " << new_socket << endl;
                 workers.push(handler);
-            }else {
+            } else {
                 delete handler;
             }
+            usleep(1000);
+        }
 
-            pthread_cond_signal(&toConsume);
-            pthread_mutex_unlock(&lock);
-
-        usleep(1000);
-
-    }
 }

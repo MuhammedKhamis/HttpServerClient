@@ -16,8 +16,11 @@
 #include <Parser.h>
 #include <Response.h>
 #include <string.h>
+#include <semaphore.h>
 
 using namespace std;
+
+#define timeOut 2
 
 #define MAX_REQ_SZ 102400
 
@@ -28,7 +31,7 @@ public:
     ~HttpHandler();
     bool isFinished();
     time_t getCreateTime();
-    bool start();
+    bool start(sem_t* sema);
     void finish();
     int getSocketfd();
     pthread_t getThreadId();
@@ -41,6 +44,7 @@ private:
     int socket_fd;
     pthread_t handler_id;
     string serverName;
+    sem_t* sema;
 
     // methods
     void run();

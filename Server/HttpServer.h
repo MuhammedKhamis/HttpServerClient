@@ -14,6 +14,7 @@
 #include <HttpHandler.h>
 #include <IOHandler.h>
 #include <fcntl.h>
+#include <semaphore.h>
 
 using namespace std;
 
@@ -33,12 +34,8 @@ private:
     int maxBacklog;
     int server_fd;
     unsigned int port;
-    void haveWorkers();
-    static void * workerChecker(void *runner);
-    pthread_t workerCheckerId = 0;
-    pthread_mutex_t lock;
-    pthread_cond_t toProduce;
-    pthread_cond_t toConsume;
+    int currentWorkers;
+    sem_t sema;
 
 };
 
