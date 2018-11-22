@@ -56,6 +56,14 @@ vector<Request*> Parser::createRequests(string data){
         reqs.push_back(createRequest(s));
         i++;
     }
+    // remove bad requests
+    for(auto it = reqs.begin() ; it!= reqs.end();){
+        if( *it == NULL){
+            it = reqs.erase(it);
+        }else{
+            it++;
+        }
+    }
     return reqs;
 }
 

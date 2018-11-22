@@ -13,15 +13,13 @@
   <component name="ChangeListManager">
     <list default="true" id="ef7ce604-f648-450f-9720-aae2e404cca5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../Client/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/Files/smile.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/Files/smile.jpeg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Client/HttpClient.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/HttpClient.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/HttpClient.h" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/HttpClient.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Client/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/main.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HttpHandler.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/HttpHandler.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HttpHandler.h" beforeDir="false" afterPath="$PROJECT_DIR$/HttpHandler.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Util/Parser.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Util/Parser.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Util/Parser.h" beforeDir="false" afterPath="$PROJECT_DIR$/../Util/Parser.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Util/PortHandler.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Util/PortHandler.cpp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -95,7 +93,7 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="cpp" value="4528" />
+          <entry key="cpp" value="4719" />
           <entry key="h" value="520" />
           <entry key="mm" value="84" />
           <entry key="txt" value="264" />
@@ -104,7 +102,7 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CMakeLists.txt" value="261" />
-          <entry key="ObjectiveC" value="5132" />
+          <entry key="ObjectiveC" value="5323" />
           <entry key="PLAIN_TEXT" value="3" />
         </counts>
       </usages-collector>
@@ -115,14 +113,14 @@
           <entry key="cpp" value="63" />
           <entry key="h" value="37" />
           <entry key="jpeg" value="1" />
-          <entry key="out (disassembly)" value="18" />
+          <entry key="out (disassembly)" value="19" />
           <entry key="txt" value="11" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CMakeLists.txt" value="6" />
-          <entry key="Disassembly" value="18" />
+          <entry key="Disassembly" value="19" />
           <entry key="Image" value="1" />
           <entry key="ObjectiveC" value="100" />
           <entry key="PLAIN_TEXT" value="7" />
@@ -149,8 +147,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../Util/PortHandler.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="682">
-              <caret line="40" column="1" lean-forward="true" selection-start-line="40" selection-start-column="1" selection-end-line="40" selection-end-column="1" />
+            <state relative-caret-position="293">
+              <caret line="45" selection-start-line="45" selection-end-line="45" />
             </state>
           </provider>
         </entry>
@@ -160,15 +158,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="286">
               <caret line="13" selection-start-line="13" selection-end-line="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/HttpServer.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2420">
-              <caret line="110" column="43" selection-start-line="110" selection-start-column="43" selection-end-line="110" selection-end-column="43" />
             </state>
           </provider>
         </entry>
@@ -194,8 +183,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../Util/Parser.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="154">
-              <caret line="49" column="30" selection-start-line="49" selection-start-column="30" selection-end-line="49" selection-end-column="30" />
+            <state relative-caret-position="352">
+              <caret line="58" column="26" selection-start-line="58" selection-start-column="26" selection-end-line="58" selection-end-column="26" />
               <folding>
                 <element signature="e#44#62#0" expanded="true" />
               </folding>
@@ -203,11 +192,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/HttpHandler.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="66" column="33" selection-start-line="66" selection-start-column="33" selection-end-line="66" selection-end-column="33" />
+            <state relative-caret-position="154">
+              <caret line="37" column="42" selection-start-line="37" selection-start-column="42" selection-end-line="37" selection-end-column="42" />
               <folding>
                 <element signature="e#43#65#0" expanded="true" />
               </folding>
@@ -224,11 +213,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/HttpHandler.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="110">
-              <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+            <state relative-caret-position="220">
+              <caret line="25" column="25" selection-start-line="25" selection-start-column="25" selection-end-line="25" selection-end-column="25" />
               <folding>
                 <element signature="e#165#189#0" expanded="true" />
               </folding>
@@ -282,8 +271,8 @@
         <option value="$PROJECT_DIR$/../Util/PortHandler.h" />
         <option value="$PROJECT_DIR$/../Util/PortHandler.cpp" />
         <option value="$PROJECT_DIR$/../Util/Parser.cpp" />
-        <option value="$PROJECT_DIR$/HttpHandler.h" />
         <option value="$PROJECT_DIR$/HttpHandler.cpp" />
+        <option value="$PROJECT_DIR$/HttpHandler.h" />
       </list>
     </option>
   </component>
@@ -416,7 +405,7 @@
       <workItem from="1542828759881" duration="788000" />
       <workItem from="1542830321439" duration="29000" />
       <workItem from="1542830892997" duration="7965000" />
-      <workItem from="1542876352305" duration="7217000" />
+      <workItem from="1542876352305" duration="9765000" />
     </task>
     <servers />
   </component>
@@ -453,7 +442,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="113637000" />
+    <option name="totallyTimeSpent" value="116185000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -469,7 +458,7 @@
     <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.2957435" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.2957435" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="CMake" order="0" weight="0.3294979" />
       <window_info anchor="bottom" id="Terminal" order="1" weight="0.32845187" />
@@ -478,9 +467,9 @@
       <window_info anchor="bottom" id="Messages" order="4" weight="0.3368201" />
       <window_info anchor="bottom" id="Message" order="5" />
       <window_info anchor="bottom" id="Find" order="6" />
-      <window_info anchor="bottom" id="Run" order="7" sideWeight="0.4997236" weight="0.33577406" />
+      <window_info anchor="bottom" id="Run" order="7" sideWeight="0.4997236" visible="true" weight="0.33577406" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Debug" order="9" visible="true" weight="0.38598326" />
+      <window_info anchor="bottom" id="Debug" order="9" weight="0.38598326" />
       <window_info anchor="bottom" id="Cvs" order="10" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="11" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="12" weight="0.32960895" />
@@ -673,34 +662,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="18" column="22" selection-start-line="18" selection-start-column="22" selection-end-line="18" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../Util/Parser.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="418">
           <caret line="22" column="28" selection-start-line="22" selection-start-column="28" selection-end-line="22" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../Util/Parser.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="49" column="30" selection-start-line="49" selection-start-column="30" selection-end-line="49" selection-end-column="30" />
-          <folding>
-            <element signature="e#44#62#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../Util/PortHandler.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="682">
-          <caret line="40" column="1" lean-forward="true" selection-start-line="40" selection-start-column="1" selection-end-line="40" selection-end-column="1" />
         </state>
       </provider>
     </entry>
@@ -711,22 +676,46 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/HttpHandler.h">
+    <entry file="file://$PROJECT_DIR$/../Util/PortHandler.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+        <state relative-caret-position="293">
+          <caret line="45" selection-start-line="45" selection-end-line="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Util/Parser.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="58" column="26" selection-start-line="58" selection-start-column="26" selection-end-line="58" selection-end-column="26" />
           <folding>
-            <element signature="e#165#189#0" expanded="true" />
+            <element signature="e#44#62#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="18" column="22" selection-start-line="18" selection-start-column="22" selection-end-line="18" selection-end-column="22" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/HttpHandler.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="66" column="33" selection-start-line="66" selection-start-column="33" selection-end-line="66" selection-end-column="33" />
+        <state relative-caret-position="154">
+          <caret line="37" column="42" selection-start-line="37" selection-start-column="42" selection-end-line="37" selection-end-column="42" />
           <folding>
             <element signature="e#43#65#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HttpHandler.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="25" column="25" selection-start-line="25" selection-start-column="25" selection-end-line="25" selection-end-column="25" />
+          <folding>
+            <element signature="e#165#189#0" expanded="true" />
           </folding>
         </state>
       </provider>

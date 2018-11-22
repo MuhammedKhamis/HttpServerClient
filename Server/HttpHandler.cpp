@@ -35,40 +35,39 @@ void HttpHandler::run() {
     pollFd.fd = socket_fd;
     pollFd.events = POLLIN;
 
-    int timeInt = 1000 * 10;
+    int timeInt = 200; // 200 milli second
+    string reqs;
 
-    while (true){
+    while (true) {
 
-        int activity = poll(&pollFd, 1 , timeInt);
+        int activity = poll(&pollFd, 1, timeInt);
 
-        if ((activity <= 0) && (errno!=EINTR))
-        {
-             break ;
+        if ((activity <= 0) && (errno != EINTR)) {
+            break;
         }
 
-       vector<char> data(MAX_REQ_SZ, 0) ;
+        vector<char> data(MAX_REQ_SZ, 0);
         int read = PortHandler::read(socket_fd, data, MAX_REQ_SZ);
-        if(read <= 0){
+        if (read <= 0) {
             //Error
-            continue;
+            break;
         }
+         reqs += string(data.begin(), data.begin() + ((read < MAX_REQ_SZ) ? read : MAX_REQ_SZ));
+    }
 
-        string req = string(data.begin(), data.begin() + ((read < MAX_REQ_SZ) ? read : MAX_REQ_SZ));
+    allRequests = Parser::createRequests(reqs) ;
 
-        vector<Request*> requests = Parser::createRequests(req) ;
-        if(requests.empty()){
-            perror("failed to create request is corrupter or in complete\n") ;
-            continue;
-          }
-          allRequests.insert(allRequests.end(), requests.begin(), requests.end()) ;
+    if(allRequests.empty()){
+        perror("failed to create request is corrupter or in complete\n") ;
     }
 
     for (Request* request : allRequests){
-      if(request->getMethod() == GET){
-        handleGet(request);
-      } else if(request->getMethod() == POST){
-        handlePost(request);
-      }
+        if(request->getMethod() == GET){
+            handleGet(request);
+        }
+        else if(request->getMethod() == POST){
+            handlePost(request);
+        }
       delete request;
     }
 

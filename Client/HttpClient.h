@@ -19,7 +19,7 @@ using namespace std ;
 #include <sys/types.h>
 
 
-#define MAX_RES_SZ 102400
+#define MAX_RES_SZ 512000
 
 using namespace std;
 /* Class Definition */

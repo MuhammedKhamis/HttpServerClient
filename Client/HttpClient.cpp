@@ -62,10 +62,10 @@ HttpClient::sendGETRequests(vector<Request> requests)
     pollFd.events = POLLIN;
 
 
-    int file_counter = 0 ;
-    while(true) {
+    int file_counter = requests.size() ;
+    while(file_counter--) {
 
-        int activity = poll(&pollFd, 1, timeOut);
+        int activity = poll(&pollFd, 1, 10 * 1000 );
 
       if ((activity <= 0) && (errno!=EINTR))
       {
@@ -103,7 +103,6 @@ HttpClient::sendGETRequests(vector<Request> requests)
       cout << responseObj->toString() << endl;
       delete responseObj;
 
-      file_counter++ ;
     }
 
     return 0;

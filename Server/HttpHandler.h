@@ -23,7 +23,7 @@ using namespace std;
 
 #define timeOut 4
 
-#define MAX_REQ_SZ 102400
+#define MAX_REQ_SZ 512000
 
 class HttpHandler{
 
