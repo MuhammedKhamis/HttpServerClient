@@ -20,6 +20,7 @@ class Parser {
 
   public :
     static vector<string> tokenize(string s , string delimiter) ;
+    static vector<Request*> createRequests(string data) ;
     static Request* createRequest(string data) ;
     static Response* createResponse(string data);
     static Request parseInputCommand(string command);

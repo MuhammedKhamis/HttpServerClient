@@ -10,54 +10,6 @@
 
 Parser::Parser() {}
 
-vector<string> Parser::tokenize(string s , string delimiter) {
-  vector<string> tokens ;
-
-  size_t pos = 0;
-  std::string token;
-  while ((pos = s.find(delimiter)) != std::string::npos) {
-    token = s.substr(0, pos);
-    tokens.push_back(token);
-    s.erase(0, pos + delimiter.length());
-  }
-  tokens.push_back(s) ;
-  return tokens ;
-}
-
-Response* Parser::createResponse(string data) {
-
-  Response* response = new Response();
-  vector<string> tokens = tokenize(data , "\r\n");
-
-  int err = parse_first_line(tokens[0], response);
-  if(err != 0 )
-    return NULL;
-
-   err = parseString(tokens, response);
-   if(err){
-     return NULL;
-   }
-    return response;
-}
-
-int Parser::parseString(vector<string> tokens, HttpMessage* message) {
-
-  int err;
-
-  int i = 1;
-  for(; i < tokens.size() && tokens[i] != "" ; i++) {
-    err = parse_key_val(tokens[i] , message);
-    if(err != 0)
-      return err ;
-  }
-  string requestBody;
-  while (i + 1 < tokens.size()){
-    i++;
-    requestBody += tokens[i];
-  }
-  message->setBody(requestBody);
-  return 0;
-}
 
 Request Parser::parseInputCommand(string command) {
     vector<string> tokens = tokenize(command, " ");
@@ -88,6 +40,39 @@ Request* Parser::createRequest(string data) {
   }
   return NULL;
 
+}
+
+vector<Request*> Parser::createRequests(string data){
+    vector<string> tokens = tokenize(data , "\r\n");
+    vector<Request*> reqs;
+
+    int i = 0;
+    while(i < tokens.size() - 1){
+        string s;
+        while (tokens[i] != ""){
+            s += (tokens[i] + "\r\n");
+            i++;
+        }
+        reqs.push_back(createRequest(s));
+        i++;
+    }
+    return reqs;
+}
+
+Response* Parser::createResponse(string data) {
+
+    Response* response = new Response();
+    vector<string> tokens = tokenize(data , "\r\n");
+
+    int err = parse_first_line(tokens[0], response);
+    if(err != 0 )
+        return NULL;
+
+    err = parseString(tokens, response);
+    if(err){
+        return NULL;
+    }
+    return response;
 }
 
 int Parser::parse_first_line(string f_line, Response *response) {
@@ -127,6 +112,38 @@ int Parser::parse_first_line(string f_line , Request* request) {
   return 0 ;
 }
 
+vector<string> Parser::tokenize(string s , string delimiter) {
+    vector<string> tokens ;
+
+    size_t pos = 0;
+    std::string token;
+    while ((pos = s.find(delimiter)) != std::string::npos) {
+        token = s.substr(0, pos);
+        tokens.push_back(token);
+        s.erase(0, pos + delimiter.length());
+    }
+    tokens.push_back(s) ;
+    return tokens ;
+}
+
+int Parser::parseString(vector<string> tokens, HttpMessage* message) {
+
+    int err;
+
+    int i = 1;
+    for(; i < tokens.size() && tokens[i] != "" ; i++) {
+        err = parse_key_val(tokens[i] , message);
+        if(err != 0)
+            return err ;
+    }
+    string requestBody;
+    while (i + 1 < tokens.size()){
+        i++;
+        requestBody += tokens[i];
+    }
+    message->setBody(requestBody);
+    return 0;
+}
 
 int Parser::parse_key_val(string f_line , HttpMessage* request) {
 

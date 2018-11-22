@@ -1,4 +1,5 @@
 #include <HttpHandler.h>
+#include <poll.h>
 #include "HttpClient.h"
 
 /* constructor */
@@ -46,36 +47,32 @@ int
 HttpClient::sendGETRequests(vector<Request> requests)
 {
 
-    fd_set readfds ;
-
     // send GET msg
     for(Request requestObj : requests) {
-      string r = requestObj.toString();
-      int status = PortHandler::write(socketfd , (char* )r.c_str() , r.size());
-      if(status == -1){
-        return -1;
-      }
+        string r = requestObj.toString();
+        int status = PortHandler::write(socketfd , (char* )r.c_str() , r.size());
+        if(status == -1){
+            return -1;
+        }
     }
 
+    struct pollfd pollFd;
+
+    pollFd.fd = socketfd;
+    pollFd.events = POLLIN;
+
+
     int file_counter = 0 ;
-    timeval t;
     while(true) {
-      //clear the socket set
-      FD_ZERO(&readfds);
 
-      FD_SET(socketfd, &readfds);
-
-        t.tv_sec = timeOut;
-        t.tv_usec = 0;
-
-        int activity = select(socketfd + 1 , &readfds , NULL , NULL , &t);
+        int activity = poll(&pollFd, 1, timeOut);
 
       if ((activity <= 0) && (errno!=EINTR))
       {
         break ;
       }
 
-      vector<char> total ;
+      vector<char> total(MAX_RES_SZ, 0) ;
 
       // receive reponse
       int valread = PortHandler::read(socketfd , total , MAX_RES_SZ);
@@ -84,8 +81,9 @@ HttpClient::sendGETRequests(vector<Request> requests)
         return -1 ;
       }
 
+      string s = string(total.begin(),total.begin() + ((valread < MAX_RES_SZ) ? valread : MAX_RES_SZ));
       // save data to directory
-      Response *responseObj = Parser::createResponse(string(total.begin(),total.end()));
+      Response *responseObj = Parser::createResponse(s);
       int ret = 0;
       const char *data = 0;
 
@@ -105,7 +103,7 @@ HttpClient::sendGETRequests(vector<Request> requests)
       cout << responseObj->toString() << endl;
       delete responseObj;
 
-      file_counter ++ ;
+      file_counter++ ;
     }
 
     return 0;

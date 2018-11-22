@@ -37,7 +37,7 @@ int PortHandler::writeExact(int socked_fd, char *buffer, int sz) {
 }
 
 int PortHandler::read(int socked_fd, vector<char> &total , int sz ) {
-  return recv(socked_fd, &total[0] , sz, MSG_WAITALL) ;
+  return recv(socked_fd, &total[0] , sz, 0) ;
 }
 
 

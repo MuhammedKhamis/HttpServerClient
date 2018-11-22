@@ -17,6 +17,7 @@
 #include <Response.h>
 #include <string.h>
 #include <semaphore.h>
+#include <poll.h>
 
 using namespace std;
 
