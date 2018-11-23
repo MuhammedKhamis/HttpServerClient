@@ -21,7 +21,7 @@
 
 using namespace std;
 
-#define timeOut 4
+#define timeOut 200
 
 #define MAX_REQ_SZ 512000
 

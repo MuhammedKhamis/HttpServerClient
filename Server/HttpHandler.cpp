@@ -35,12 +35,11 @@ void HttpHandler::run() {
     pollFd.fd = socket_fd;
     pollFd.events = POLLIN;
 
-    int timeInt = 200; // 200 milli second
     string reqs;
 
     while (true) {
 
-        int activity = poll(&pollFd, 1, timeInt);
+        int activity = poll(&pollFd, 1, timeOut);
 
         if ((activity <= 0) && (errno != EINTR)) {
             break;
@@ -58,7 +57,7 @@ void HttpHandler::run() {
     allRequests = Parser::createRequests(reqs) ;
 
     if(allRequests.empty()){
-        perror("failed to create request is corrupter or in complete\n") ;
+        cout << "No requests sent during time interval\n";
     }
 
     for (Request* request : allRequests){
@@ -84,7 +83,7 @@ void HttpHandler::handleGet(Request *request) {
          // Error
          res = new Response(false, serverName);
          string r = res->toString();
-         PortHandler::write(socket_fd, (char*)r.c_str(), r.size());
+         PortHandler::writeExact(socket_fd, (char*)r.c_str(), r.size());
          delete res;
          return;
      }
@@ -99,7 +98,7 @@ void HttpHandler::handleGet(Request *request) {
      res->setBody(string(data.begin(),data.end()));
      string r = res->toString();
 
-     PortHandler::write(socket_fd, (char*)r.c_str(), r.size());
+     PortHandler::writeExact(socket_fd, (char*)r.c_str(), r.size());
      delete res;
      }
 
@@ -119,7 +118,7 @@ void HttpHandler::handlePost(Request *request) {
     cout << "---------response----------" << endl ;
     cout << r << endl ;
 
-    PortHandler::write(socket_fd, (char*)r.c_str(), r.size());
+    PortHandler::writeExact(socket_fd, (char*)r.c_str(), r.size());
     delete res;
 }
 

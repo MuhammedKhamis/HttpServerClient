@@ -61,11 +61,12 @@ HttpClient::sendGETRequests(vector<Request> requests)
     pollFd.fd = socketfd;
     pollFd.events = POLLIN;
 
+    int waitInterval = 10 * 100;
 
     int file_counter = requests.size() ;
-    while(file_counter--) {
+    while(true) {
 
-        int activity = poll(&pollFd, 1, 10 * 1000 );
+        int activity = poll(&pollFd, 1, waitInterval );
 
       if ((activity <= 0) && (errno!=EINTR))
       {
@@ -84,7 +85,6 @@ HttpClient::sendGETRequests(vector<Request> requests)
       string s = string(total.begin(),total.begin() + ((valread < MAX_RES_SZ) ? valread : MAX_RES_SZ));
       // save data to directory
       Response *responseObj = Parser::createResponse(s);
-      int ret = 0;
       const char *data = 0;
 
       //connection is dead
@@ -96,9 +96,20 @@ HttpClient::sendGETRequests(vector<Request> requests)
       {
         string body = responseObj->getBody();
         //IMPORTANT DON't DELETE IT
-        data = body.c_str();
         int len = stoi(responseObj->getKey_val("Content-Length"));
-        ret = IOHandler::writeData(Client , requests[file_counter].getFileName(), (char*)data, len);
+        int currLen = len - body.size();
+        while (currLen > 0){
+            vector<char> total;
+            int read = PortHandler::readExact(socketfd, total, currLen);
+            if(read <= 0){
+                break;
+            }
+            currLen -= read;
+            body.insert(body.end(), total.begin(), total.end());
+        }
+          data = body.c_str();
+          IOHandler::writeData(Client , requests[file_counter].getFileName(), (char*)data, len);
+          responseObj->setBody(body);
       }
       cout << responseObj->toString() << endl;
       delete responseObj;
