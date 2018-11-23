@@ -16,9 +16,6 @@
       <change beforePath="$PROJECT_DIR$/../Client/HttpClient.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/HttpClient.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Client/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/main.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HttpHandler.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/HttpHandler.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HttpHandler.h" beforeDir="false" afterPath="$PROJECT_DIR$/HttpHandler.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Util/IOHandler.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Util/IOHandler.cpp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -424,7 +421,7 @@
       <workItem from="1542889621296" duration="1260000" />
       <workItem from="1542976220536" duration="1650000" />
       <workItem from="1542980414277" duration="599000" />
-      <workItem from="1542998030161" duration="2676000" />
+      <workItem from="1542998030161" duration="2807000" />
     </task>
     <servers />
   </component>
@@ -461,7 +458,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="123272000" />
+    <option name="totallyTimeSpent" value="123403000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -474,6 +471,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
       <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.3095633" />

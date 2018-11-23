@@ -64,7 +64,7 @@ HttpClient::sendGETRequests(vector<Request> requests)
     int waitInterval = 2 * 1000;
 
     int file_counter = 0 ;
-    while(true) {
+    while(file_counter < requests.size()) {
 
         int activity = poll(&pollFd, 1, waitInterval );
 
