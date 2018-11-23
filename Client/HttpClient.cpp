@@ -59,11 +59,11 @@ HttpClient::sendGETRequests(vector<Request> requests)
     struct pollfd pollFd;
 
     pollFd.fd = socketfd;
-    pollFd.events = POLLIN;
+    pollFd.events = POLLIN | POLLHUP;
 
-    int waitInterval = 10 * 100;
+    int waitInterval = 2 * 1000;
 
-    int file_counter = requests.size() ;
+    int file_counter = 0 ;
     while(true) {
 
         int activity = poll(&pollFd, 1, waitInterval );
@@ -110,6 +110,7 @@ HttpClient::sendGETRequests(vector<Request> requests)
           data = body.c_str();
           IOHandler::writeData(Client , requests[file_counter].getFileName(), (char*)data, len);
           responseObj->setBody(body);
+          file_counter++;
       }
       cout << responseObj->toString() << endl;
       delete responseObj;

@@ -96,7 +96,7 @@ void HttpHandler::handleGet(Request *request) {
      res->setKeyVal("Content-Type", IOHandler::getContentType(Server , fileName));
 
      res->setBody(string(data.begin(),data.end()));
-     string r = res->toString();
+     string r = res->toString() + '\0';
 
      PortHandler::writeExact(socket_fd, (char*)r.c_str(), r.size());
      delete res;

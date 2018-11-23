@@ -103,12 +103,22 @@ int IOHandler::writeData(SERVER_CLIENT type , string fileName, char *data, int l
         fileName = getStorageDir(type) + fileName;
 
         pthread_mutex_lock(&fileLock);
-        FILE* fp = fopen(fileName.c_str(),"wb+");
-        int written = fwrite(data, 1, len, fp);
-        pthread_mutex_unlock(&fileLock);
 
+        FILE* fp = fopen(fileName.c_str(),"wb+");
+        while (len > 0) {
+            int written = fwrite(data, 1, len, fp);
+            if(written == -1){
+                return -1;
+            }
+            if(written == 0){
+                break;
+            }
+            len -= written;
+
+        }
         fclose(fp);
-        return written;
+        pthread_mutex_unlock(&fileLock);
+        return len;
 }
 
 string IOHandler::getStorageDir(SERVER_CLIENT type) {

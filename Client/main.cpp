@@ -26,7 +26,7 @@ static void* runThread(void *p){
     while(counter < 2)
     {
         // scan user command
-        vector<string> userCommand = {"GET read.txt 0.0.0.0", "GET read.txt 0.0.0.0"};
+        vector<string> userCommand = {"GET smile.jpeg 0.0.0.0"};
 
         //printf("Enter Command: ");
         //getline(cin,userCommand);
@@ -52,7 +52,7 @@ static void* runThread(void *p){
 int main(int argc, char *argv[])
 {
 
-    int sz = 150;
+    int sz = 1;
     pthread_t ts[sz];
     for(int i = 0 ; i < sz ; i++){
         pthread_create(&ts[i],NULL, runThread, NULL);
