@@ -26,7 +26,7 @@ static void* runThread(void *p){
     while(counter < 2)
     {
         // scan user command
-        vector<string> userCommand = {"GET c.jpg 0.0.0.0"};
+        vector<string> userCommand = {"GET c.jpg 127.0.0.1"};
 
         //printf("Enter Command: ");
         //getline(cin,userCommand);

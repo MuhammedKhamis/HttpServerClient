@@ -2,8 +2,6 @@
 // Created by muhammed on 02/11/18.
 //
 
-#include <thread_db.h>
-#include <semaphore.h>
 #include "HttpServer.h"
 
 HttpServer::HttpServer(int workers, int backlog, unsigned int port) {
@@ -11,7 +9,6 @@ HttpServer::HttpServer(int workers, int backlog, unsigned int port) {
     this->maxWorkers = workers;
     this->port = port;
     server_fd = 0;
-    currentWorkers = 0;
     sem_init(&sema, 0, maxWorkers);
     IOHandler::initFileLock();
 }
@@ -61,50 +58,36 @@ int HttpServer::initServer() {
     }
 
     cout << "Server side started\n";
-    return 0;
+    return pthread_create(&workerCheckerId, NULL, workerChecker, this);
 }
-/*
-void HttpServer::haveWorkers() {
 
-    pthread_mutex_lock(&lock);
-    while(workers.empty()){
-        pthread_cond_wait(&toConsume, &lock);
-    }
+void HttpServer::haveWorkers() {
 
     queue<HttpHandler*> nextQueue;
     time_t currTime = 0;
-    unsigned long long timeOut = (2 * maxWorkers) / (workers.size() + 1);
+    int timeInterval = 10 / ( workers.size() + 1 );
     while(!workers.empty()){
-
         HttpHandler* curr = workers.front();
         workers.pop();
-
         time(&currTime);
-        if(difftime(currTime, curr->getCreateTime()) > timeOut){
+        if(difftime(currTime, curr->getCreateTime()) > timeInterval){
             curr->finish();
         }else{
             nextQueue.push(curr);
         }
     }
     workers = nextQueue;
-
-    pthread_cond_signal(&toProduce);
-    pthread_mutex_unlock(&lock);
 }
-*/
-/*
+
 void* HttpServer::workerChecker(void *runner) {
     while (true){
         ((HttpServer*)runner)->haveWorkers();
-        usleep(1000);
     }
 }
 
-*/
 void HttpServer::run() {
 
     while (1){
-
             int new_socket;
             struct sockaddr_in address;
             socklen_t addrlen = sizeof(address);
@@ -120,7 +103,6 @@ void HttpServer::run() {
             } else {
                 delete handler;
             }
-            usleep(1000);
         }
 
 }

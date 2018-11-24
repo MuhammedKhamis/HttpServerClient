@@ -89,12 +89,24 @@ int IOHandler::readData(SERVER_CLIENT type , string fileName, char *data, int le
         fileName = getStorageDir(type) + fileName;
 
         pthread_mutex_lock(&fileLock);
+
         FILE* fp = fopen(fileName.c_str(),"rb");
-        int read = fread(data, 1, len, fp);
+        int sz = len;
+        while(len > 0) {
+            int read = fread(data, 1, len, fp);
+            if(read == -1){
+                return -1;
+            }
+            if(read == 0){
+                break;
+            }
+            len-=read;
+            data+=read;
+        }
+        fclose(fp);
         pthread_mutex_unlock(&fileLock);
 
-        fclose(fp);
-        return read;
+        return sz - len ;
     }
     return -1;
 }
@@ -105,6 +117,7 @@ int IOHandler::writeData(SERVER_CLIENT type , string fileName, char *data, int l
         pthread_mutex_lock(&fileLock);
 
         FILE* fp = fopen(fileName.c_str(),"wb+");
+        int sz = len;
         while (len > 0) {
             int written = fwrite(data, 1, len, fp);
             if(written == -1){
@@ -114,11 +127,13 @@ int IOHandler::writeData(SERVER_CLIENT type , string fileName, char *data, int l
                 break;
             }
             len -= written;
+            data += written;
 
         }
         fclose(fp);
+
         pthread_mutex_unlock(&fileLock);
-        return len;
+        return sz - len;
 }
 
 string IOHandler::getStorageDir(SERVER_CLIENT type) {

@@ -13,9 +13,9 @@ HttpHandler::HttpHandler(int socket_fd, string serverName) {
 }
 
 HttpHandler::~HttpHandler() {
-    sem_post(sema);
     close();
     cout << "Thread that use fd =  " << socket_fd << " is Closed" << endl;
+    sem_post(sema);
 }
 
 int HttpHandler::getSocketfd() {
@@ -28,48 +28,50 @@ pthread_t HttpHandler::getThreadId() {
 
 void HttpHandler::run() {
 
-    vector<Request*> allRequests ;
+        struct pollfd pollFd;
 
-    struct pollfd pollFd;
+        pollFd.fd = socket_fd;
+        pollFd.events = POLLIN;
 
-    pollFd.fd = socket_fd;
-    pollFd.events = POLLIN;
+    while (!finished) {
 
-    string reqs;
+        vector<Request *> allRequests;
 
-    while (true) {
+        string reqs;
 
-        int activity = poll(&pollFd, 1, timeOut);
+        while (true) {
 
-        if ((activity <= 0) && (errno != EINTR)) {
-            break;
+            int activity = poll(&pollFd, 1, timeOut);
+
+            if ((activity <= 0) && (errno != EINTR)) {
+                break;
+            }
+
+            vector<char> data(MAX_REQ_SZ, 0);
+            int read = PortHandler::read(socket_fd, data, MAX_REQ_SZ);
+            if (read <= 0) {
+                //Error
+                break;
+            }
+            reqs += string(data.begin(), data.begin() + ((read < MAX_REQ_SZ) ? read : MAX_REQ_SZ));
         }
 
-        vector<char> data(MAX_REQ_SZ, 0);
-        int read = PortHandler::read(socket_fd, data, MAX_REQ_SZ);
-        if (read <= 0) {
-            //Error
-            break;
+        allRequests = Parser::createRequests(reqs);
+
+        if (!allRequests.empty()) {
+            //cout << "No requests sent during time interval\n";
+            //time(&startTime);
         }
-         reqs += string(data.begin(), data.begin() + ((read < MAX_REQ_SZ) ? read : MAX_REQ_SZ));
+
+        for (Request *request : allRequests) {
+            if (request->getMethod() == GET) {
+                handleGet(request);
+            } else if (request->getMethod() == POST) {
+                handlePost(request);
+            }
+            delete request;
+        }
     }
-
-    allRequests = Parser::createRequests(reqs) ;
-
-    if(allRequests.empty()){
-        cout << "No requests sent during time interval\n";
-    }
-
-    for (Request* request : allRequests){
-        if(request->getMethod() == GET){
-            handleGet(request);
-        }
-        else if(request->getMethod() == POST){
-            handlePost(request);
-        }
-      delete request;
-    }
-
 
   // Error
 }
@@ -96,7 +98,7 @@ void HttpHandler::handleGet(Request *request) {
      res->setKeyVal("Content-Type", IOHandler::getContentType(Server , fileName));
 
      res->setBody(string(data.begin(),data.end()));
-     string r = res->toString() + '\0';
+     string r = res->toString();
 
      PortHandler::writeExact(socket_fd, (char*)r.c_str(), r.size());
      delete res;

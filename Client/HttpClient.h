@@ -34,7 +34,7 @@ class HttpClient {
   public:
   	//
     HttpClient(string dataDirectory);
-  	~HttpClient() = default;
+  	~HttpClient();
 
     // methods
     int connectionInit(char *server_address, int port_no = 8000);

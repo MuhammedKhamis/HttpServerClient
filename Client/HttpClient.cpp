@@ -9,6 +9,12 @@ HttpClient::HttpClient(string dataDirectory)
     this->dataDirectory = dataDirectory;
 }
 
+HttpClient::~HttpClient()
+{
+    //PortHandler::closeConnection(socketfd);
+}
+
+
 /* interface methods */
 /*************************************/
 int
@@ -61,7 +67,7 @@ HttpClient::sendGETRequests(vector<Request> requests)
     pollFd.fd = socketfd;
     pollFd.events = POLLIN | POLLHUP;
 
-    int waitInterval = 2 * 1000;
+    int waitInterval = 1 * 1000;
 
     int file_counter = 0 ;
     while(file_counter < requests.size()) {
@@ -73,48 +79,54 @@ HttpClient::sendGETRequests(vector<Request> requests)
         break ;
       }
 
-      vector<char> total(MAX_RES_SZ, 0) ;
+      if( pollFd.revents & POLLIN) {
 
-      // receive reponse
-      int valread = PortHandler::read(socketfd , total , MAX_RES_SZ);
+          vector<char> total(MAX_RES_SZ, 0);
 
-      if(valread == -1){
-        return -1 ;
+          // receive reponse
+          int valread = PortHandler::read(socketfd, total, MAX_RES_SZ);
+
+          if (valread == -1) {
+              return -1;
+          }
+
+          string s = string(total.begin(), total.begin() + ((valread < MAX_RES_SZ) ? valread : MAX_RES_SZ));
+          // save data to directory
+          Response *responseObj = Parser::createResponse(s);
+          const char *data = 0;
+
+          //connection is dead
+          if (responseObj == NULL) {
+              return -1;
+          }
+
+          if (responseObj->getStatus() == 200) // file found
+          {
+              string body = responseObj->getBody();
+              //IMPORTANT DON't DELETE IT
+              int len = stoi(responseObj->getKey_val("Content-Length"));
+              int currLen = len - body.size();
+
+              vector<char> rest;
+
+              cout << "*****" <<  body.size() << "*****" << endl;
+
+              int read = PortHandler::readExact(socketfd, rest, currLen);
+
+              cout << "read value: " << read << endl;
+
+              body.insert(body.end(), rest.begin(), rest.end());
+
+              data = body.c_str();
+              cout << "*****" <<  body.size() << "*****" << endl;
+
+              IOHandler::writeData(Client, requests[file_counter].getFileName(), (char *) data, len);
+              responseObj->setBody(body);
+              file_counter++;
+          }
+          cout << responseObj->toString() << endl;
+          delete responseObj;
       }
-
-      string s = string(total.begin(),total.begin() + ((valread < MAX_RES_SZ) ? valread : MAX_RES_SZ));
-      // save data to directory
-      Response *responseObj = Parser::createResponse(s);
-      const char *data = 0;
-
-      //connection is dead
-      if(responseObj == NULL){
-        return -1 ;
-      }
-
-      if(responseObj->getStatus() == 200) // file found
-      {
-        string body = responseObj->getBody();
-        //IMPORTANT DON't DELETE IT
-        int len = stoi(responseObj->getKey_val("Content-Length"));
-        int currLen = len - body.size();
-        while (currLen > 0){
-            vector<char> total;
-            int read = PortHandler::readExact(socketfd, total, currLen);
-            if(read <= 0){
-                break;
-            }
-            currLen -= read;
-            body.insert(body.end(), total.begin(), total.end());
-        }
-          data = body.c_str();
-          IOHandler::writeData(Client , requests[file_counter].getFileName(), (char*)data, len);
-          responseObj->setBody(body);
-          file_counter++;
-      }
-      cout << responseObj->toString() << endl;
-      delete responseObj;
-
     }
 
     return 0;
@@ -138,7 +150,7 @@ HttpClient::sendPOSTRequest(Request requestObj)
     string r = requestObj.toString();
 
     // send POST request;
-    status = PortHandler::write(socketfd , (char* )r.c_str() , r.size());
+    status = PortHandler::writeExact(socketfd , (char* )r.c_str() , r.size());
 
     if(status < 0){
         return -1;
@@ -153,7 +165,7 @@ HttpClient::sendPOSTRequest(Request requestObj)
         return -1;
     }
 
-    r = string(retBuffer.begin(),retBuffer.begin());
+    r = string(retBuffer.begin(),retBuffer.begin() + ((valread < MAX_RES_SZ) ? valread : MAX_RES_SZ));
 
     // make sure its OK to send data
     Response *responseObj = Parser::createResponse(r);

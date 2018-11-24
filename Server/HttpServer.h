@@ -15,6 +15,7 @@
 #include <IOHandler.h>
 #include <fcntl.h>
 #include <semaphore.h>
+#include <thread_db.h>
 
 using namespace std;
 
@@ -29,13 +30,15 @@ public:
     int initServer();
 
 private:
+    static void* workerChecker(void *runner);
+    void haveWorkers();
     queue<HttpHandler*> workers;
     int maxWorkers;
     int maxBacklog;
     int server_fd;
     unsigned int port;
-    int currentWorkers;
     sem_t sema;
+    pthread_t workerCheckerId;
 
 };
 

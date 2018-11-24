@@ -7,7 +7,8 @@
 
 int PortHandler::readExact(int socked_fd, vector<char> &total , int sz ) {
 
-  while(sz) {
+  int len = sz;
+  while(sz > 0) {
     vector<char> buffer(sz, 0);
     int valread = read(socked_fd, buffer, sz) ;
     if(valread < 0){
@@ -17,10 +18,10 @@ int PortHandler::readExact(int socked_fd, vector<char> &total , int sz ) {
         break;
     }
     sz -= valread;
-    string r = string(buffer.begin(), buffer.begin() + ((valread < sz) ? valread : sz));
+    string r = string(buffer.begin(), buffer.begin() + ((valread < len) ? valread : len));
     total.insert(total.end(), r.begin(), r.end());
   }
-  return sz ;
+  return len - sz ;
 }
 
 int PortHandler::read(int socked_fd, vector<char> &total , int sz ) {
@@ -31,7 +32,7 @@ int PortHandler::read(int socked_fd, vector<char> &total , int sz ) {
 int PortHandler::writeExact(int socked_fd, char *buffer, int sz) {
   char* ptr = buffer;
   int len = sz;
-  while (len){
+  while (len  > 0){
     int status = write(socked_fd, ptr, len);
     if(status == -1){
       return status;
