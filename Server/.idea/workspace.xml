@@ -13,21 +13,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ef7ce604-f648-450f-9720-aae2e404cca5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../Client/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/Files/read.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/Files/read.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/HttpClient.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/HttpClient.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/HttpClient.h" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/HttpClient.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Client/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Messages/HttpMessage.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Messages/HttpMessage.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Messages/HttpMessage.h" beforeDir="false" afterPath="$PROJECT_DIR$/../Messages/HttpMessage.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Messages/Request.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Messages/Request.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Messages/Request.h" beforeDir="false" afterPath="$PROJECT_DIR$/../Messages/Request.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HttpHandler.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/HttpHandler.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HttpHandler.h" beforeDir="false" afterPath="$PROJECT_DIR$/HttpHandler.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HttpServer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/HttpServer.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Util/Parser.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Util/Parser.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Util/PortHandler.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Util/PortHandler.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Util/PortHandler.h" beforeDir="false" afterPath="$PROJECT_DIR$/../Util/PortHandler.h" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -431,7 +417,7 @@
       <workItem from="1542976220536" duration="1650000" />
       <workItem from="1542980414277" duration="599000" />
       <workItem from="1542998030161" duration="4615000" />
-      <workItem from="1543055847112" duration="21953000" />
+      <workItem from="1543055847112" duration="22534000" />
     </task>
     <servers />
   </component>
@@ -468,7 +454,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="147164000" />
+    <option name="totallyTimeSpent" value="147745000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
