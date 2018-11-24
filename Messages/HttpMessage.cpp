@@ -41,6 +41,12 @@ string HttpMessage::fieldsAndBody() {
     return ss.str();
 }
 
+int HttpMessage::getHeadersSize() {
+    int totalSize = toString().size();
+    int bodySize = body.size();
+    return totalSize - bodySize;
+}
+
 string HttpMessage::getBody() {
     return body;
 }

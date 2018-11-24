@@ -65,29 +65,29 @@ HttpClient::sendGETRequests(vector<Request> requests)
     struct pollfd pollFd;
 
     pollFd.fd = socketfd;
-    pollFd.events = POLLIN | POLLHUP;
+    pollFd.events = POLLIN;
 
-    int waitInterval = 1 * 1000;
+    int waitInterval = 20 * 1000;
 
     int file_counter = 0 ;
     while(file_counter < requests.size()) {
-
         int activity = poll(&pollFd, 1, waitInterval );
-
-      if ((activity <= 0) && (errno!=EINTR))
-      {
-        break ;
-      }
-
-      if( pollFd.revents & POLLIN) {
+        if ((activity <= 0) && (errno!=EINTR))
+        {
+            break ;
+        }
 
           vector<char> total(MAX_RES_SZ, 0);
 
           // receive reponse
-          int valread = PortHandler::read(socketfd, total, MAX_RES_SZ);
+          int valread = PortHandler::tryRead(socketfd, total, MAX_RES_SZ);
 
           if (valread == -1) {
               return -1;
+          }
+
+          if(valread == 0){
+              cout << "Stuck at receive\n";
           }
 
           string s = string(total.begin(), total.begin() + ((valread < MAX_RES_SZ) ? valread : MAX_RES_SZ));
@@ -102,31 +102,30 @@ HttpClient::sendGETRequests(vector<Request> requests)
 
           if (responseObj->getStatus() == 200) // file found
           {
-              string body = responseObj->getBody();
               //IMPORTANT DON't DELETE IT
-              int len = stoi(responseObj->getKey_val("Content-Length"));
-              int currLen = len - body.size();
+              int len = stoi(responseObj->getKey_val("Content-Length")) + responseObj->getHeadersSize();
 
               vector<char> rest;
 
-              cout << "*****" <<  body.size() << "*****" << endl;
+              PortHandler::readExact(socketfd, rest, len);
 
-              int read = PortHandler::readExact(socketfd, rest, currLen);
+              string realS = string(rest.begin(), rest.end());
 
-              cout << "read value: " << read << endl;
+              Response *realResponse = Parser::createResponse(realS);
 
-              body.insert(body.end(), rest.begin(), rest.end());
+              string body = realResponse->getBody();
 
               data = body.c_str();
-              cout << "*****" <<  body.size() << "*****" << endl;
 
               IOHandler::writeData(Client, requests[file_counter].getFileName(), (char *) data, len);
-              responseObj->setBody(body);
+
               file_counter++;
+
+              //cout << realResponse->toString() << endl;
+
+              delete realResponse;
           }
-          cout << responseObj->toString() << endl;
           delete responseObj;
-      }
     }
 
     return 0;
@@ -156,10 +155,23 @@ HttpClient::sendPOSTRequest(Request requestObj)
         return -1;
     }
 
+    struct pollfd pollFd;
+
+    pollFd.fd = socketfd;
+    pollFd.events = POLLIN;
+
+    int waitInterval = 20 * 1000;
+
+    int activity = poll(&pollFd, 1, waitInterval );
+    if ((activity <= 0) && (errno!=EINTR))
+    {
+        return -1 ;
+    }
+
     // receive reponse
     vector<char> retBuffer;
 
-    int valread = PortHandler::read( socketfd , retBuffer, MAX_RES_SZ);
+    int valread = PortHandler::read(socketfd , retBuffer, MAX_RES_SZ);
 
     if(valread < 0){
         return -1;
@@ -180,5 +192,7 @@ HttpClient::sendPOSTRequest(Request requestObj)
 }
 
 
-
+int HttpClient::closeConnection() {
+    return PortHandler::closeConnection(socketfd);
+}
 

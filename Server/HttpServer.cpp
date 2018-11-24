@@ -65,7 +65,7 @@ void HttpServer::haveWorkers() {
 
     queue<HttpHandler*> nextQueue;
     time_t currTime = 0;
-    int timeInterval = 10 / ( workers.size() + 1 );
+    int timeInterval = 200;
     while(!workers.empty()){
         HttpHandler* curr = workers.front();
         workers.pop();

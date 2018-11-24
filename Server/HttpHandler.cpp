@@ -32,16 +32,15 @@ void HttpHandler::run() {
 
         pollFd.fd = socket_fd;
         pollFd.events = POLLIN;
-
-    while (!finished) {
-
         vector<Request *> allRequests;
-
         string reqs;
 
+        int timeInterval = 8 * 100;
+
+    while (!finished) {
         while (true) {
 
-            int activity = poll(&pollFd, 1, timeOut);
+            int activity = poll(&pollFd, 1, timeInterval);
 
             if ((activity <= 0) && (errno != EINTR)) {
                 break;
@@ -53,15 +52,12 @@ void HttpHandler::run() {
                 //Error
                 break;
             }
+            time(&startTime);
             reqs += string(data.begin(), data.begin() + ((read < MAX_REQ_SZ) ? read : MAX_REQ_SZ));
         }
 
+        // after taking all the requests, now we process them.
         allRequests = Parser::createRequests(reqs);
-
-        if (!allRequests.empty()) {
-            //cout << "No requests sent during time interval\n";
-            //time(&startTime);
-        }
 
         for (Request *request : allRequests) {
             if (request->getMethod() == GET) {
@@ -102,7 +98,7 @@ void HttpHandler::handleGet(Request *request) {
 
      PortHandler::writeExact(socket_fd, (char*)r.c_str(), r.size());
      delete res;
-     }
+}
 
 void HttpHandler::handlePost(Request *request) {
 

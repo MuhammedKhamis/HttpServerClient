@@ -10,6 +10,12 @@
 /* main function */
 /*************************************/
 
+static void connectionStatus(int status){
+    if(status == -1){
+        cout << "Connecting Disconnected\n";
+    }
+}
+
 static void* runThread(void *p){
 
     // where to store data on client module
@@ -20,34 +26,34 @@ static void* runThread(void *p){
     // reading args
     int port = 8000;
     char *serverAddress = "127.0.0.1";
+     client.connectionInit(serverAddress, port);
 
-    int counter = 0;
-     counter += (client.connectionInit(serverAddress, port) <= 0);
-    while(counter < 2)
-    {
-        // scan user command
-        vector<string> userCommand = {"GET c.jpg 127.0.0.1"};
+     // scan user command
+     vector<string> userCommand = {"GET c.jpg 127.0.0.1"};
 
-        //printf("Enter Command: ");
-        //getline(cin,userCommand);
-        vector<Request> reqs;
-        for(string command : userCommand) {
-          // parse user command
+     //printf("Enter Command: ");
+     //getline(cin,userCommand);
+     vector<Request> reqs;
+    int status;
+    for(string command : userCommand) {
+         // parse user command
           Request requestObj = Parser::parseInputCommand(command);
-          reqs.push_back(requestObj);
-        }
-        int status;
-        // GET or POST
-        status = client.sendGETRequests(reqs);
-        if(status == -1){
-            cout << "Connecting again...\n";
-            counter += (client.connectionInit(serverAddress, port) <= 0);
-        } else{
-            counter = 5;
-        }
-    }
+          if(requestObj.getMethod() == GET){
+              reqs.push_back(requestObj);
+          }else{
+              status = client.sendGETRequests(reqs);
+              connectionStatus(status);
+
+              status = client.sendPOSTRequest(requestObj);
+              connectionStatus(status);
+          }
+     }
+    status = client.sendGETRequests(reqs);
+    connectionStatus(status);
+    client.closeConnection();
     return NULL;
 }
+
 
 int main(int argc, char *argv[])
 {

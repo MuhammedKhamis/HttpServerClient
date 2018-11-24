@@ -147,7 +147,7 @@ int Parser::parseString(vector<string> tokens, HttpMessage* message) {
     string requestBody;
     while (i + 1 < tokens.size()){
         i++;
-        requestBody += tokens[i];
+        requestBody += (tokens[i] + "\r\n");
     }
     message->setBody(requestBody);
     return 0;

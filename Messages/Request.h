@@ -52,7 +52,8 @@ class Request: public HttpMessage {
         return HttpMessage::getKey_val(key);
     }
 
-  string toString();
+    string toString();
+
 
  private:
     string fileName , hostName;

@@ -23,7 +23,7 @@ public:
     virtual void setBody(string body);
     virtual string getKey_val(string key);
     virtual string getBody();
-
+    virtual int getHeadersSize();
 
 protected:
     vector<string> enumValues = { "GET", "POST" };

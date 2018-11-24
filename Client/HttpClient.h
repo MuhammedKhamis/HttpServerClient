@@ -40,6 +40,7 @@ class HttpClient {
     int connectionInit(char *server_address, int port_no = 8000);
     int sendGETRequests(vector<Request> requestObj);
     int sendPOSTRequest(Request requestObj);
+    int closeConnection();
 };
 
 #endif
