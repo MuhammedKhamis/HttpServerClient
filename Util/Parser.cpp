@@ -53,7 +53,8 @@ vector<Request*> Parser::createRequests(string data){
             s += (tokens[i] + "\r\n");
             i++;
         }
-        reqs.push_back(createRequest(s));
+        Request *currRequest = createRequest(s);
+        reqs.push_back(currRequest);
         i++;
     }
     // remove bad requests
@@ -147,7 +148,10 @@ int Parser::parseString(vector<string> tokens, HttpMessage* message) {
     string requestBody;
     while (i + 1 < tokens.size()){
         i++;
-        requestBody += (tokens[i] + "\r\n");
+        requestBody += tokens[i];
+        if(i + 1 < tokens.size() ){
+            requestBody += "\r\n";
+        }
     }
     message->setBody(requestBody);
     return 0;

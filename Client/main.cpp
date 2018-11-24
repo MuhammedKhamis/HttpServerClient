@@ -16,8 +16,47 @@ void connectionStatus(int status){
     }
 }
 
-static void* runThread(void *p){
+int applyCommands(vector<string> userCommands, HttpClient client){
 
+    vector<Request> reqs;
+    int status;
+    for(string command : userCommands) {
+        // parse user command
+        Request requestObj = Parser::parseInputCommand(command);
+        if(requestObj.getMethod() == GET){
+            reqs.push_back(requestObj);
+        }else{
+
+            if(!reqs.empty()) {
+                status = client.sendGETRequests(reqs);
+                connectionStatus(status);
+                cout << "Done getting\n";
+            }
+
+            status = client.sendPOSTRequest(requestObj);
+            connectionStatus(status);
+            cout << "Done posting\n";
+
+        }
+    }
+    if(!reqs.empty()){
+        status = client.sendGETRequests(reqs);
+        connectionStatus(status);
+        cout << "Done getting\n";
+    }
+    client.closeConnection();
+    return 0;
+}
+
+static void* runThread(void *p){
+    int port = 8000;
+    char *serverAddress = "127.0.0.1";
+
+    vector<string> userCommands = {"POST sent.txt 127.0.0.1", "GET read.txt 127.0.0.1"};
+    string dataDirectory = ".";
+    HttpClient client(dataDirectory);
+    client.connectionInit(serverAddress, port);
+    applyCommands(userCommands, client);
 
     return NULL;
 }
@@ -38,42 +77,20 @@ int testMain(){
     return 0;
 }
 
-int applyCommands(vector<string> userCommands, HttpClient client){
 
-    vector<Request> reqs;
-    int status;
-    for(string command : userCommands) {
-        // parse user command
-        Request requestObj = Parser::parseInputCommand(command);
-        if(requestObj.getMethod() == GET){
-            reqs.push_back(requestObj);
-        }else{
-            status = client.sendGETRequests(reqs);
-            connectionStatus(status);
-
-            status = client.sendPOSTRequest(requestObj);
-            connectionStatus(status);
-        }
-    }
-    status = client.sendGETRequests(reqs);
-    connectionStatus(status);
-    client.closeConnection();
-    return 0;
-}
 
 int main(int argc, char *argv[])
 {
     // input shape ./client server-ip port-number file-name
     // where to store data on client module
-    string dataDirectory = ".";
-    HttpClient client(dataDirectory);
 
+    /*
 
     // reading args
     int port = atoi(argv[2]);
     char *serverAddress = argv[1];
     char *fileName = argv[3];
-    vector<string> userCommands;
+    vector<string> userCommands = {};
 
     string command;
     ifstream myfile (fileName);
@@ -86,7 +103,10 @@ int main(int argc, char *argv[])
         }
         myfile.close();
     }
-
+    string dataDirectory = ".";
+    HttpClient client(dataDirectory);
     client.connectionInit(serverAddress, port);
     applyCommands(userCommands, client);
+    */
+    testMain();
 }

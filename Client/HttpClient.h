@@ -30,6 +30,7 @@ class HttpClient {
 		// attributes
 		string dataDirectory;
 		int socketfd;
+		int timeInterval;
 
   public:
   	//

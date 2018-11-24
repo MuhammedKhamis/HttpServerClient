@@ -35,7 +35,7 @@ void HttpHandler::run() {
         vector<Request *> allRequests;
         string reqs;
 
-        int timeInterval = 8 * 100;
+        int timeInterval = 7 * 100;
 
     while (!finished) {
         while (true) {
@@ -67,6 +67,7 @@ void HttpHandler::run() {
             }
             delete request;
         }
+        reqs.clear();
     }
 
   // Error
@@ -102,22 +103,39 @@ void HttpHandler::handleGet(Request *request) {
 
 void HttpHandler::handlePost(Request *request) {
 
-    string body = request->getBody();
-    char* data = (char*)body.c_str();
+    // sending OK
+    HttpMessage *res = new Response(true, serverName);
+    string r = res->toString();
+    cout << r << endl ;
+    PortHandler::write(socket_fd, (char*)r.c_str(), r.size());
+
+    struct pollfd pollFd;
+
+    pollFd.fd = socket_fd;
+    pollFd.events = POLLIN;
+
+    int timeInterval = 10 * 1000;
+
+    int activity = poll(&pollFd, 1,  timeInterval);
+    if ((activity <= 0) && (errno!=EINTR))
+    {
+        return;
+    }
+
+    // receive data
+    vector<char> retBuffer;
+    int len = stoi(request->getKey_val("Content-Length"));
+    int valread = PortHandler::readExact(socket_fd , retBuffer, len);
+
+    if(valread < 0){
+        return;
+    }
 
     string fileName = request->getFileName();
+    IOHandler::writeData( Server , fileName, retBuffer.data(), len);
 
-
-    int status = IOHandler::writeData( Server , fileName, data, body.size());
-
-    HttpMessage *res = new Response(status != -1, serverName);
-    string r = res->toString();
-
-    cout << "---------response----------" << endl ;
-    cout << r << endl ;
-
-    PortHandler::writeExact(socket_fd, (char*)r.c_str(), r.size());
     delete res;
+
 }
 
 bool HttpHandler::start(sem_t* sema) {

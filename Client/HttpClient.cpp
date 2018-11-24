@@ -7,6 +7,7 @@
 HttpClient::HttpClient(string dataDirectory)
 {
     this->dataDirectory = dataDirectory;
+    timeInterval = 30 * 1000;
 }
 
 HttpClient::~HttpClient()
@@ -67,14 +68,12 @@ HttpClient::sendGETRequests(vector<Request> requests)
     pollFd.fd = socketfd;
     pollFd.events = POLLIN;
 
-    int waitInterval = 20 * 1000;
-
     int file_counter = 0 ;
     while(file_counter < requests.size()) {
-        int activity = poll(&pollFd, 1, waitInterval );
+        int activity = poll(&pollFd, 1, timeInterval);
         if ((activity <= 0) && (errno!=EINTR))
         {
-            break ;
+            return activity;
         }
 
           vector<char> total(MAX_RES_SZ, 0);
@@ -117,11 +116,12 @@ HttpClient::sendGETRequests(vector<Request> requests)
 
               data = body.c_str();
 
-              IOHandler::writeData(Client, requests[file_counter].getFileName(), (char *) data, len);
+              IOHandler::writeData(Client, requests[file_counter].getFileName(), (char *) data, body.size());
 
               file_counter++;
 
-              //cout << realResponse->toString() << endl;
+              // for testing....
+              cout << realResponse->toString() << endl;
 
               delete realResponse;
           }
@@ -137,14 +137,12 @@ int
 HttpClient::sendPOSTRequest(Request requestObj)
 {
     // read file
-    int sz = IOHandler::getFileSize(Client ,requestObj.getFileName()) + 1;
+    int sz = IOHandler::getFileSize(Client ,requestObj.getFileName());
     vector<char> buffer(sz, 0);
     int status = IOHandler::readData(Client , requestObj.getFileName(), &buffer[0], sz);
     if(status == -1){
         return -1;
     }
-
-    requestObj.setBody(string(buffer.begin(),buffer.end()));
 
     string r = requestObj.toString();
 
@@ -155,21 +153,22 @@ HttpClient::sendPOSTRequest(Request requestObj)
         return -1;
     }
 
+
     struct pollfd pollFd;
 
     pollFd.fd = socketfd;
     pollFd.events = POLLIN;
 
-    int waitInterval = 20 * 1000;
 
-    int activity = poll(&pollFd, 1, waitInterval );
+    int activity = poll(&pollFd, 1, timeInterval );
     if ((activity <= 0) && (errno!=EINTR))
     {
         return -1 ;
     }
 
+
     // receive reponse
-    vector<char> retBuffer;
+    vector<char> retBuffer(MAX_RES_SZ, 0);
 
     int valread = PortHandler::read(socketfd , retBuffer, MAX_RES_SZ);
 
@@ -184,6 +183,7 @@ HttpClient::sendPOSTRequest(Request requestObj)
     cout << responseObj->toString() << endl;
     if(responseObj->getStatus() == 200) // ready to receive file
     {
+        PortHandler::writeExact(socketfd, buffer.data(), sz);
         delete responseObj;
         return 0;    
     }
