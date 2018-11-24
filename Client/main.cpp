@@ -52,7 +52,7 @@ static void* runThread(void *p){
     int port = 8000;
     char *serverAddress = "127.0.0.1";
 
-    vector<string> userCommands = {"POST sent.txt 127.0.0.1", "GET read.txt 127.0.0.1"};
+    vector<string> userCommands = {"POST c.jpg 127.0.0.1", "GET smile.jpeg 127.0.0.1", "POST read.txt 127.0.0.1" };
     string dataDirectory = ".";
     HttpClient client(dataDirectory);
     client.connectionInit(serverAddress, port);
@@ -62,7 +62,7 @@ static void* runThread(void *p){
 }
 
 int testMain(){
-    int sz = 1;
+    int sz = 140;
     pthread_t ts[sz];
     for(int i = 0 ; i < sz ; i++){
         pthread_create(&ts[i],NULL, runThread, NULL);
