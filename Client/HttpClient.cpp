@@ -118,14 +118,17 @@ HttpClient::sendGETRequests(vector<Request> requests)
 
               IOHandler::writeData(Client, requests[file_counter].getFileName(), (char *) data, body.size());
 
-              file_counter++;
-
               // for testing....
               cout << realResponse->toString() << endl;
 
               delete realResponse;
+          } else if(responseObj->getStatus() == 404){
+              cout << responseObj->toString() << endl;
           }
-          delete responseObj;
+
+        file_counter++;
+
+        delete responseObj;
     }
 
     return 0;
