@@ -36,7 +36,7 @@ You could run the Client using this command.\
 
 `./HttpClient server-ip port-number`
 
-#Http 1.1
+# Http 1.1
 Our server support simple **Http/1.1**, consisting of persistent Connection and `GET` requests pipelining.
 In our definition of persistent connection, that is, after the results of a single request are returned (e.g., index.html), the server should
 by default leave the connection open for some period of time, allowing the client to reuse that
@@ -45,10 +45,10 @@ and ideally should be dynamic based on the number of other active connections th
 currently supporting.
 
 
-#Additional Work
+# Additional Work
 Our server works also with a **FireFox** web browser as Client.
 
 
-#Design Diagram
+# Design Diagram
 Below you will find the design diagram of the project. \
 ![Diagram](https://github.com/MuhammedKhamis/HttpServerClient/blob/master/Design%20Diagram/design_diagram.png)
