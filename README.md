@@ -3,20 +3,20 @@ In this project, we used sockets to implement a simple web client that communica
 with a web server using a restricted subset of HTTP. The main objective of this project is
 to give you hands-on experience with UNIX sockets.
 
-#Server Side
+# Server Side
 Our web server accepts incoming connection requests. It should then look for the `GET`
 request and pick out the name of the requested file. If the request is `POST` then it sends
 OK message and wait for the uploaded file from the client. Note that a `GET` request from a
 real **WWW** client may have several lines of optional information following the `GET`. These
 optional lines, though, will be terminated by a blank line `’\r\n’`
 
-##How to run
+## How to run
 You could run the Server using this command.\
 
 `./HttpServer port-number`
 
 
-#Client Side
+# Client Side
 Our web client must read and parse a series of commands from input file. For this assignment,
 only the `GET` and `POST` commands are required to be handled. The commands syntax should
 be as follows:
@@ -30,7 +30,7 @@ a connection to an HTTP server on the specified host listening on the specified 
 port-number. The receiver must display the file and then store it in the local directory. The client will shut down
 when reaching the end of file.
 
-##How to run
+## How to run
 
 You could run the Client using this command.\
 
