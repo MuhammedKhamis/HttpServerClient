@@ -98,17 +98,17 @@ HttpClient::sendGETRequests(vector<Request> requests)
           if (responseObj == NULL) {
               return -1;
           }
-
-          if (responseObj->getStatus() == 200) // file found
+          int len;
+        vector<char> rest;
+        string realS;
+        if (responseObj->getStatus() == 200) // file found
           {
               //IMPORTANT DON't DELETE IT
-              int len = stoi(responseObj->getKey_val("Content-Length")) + responseObj->getHeadersSize();
-
-              vector<char> rest;
+              len = stoi(responseObj->getKey_val("Content-Length")) + responseObj->getHeadersSize();
 
               PortHandler::readExact(socketfd, rest, len);
 
-              string realS = string(rest.begin(), rest.end());
+              realS = string(rest.begin(), rest.end());
 
               Response *realResponse = Parser::createResponse(realS);
 
@@ -123,8 +123,18 @@ HttpClient::sendGETRequests(vector<Request> requests)
 
               delete realResponse;
           } else if(responseObj->getStatus() == 404){
-              cout << responseObj->toString() << endl;
-          }
+            len = responseObj->getHeadersSize();
+
+            PortHandler::readExact(socketfd, rest, len);
+
+            realS = string(rest.begin(), rest.end());
+
+            Response *realResponse = Parser::createResponse(realS);
+
+            cout << realResponse->toString() << endl;
+
+            delete realResponse;
+        }
 
         file_counter++;
 
