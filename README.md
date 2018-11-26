@@ -44,10 +44,11 @@ connection to make subsequent requests. This timeout needs to be configured in t
 and ideally should be dynamic based on the number of other active connections the server is
 currently supporting.
 
+
 #Additional Work
 Our server works also with a **FireFox** web browser as Client.
 
-#Design Diagram
 
+#Design Diagram
 Below you will find the design diagram of the project. \
-![Diagram]()
+![Diagram](https://github.com/MuhammedKhamis/HttpServerClient/blob/master/Design%20Diagram/design_diagram.png)
