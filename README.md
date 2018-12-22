@@ -11,7 +11,7 @@ real **WWW** client may have several lines of optional information following the
 optional lines, though, will be terminated by a blank line `’\r\n’`
 
 ## How to run
-You could run the Server using this command.\
+You could run the Server using this command.
 
 `./HttpServer port-number`
 
@@ -32,7 +32,7 @@ when reaching the end of file.
 
 ## How to run
 
-You could run the Client using this command.\
+You could run the Client using this command.
 
 `./HttpClient server-ip port-number`
 
